@@ -3,63 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://lucassimon.com.br/en/about/</loc>
+    <loc>https://lucassimon.com.br/en/about/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="http://lucassimon.com.br/about/"
+                href="https://lucassimon.com.br/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://lucassimon.com.br/en/about/"
+                href="https://lucassimon.com.br/en/about/"
                 />
   </url>
   
   <url>
-    <loc>http://lucassimon.com.br/en/categories/</loc>
+    <loc>https://lucassimon.com.br/en/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="http://lucassimon.com.br/categories/"
+                href="https://lucassimon.com.br/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://lucassimon.com.br/en/categories/"
+                href="https://lucassimon.com.br/en/categories/"
                 />
   </url>
   
   <url>
-    <loc>http://lucassimon.com.br/en/</loc>
+    <loc>https://lucassimon.com.br/en/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="http://lucassimon.com.br/"
+                href="https://lucassimon.com.br/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://lucassimon.com.br/en/"
+                href="https://lucassimon.com.br/en/"
                 />
   </url>
   
   <url>
-    <loc>http://lucassimon.com.br/en/tags/</loc>
+    <loc>https://lucassimon.com.br/en/tags/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="http://lucassimon.com.br/tags/"
+                href="https://lucassimon.com.br/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://lucassimon.com.br/en/tags/"
+                href="https://lucassimon.com.br/en/tags/"
                 />
   </url>
   

@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Lucas Simon</title>
-    <link>http://lucassimon.com.br/tags/</link>
+    <link>https://lucassimon.com.br/tags/</link>
     <description>Recent content in Tags on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Tue, 12 Jun 2018 09:07:41 -0300</lastBuildDate>
     
-	<atom:link href="http://lucassimon.com.br/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lucassimon.com.br/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Elixir</title>
-      <link>http://lucassimon.com.br/tags/elixir/</link>
+      <link>https://lucassimon.com.br/tags/elixir/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/tags/elixir/</guid>
+      <guid>https://lucassimon.com.br/tags/elixir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Functional Programming</title>
-      <link>http://lucassimon.com.br/tags/functional-programming/</link>
+      <link>https://lucassimon.com.br/tags/functional-programming/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/tags/functional-programming/</guid>
+      <guid>https://lucassimon.com.br/tags/functional-programming/</guid>
       <description></description>
     </item>
     
