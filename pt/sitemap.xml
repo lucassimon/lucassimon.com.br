@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <xhtml:link
@@ -33,6 +38,24 @@
   </url>
   
   <url>
+    <loc>/tags/elixir/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/elixir/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/functional-programming/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
@@ -49,22 +72,14 @@
   </url>
   
   <url>
-    <loc>/series/</loc>
+    <loc>/post/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/series/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="/series/"
-                />
   </url>
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

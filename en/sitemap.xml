@@ -49,21 +49,6 @@
   </url>
   
   <url>
-    <loc>/en/series/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="/series/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/series/"
-                />
-  </url>
-  
-  <url>
     <loc>/en/tags/</loc>
     <priority>0</priority>
     <xhtml:link
