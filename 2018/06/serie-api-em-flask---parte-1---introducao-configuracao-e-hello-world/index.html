@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 1 - Introdução, configuração e Hello World" />
+<meta property="og:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos
+ Capítulo 3: Configurando o pytest e nosso primeiro teste
+ Capítulo 4: Configurando o Makefile" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" />
+
+
+
+<meta property="article:published_time" content="2018-06-12T20:07:41-03:00"/>
+
+<meta property="article:modified_time" content="2018-06-12T20:07:41-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 1 - Introdução, configuração e Hello World"/>
+<meta name="twitter:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos
+ Capítulo 3: Configurando o pytest e nosso primeiro teste
+ Capítulo 4: Configurando o Makefile"/>
+<meta name="generator" content="Hugo 0.42-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 1 - Introdução, configuração e Hello World",
+  "url": "//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/",
+  "wordCount": "1358",
+  "datePublished": "2018-06-12T20:07:41-03:00",
+  "dateModified": "2018-06-12T20:07:41-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, python, api, rest"
+}
+</script>
+
+
+
+    <link rel="canonical" href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/">
+
+    <title>Série API em Flask - Parte 1 - Introdução, configuração e Hello World | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="//lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="//lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="//lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer.</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/">Série API em Flask - Parte 1 - Introdução, configuração e Hello World</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-06-12T20:07:41-03:00">Tue Jun 12, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  
+
+<p>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT</p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: Organizando as dependências e requerimentos</p></li>
+
+<li><p>Capítulo 3: Configurando o pytest e nosso primeiro teste</p></li>
+
+<li><p>Capítulo 4: Configurando o Makefile</p></li>
+
+<li><p>Capítulo 5: Adicionando o MongoDB a API</p></li>
+
+<li><p>Capítulo 7: Padronizando retornos da API com jsonify</p></li>
+
+<li><p>Capítulo 8: Criando o modelo de usuários</p></li>
+
+<li><p>Capítulo 8: Testando o modelo de usuários</p></li>
+
+<li><p>Capítulo 9: Adicionando o marshmallow</p></li>
+
+<li><p>Capítulo 10: Criando um novo usuário com pytest</p></li>
+
+<li><p>Capítulo 11: Listando usuários</p></li>
+
+<li><p>Capítulo 11: Buscando usuários</p></li>
+
+<li><p>Capítulo 12: Editando um usuário</p></li>
+
+<li><p>Capítulo 13: Deletando um usuário</p></li>
+
+<li><p>Capítulo 14: Adicionando o JWT a API</p></li>
+
+<li><p>Capítulo 15: Criando a app de autênticação por JWT</p></li>
+
+<li><p>Capítulo 16: Conclusão</p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a></p>
+
+<h2 id="ambiente">Ambiente</h2>
+
+<p>O ambiente de desenvolvimento utilizado neste tutorial é baseado em Unix e a versão 3.6 do Python. É bem provável que sua distribuição linux ja tenha essa versão instalada.</p>
+
+<p>Outro ponto a ser considerado antes de continuarmos é recomendado utilizar o <a href="https://virtualenvwrapper.readthedocs.io/en/latest/" target="_blank">virtualenvwrapper</a> para encapsular o ambiente virtual e instalar os pacotes necessários. Clique no link, leia as instruções e faça a instalação.</p>
+
+<p>Prosseguindo vamos criar nosso ambiente com o python 3</p>
+
+<pre><code class="language-shell">$ mkvirtualenv -p /usr/bin/python3 flask-api-users
+</code></pre>
+
+<h2 id="instalando-o-flask">Instalando o Flask</h2>
+
+<p>O próximo passo é instalar o Flask através do repositório público <a href="https://pypi.python.org/pypi" target="_blank">PyPi</a>, apelido de Python Package Index. Para instalar qualquer pacote dentro do ambiente virtual é bem simples, graças, ao facilitador ou comando chamado <code>pip ou pip3</code> que realiza todo o este árduo trabalho.</p>
+
+<p>Execute o comando abaixo e aguarde:</p>
+
+<pre><code class="language-shell">$ pip3 install flask
+</code></pre>
+
+<p>Agora vamos criar um diretório e iniciar a configuração de todo o aplicativo:</p>
+
+<pre><code class="language-shell">$ mkdir flask-api-users
+$ cd flask-api-users
+</code></pre>
+
+<h2 id="configurando-a-aplicação">Configurando a aplicação</h2>
+
+<p>Este passo é um pouco longo e requer uma estruturação de pastas para que o projeto fique organizado e de fácil entendimento.</p>
+
+<p>Crie a seguinte estrutura e os arquivos conforme abaixo. Logo mais explicarei em detalhes suas responsabilidades:</p>
+
+<pre><code class="language-shell">$ tree .
+.
+├── application.py
+├── apps
+│   └── __init__.py
+├── config.py
+├── __init__.py
+├── README.md
+└── setup.py
+</code></pre>
+
+<p>Vamos começar codificando nosso <code>setup.py</code> com as informações do projeto. Faça isso utilizando seu editor favorito.</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+# Third
+from setuptools import find_packages, setup
+
+__version__ = '0.1.0'
+__description__ = 'Api Python Flask'
+__long_description__ = 'This is an API to Flask Api Users'
+
+__author__ = 'Lucas Simon'
+__author_email__ = 'lucassrod@gmail.com'
+
+setup(
+    name='api',
+    version=__version__,
+    author=__author__,
+    author_email=__author_email__,
+    packages=find_packages(),
+    license='MIT',
+    description=__description__,
+    long_description=__long_description__,
+    url='https://github.com/lucassimon/flask-api-users.git',
+    keywords='API, MongoDB',
+    include_package_data=True,
+    zip_safe=False,
+    classifiers=[
+        'Intended Audience :: Developers',
+        'Intended Audience :: System Administrators',
+        'Operating System :: OS Independent',
+        'Topic :: Software Development',
+        'Environment :: Web Environment',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'License :: OSI Approved :: MIT License',
+    ],
+)
+</code></pre>
+
+<p>Altere o arquivo <code>config.py</code>. Ele ira receber os valores setados no ambiente linux através do arquivo <code>.env</code> que será explicado logo a seguir.</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+# Python
+from os import getenv
+
+
+class Config:
+    SECRET_KEY = getenv('SECRET_KEY') or 'uma string randômica e gigante'
+    APP_PORT = int(getenv('APP_PORT'))
+    DEBUG = eval(getenv('DEBUG').title())
+
+
+class DevelopmentConfig(Config):
+    FLASK_ENV = 'development'
+    DEBUG = True
+
+
+config = {
+    'development': DevelopmentConfig,
+    'default': DevelopmentConfig
+}
+</code></pre>
+
+<p>Próximo passo é criar nossa função factory inicializando o flask instalado que será utilizado para as configurações da API, banco de dados, cors e etc. Mas isso será visto no decorrer dessa série, por enquanto faremos o básico para termos nosso hello world. Então, altere o arquivo <code>apps/__init__.py</code> e escreva o seguinte código.</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+from flask import Flask
+from config import config
+
+
+def create_app(config_name):
+    app = Flask('api-users')
+
+    app.config.from_object(config[config_name])
+
+    return app
+
+</code></pre>
+
+<h2 id="adicionando-váriaveis-de-ambiente">Adicionando váriaveis de ambiente</h2>
+
+<p>Uma maneira interessante em colocar dados sensiveis para nossa aplicação como senhas, uri de conexão com banco de dados, serviços de messagerias, api é utilizando as váriaveis de ambiente através do arquivo <code>.env</code>.</p>
+
+<p>Logo crie esses arquivos na raiz da aplicação:</p>
+
+<pre><code class="language-shell">@ notebook in ~/workspace-python/flask-api-users
+$ touch .env-example
+$ touch .env
+</code></pre>
+
+<p>O conteúdo do arquivo <code>.env</code> deve ser parecido com isto:</p>
+
+<pre><code class="language-shell">$ cat .env
+DEBUG=True
+APP_PORT=5000
+FLASK_APP=&quot;application.py&quot;
+FLASK_ENV=&quot;development&quot;
+SECRET_KEY=&quot;hard-secret-key&quot;
+</code></pre>
+
+<p>Também precisamos instalar o pacote <a href="https://github.com/theskumar/python-dotenv" target="_blank">python-dotenv</a> para realizar a leitura dessas váriaveis automáticamente no <code>application.py</code>. Para isso execute <code>pip3 install python-dotenv</code>.</p>
+
+<p><strong>Nota</strong>: É muito importante colocar o arquivo <code>.env</code> na lista de arquivos ignorados do git. Ninguém vai querer suas senhas expostas em um repositório público não é verdade? Por isso criamos um fake ou um arquivo de exemplo <code>.env-example</code> que espelha as principais configurações.</p>
+
+<pre><code class="language-shell">$ cat .gitignore
+build/
+__pycache__/
+*.pytest_cache/
+local_settings.py
+*.py[cod]
+*.swp
+*.log
+.DS_Store
+.env
+.venv
+env/
+*.eggs
+*.egg-info
+.vscode
+.idea
+.cache/
+</code></pre>
+
+<h2 id="a-aplicação">A aplicação</h2>
+
+<p>O arquivo <code>application.py</code> será nosso ponto de entrada para a aplicação e execução do servidor web.</p>
+
+<p>Edite o arquivo e cole o código abaixo.</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+from os import getenv
+from os.path import dirname, isfile, join
+
+
+from dotenv import load_dotenv
+
+
+# a partir do arquivo atual adicione ao path o arquivo .env
+_ENV_FILE = join(dirname(__file__), '.env')
+
+# existindo o arquivo faça a leitura do arquivo através da função load_dotenv
+if isfile(_ENV_FILE):
+    load_dotenv(dotenv_path=_ENV_FILE)
+
+
+from apps import create_app
+
+# instancia nossa função factory criada anteriormente
+app = create_app(getenv('FLASK_ENV') or 'default')
+
+if __name__ == '__main__':
+    ip = '0.0.0.0'
+    port = app.config['APP_PORT']
+    debug = app.config['DEBUG']
+
+    # executa o servidor web do flask
+    app.run(
+        host=ip, debug=debug, port=port, use_reloader=debug
+    )
+
+</code></pre>
+
+<p>A partir desse momento podemos testar nossa aplicação executando o comando abaixo.</p>
+
+<pre><code>$ python application.py
+ * Serving Flask app &quot;api-users&quot; (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 747-834-523
+</code></pre>
+
+<p>Ao aparecer essa mensagem como resultado do comando significa que estamos no caminho certo.</p>
+
+<h2 id="instalando-o-restful-e-nosso-hello-world">Instalando o Restful e nosso Hello World</h2>
+
+<p>O <a href="https://flask-restful.readthedocs.io/en/latest/" target="_blank">Flask-RESTful </a> é uma extensão do Flask e adiciona algumas facilidades para construir uma API Rest.</p>
+
+<p>Execute o comando <code>$ pip3 install flask-restful</code> no shell.</p>
+
+<p>Agora vamos criar nosso hello world. Crie um arquivo em <code>apps/api.py</code> e coloque o conteúdo abaixo:</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+# Importamos as classes API e Resource
+from flask_restful import Api, Resource
+
+# Criamos uma classe que extende de Resource
+class Index(Resource):
+
+    # Definimos a operação get do protocolo http
+    def get(self):
+
+        # retornamos um simples dicionário que será automáticamente
+        # retornado em json pelo flask
+        return {'hello': 'world by apps'}
+
+
+# Instânciamos a API do FlaskRestful
+api = Api()
+
+
+def configure_api(app):
+
+    # adicionamos na rota '/' a sua classe correspondente Index
+    api.add_resource(Index, '/')
+
+    # inicializamos a api com as configurações do flask vinda por parâmetro
+    api.init_app(app)
+</code></pre>
+
+<p>Após criar nosso primeiro recurso precisamos que nossa função factory utilize execute a função <code>configure_api</code>. Edite o arquivo <code>apps/__init__.py</code> e realize a seguintes alterações:</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+from flask import Flask
+from config import config
+
+# Realize a importação da função que configura a api
+from .api import configure_api
+
+
+def create_app(config_name):
+    app = Flask('api-users')
+
+    app.config.from_object(config[config_name])
+
+    # executa a chamada da função de configuração
+    configure_api(app)
+
+    return app
+</code></pre>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>Após uma longa configuração chegamos ao final deste tutorial e nada melhor do que ver resultados. Então execute a aplicação conforme a seguir:</p>
+
+<pre><code class="language-shell">$ python application.py
+ * Serving Flask app &quot;api-users&quot; (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 747-834-523
+</code></pre>
+
+<p>Em outro terminal execute o comando para fazer uma requisição em nossa API ;)</p>
+
+<pre><code class="language-shell">$ http -v GET 0.0.0.0:5000
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: 0.0.0.0:5000
+User-Agent: HTTPie/0.9.8
+
+
+
+HTTP/1.0 200 OK
+Content-Length: 33
+Content-Type: application/json
+Date: Tue, 12 Jun 2018 22:56:57 GMT
+Server: Werkzeug/0.14.1 Python/3.6.3
+
+{
+    &quot;hello&quot;: &quot;world by apps&quot;
+}
+</code></pre>
+
+<h2 id="bonus">Bonus</h2>
+
+<p>Existem diversos clients no unix para fazer requisições http como o curl. Eu particulamente gosto do <a href="https://httpie.org/doc#linux" target="_blank">httpie</a> e o <a href="https://insomnia.rest/download/" target="_blank">Insomnia</a></p>
+
+<p>Após essa leitura, um pouco extensa, podemox parar nosso servidor com um <code>Ctrl-C</code>.</p>
+
+<p>Agradeço, e fico feliz que vocês tenham iniciado essa jornada nesse mundo de API&rsquo;s. Parabéns por chegar até aqui =)</p>
+
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-1---introducao-configuracao-e-hello-world%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-1---introducao-configuracao-e-hello-world%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-1---introducao-configuracao-e-hello-world%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-1---introducao-configuracao-e-hello-world%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/">Série API em Flask - Parte 1 - Introdução, configuração e Hello World</a></li>
+
+<li><a href="/2018/06/introducao-ao-elixir/">Introdução ao elixir</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
