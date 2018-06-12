@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Elixir on Lucas Simon</title>
-    <link>http://lucassimon.github.io/categories/elixir/</link>
+    <link>//lucassimon.github.io/categories/elixir/</link>
     <description>Recent content in Elixir on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Tue, 12 Jun 2018 09:07:41 -0300</lastBuildDate>
     
-	<atom:link href="http://lucassimon.github.io/categories/elixir/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//lucassimon.github.io/categories/elixir/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Introdução ao elixir</title>
-      <link>http://lucassimon.github.io/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</link>
+      <link>//lucassimon.github.io/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.github.io/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</guid>
+      <guid>//lucassimon.github.io/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</guid>
       <description>Ola, vamos fzer uma breve introdução sobre o Elixir, uma linguagem de programação funcional.
 Elixir O Elixir é uma linguagem de programação funcional que foi desenvolvida pelo brasileiro José Valim. Essa linguagem tem como objetivo resolver problemas de escalabilidade, ser tolerante a falhas e alta concorrência.
 O Elixir utiliza a máquina virtual do Erlang, conhecida por executar sistemas de baixa latência e com execução de processos concorrentes executando próximo de 99%.</description>
