@@ -3,63 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>//lucassimon.github.io/en/about/</loc>
+    <loc>//lucassimon.com.br/en/about/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.github.io/about/"
+                href="//lucassimon.com.br/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.github.io/en/about/"
+                href="//lucassimon.com.br/en/about/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.github.io/en/categories/</loc>
+    <loc>//lucassimon.com.br/en/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.github.io/categories/"
+                href="//lucassimon.com.br/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.github.io/en/categories/"
+                href="//lucassimon.com.br/en/categories/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.github.io/en/</loc>
+    <loc>//lucassimon.com.br/en/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.github.io/"
+                href="//lucassimon.com.br/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.github.io/en/"
+                href="//lucassimon.com.br/en/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.github.io/en/tags/</loc>
+    <loc>//lucassimon.com.br/en/tags/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.github.io/tags/"
+                href="//lucassimon.com.br/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.github.io/en/tags/"
+                href="//lucassimon.com.br/en/tags/"
                 />
   </url>
   

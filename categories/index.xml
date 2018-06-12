@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Lucas Simon</title>
-    <link>//lucassimon.github.io/categories/</link>
+    <link>//lucassimon.com.br/categories/</link>
     <description>Recent content in Categories on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     
-	<atom:link href="//lucassimon.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//lucassimon.com.br/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Elixir</title>
-      <link>//lucassimon.github.io/categories/elixir/</link>
+      <link>//lucassimon.com.br/categories/elixir/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>//lucassimon.github.io/categories/elixir/</guid>
+      <guid>//lucassimon.com.br/categories/elixir/</guid>
       <description></description>
     </item>
     
