@@ -3,93 +3,93 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>//lucassimon.com.br/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</loc>
+    <loc>/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/about/</loc>
+    <loc>/about/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/about/"
+                href="/en/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/about/"
+                href="/about/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/categories/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/categories/"
+                href="/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/categories/"
+                href="/categories/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/categories/elixir/</loc>
+    <loc>/tags/elixir/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/tags/elixir/</loc>
+    <loc>/categories/elixir/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/tags/functional-programming/</loc>
+    <loc>/tags/functional-programming/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/</loc>
-    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//lucassimon.com.br/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="//lucassimon.com.br/"
-                />
-  </url>
-  
-  <url>
-    <loc>//lucassimon.com.br/post/</loc>
-    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//lucassimon.com.br/tags/</loc>
+    <loc>/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/tags/"
+                href="/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/tags/"
+                href="/"
+                />
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="/tags/"
                 />
   </url>
   

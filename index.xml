@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lucas Simon</title>
-    <link>//lucassimon.com.br/</link>
+    <link>/</link>
     <description>Recent content on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Tue, 12 Jun 2018 09:07:41 -0300</lastBuildDate>
     
-	<atom:link href="//lucassimon.com.br/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Introdução ao elixir</title>
-      <link>//lucassimon.com.br/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</link>
+      <link>/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>//lucassimon.com.br/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</guid>
+      <guid>/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</guid>
       <description>Ola, vamos fzer uma breve introdução sobre o Elixir, uma linguagem de programação funcional.
 Elixir O Elixir é uma linguagem de programação funcional que foi desenvolvida pelo brasileiro José Valim. Essa linguagem tem como objetivo resolver problemas de escalabilidade, ser tolerante a falhas e alta concorrência.
 O Elixir utiliza a máquina virtual do Erlang, conhecida por executar sistemas de baixa latência e com execução de processos concorrentes executando próximo de 99%.</description>
@@ -24,10 +24,10 @@ O Elixir utiliza a máquina virtual do Erlang, conhecida por executar sistemas d
     
     <item>
       <title>Sobre</title>
-      <link>//lucassimon.com.br/about/</link>
+      <link>/about/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>//lucassimon.com.br/about/</guid>
+      <guid>/about/</guid>
       <description>Sou desenvolvedor web e amo arquiteturas de software e análise de sistemas. Utilizo Python como minha principal linguagem de programação em conjunto com o PostgresSQL / MySQL / MongoDB. Para melhorar a minha produtividade gosto de utilizar o Python com Django Framework ou Flask.
 Atualmente, estou estudando arquiteturas de software com o GRAPHQL em conjunto com o NodeJS. Escolhi o NodeJs porque sinto a necessidade de melhorar minhas habilidades em JavaScript, dado que ele é usado no navegador, frameworks frontend como Vuejs, ReactJS e também para criar aplicativos desktop e celulares.</description>
     </item>

@@ -3,63 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>//lucassimon.com.br/en/about/</loc>
+    <loc>/en/about/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/about/"
+                href="/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/about/"
+                href="/en/about/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/en/categories/</loc>
+    <loc>/en/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/categories/"
+                href="/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/categories/"
+                href="/en/categories/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/en/</loc>
+    <loc>/en/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/"
+                href="/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/"
+                href="/en/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/en/tags/</loc>
+    <loc>/en/tags/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/tags/"
+                href="/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/tags/"
+                href="/en/tags/"
                 />
   </url>
   
