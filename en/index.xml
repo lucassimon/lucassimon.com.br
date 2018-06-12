@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lucas Simon</title>
-    <link>/en/</link>
+    <link>https://lucassimon.com.br/en/</link>
     <description>Recent content on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Tue, 12 Jun 2018 09:07:41 -0300</lastBuildDate>
     
-	<atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lucassimon.com.br/en/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>/en/about/</link>
+      <link>https://lucassimon.com.br/en/about/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>/en/about/</guid>
+      <guid>https://lucassimon.com.br/en/about/</guid>
       <description>I am a 30 years old Brazilian web developer who loves software architectures. I have Python as a main programming language. To create systems I use DBMS (PostgresSQL and MySQL) and to organize my projects I like the system used by Python and Django framework in order to separate each module into a folder which contains the MVC architecture. In Django, it is called MVT (Model, View, Template).
 Currently, I am studying software architectures, REST API’s and GRAPHQL, for example, together with NodeJS.</description>
     </item>
