@@ -3,93 +3,93 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://lucassimon.com.br/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</loc>
+    <loc>http://lucassimon.github.io/2018/06/introdu%C3%A7%C3%A3o-ao-elixir/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/about/</loc>
+    <loc>http://lucassimon.github.io/about/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://lucassimon.com.br/en/about/"
+                href="http://lucassimon.github.io/en/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="https://lucassimon.com.br/about/"
+                href="http://lucassimon.github.io/about/"
                 />
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/categories/</loc>
+    <loc>http://lucassimon.github.io/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://lucassimon.com.br/en/categories/"
+                href="http://lucassimon.github.io/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="https://lucassimon.com.br/categories/"
+                href="http://lucassimon.github.io/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/tags/elixir/</loc>
+    <loc>http://lucassimon.github.io/tags/elixir/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/categories/elixir/</loc>
+    <loc>http://lucassimon.github.io/categories/elixir/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/tags/functional-programming/</loc>
+    <loc>http://lucassimon.github.io/tags/functional-programming/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/</loc>
-    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://lucassimon.com.br/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://lucassimon.com.br/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://lucassimon.com.br/post/</loc>
-    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://lucassimon.com.br/tags/</loc>
+    <loc>http://lucassimon.github.io/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://lucassimon.com.br/en/tags/"
+                href="http://lucassimon.github.io/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="https://lucassimon.com.br/tags/"
+                href="http://lucassimon.github.io/"
+                />
+  </url>
+  
+  <url>
+    <loc>http://lucassimon.github.io/post/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://lucassimon.github.io/tags/</loc>
+    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://lucassimon.github.io/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="http://lucassimon.github.io/tags/"
                 />
   </url>
   
