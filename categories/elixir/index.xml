@@ -6,10 +6,21 @@
     <description>Recent content in Elixir on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 12 Jun 2018 09:07:41 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 13 Jun 2018 09:07:41 -0300</lastBuildDate>
     
 	<atom:link href="//lucassimon.com.br/categories/elixir/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Um caminho para aprender Elixir</title>
+      <link>//lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</link>
+      <pubDate>Wed, 13 Jun 2018 09:07:41 -0300</pubDate>
+      
+      <guid>//lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</guid>
+      <description>Bem vindos, com o recente despertar e interesse por programação funcional estou montando aqui um compilado com fontes de estudos. Nas próximas seções deixo um cronograma de estudos que pode ser adaptado a sua maneira.
+Um dos primeiros passos e importante é receber uma introdução sobre o que são linguagens funcionais e o Elixir de quem trabalha com a linguagem e tem experiência. Segue os links:
+ Linguagens funcionais Hipsters.</description>
+    </item>
     
     <item>
       <title>Introdução ao elixir</title>
@@ -17,7 +28,7 @@
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
       <guid>//lucassimon.com.br/2018/06/introducao-ao-elixir/</guid>
-      <description>Ola, vamos fzer uma breve introdução sobre o Elixir, uma linguagem de programação funcional.
+      <description>Ola, vamos fazer uma breve introdução sobre o Elixir, uma linguagem de programação funcional.
 Elixir O Elixir é uma linguagem de programação funcional que foi desenvolvida pelo brasileiro José Valim. Essa linguagem tem como objetivo resolver problemas de escalabilidade, ser tolerante a falhas e alta concorrência.
 O Elixir utiliza a máquina virtual do Erlang, conhecida por executar sistemas de baixa latência e com execução de processos concorrentes executando próximo de 99%.</description>
     </item>

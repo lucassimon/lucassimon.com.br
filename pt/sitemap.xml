@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</loc>
+    <lastmod>2018-06-13T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</loc>
     <lastmod>2018-06-12T20:07:41-03:00</lastmod>
   </url>
@@ -50,13 +55,13 @@
   
   <url>
     <loc>//lucassimon.com.br/tags/elixir/</loc>
-    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//lucassimon.com.br/categories/elixir/</loc>
-    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -68,13 +73,13 @@
   
   <url>
     <loc>//lucassimon.com.br/tags/functional-programming/</loc>
-    <lastmod>2018-06-12T09:07:41-03:00</lastmod>
+    <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//lucassimon.com.br/</loc>
-    <lastmod>2018-06-12T20:07:41-03:00</lastmod>
+    <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -90,7 +95,7 @@
   
   <url>
     <loc>//lucassimon.com.br/post/</loc>
-    <lastmod>2018-06-12T20:07:41-03:00</lastmod>
+    <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
