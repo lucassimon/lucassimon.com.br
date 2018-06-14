@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 2 - Organizando as dependências e requerimentos" />
+<meta property="og:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos Estamos aqui
+ Capítulo 3: Configurando o pytest e nosso primeiro teste" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" />
+
+
+
+<meta property="article:published_time" content="2018-06-14T13:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-06-14T13:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 2 - Organizando as dependências e requerimentos"/>
+<meta name="twitter:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos Estamos aqui
+ Capítulo 3: Configurando o pytest e nosso primeiro teste"/>
+<meta name="generator" content="Hugo 0.42-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 2 - Organizando as dependências e requerimentos",
+  "url": "//lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/",
+  "wordCount": "914",
+  "datePublished": "2018-06-14T13:00:00-03:00",
+  "dateModified": "2018-06-14T13:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, python, api, rest"
+}
+</script>
+
+
+
+    <link rel="canonical" href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/">
+
+    <title>Série API em Flask - Parte 2 - Organizando as dependências e requerimentos | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="//lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="//lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="//lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer.</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/">Série API em Flask - Parte 2 - Organizando as dependências e requerimentos</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-06-14T13:00:00-03:00">Thu Jun 14, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  
+
+<p>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.</p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: Organizando as dependências e requerimentos <strong>Estamos aqui</strong></p></li>
+
+<li><p>Capítulo 3: Configurando o pytest e nosso primeiro teste</p></li>
+
+<li><p>Capítulo 4: Configurando o Makefile</p></li>
+
+<li><p>Capítulo 5: Adicionando o MongoDB a API</p></li>
+
+<li><p>Capítulo 7: Padronizando retornos da API com jsonify</p></li>
+
+<li><p>Capítulo 8: Criando o modelo de usuários</p></li>
+
+<li><p>Capítulo 8: Testando o modelo de usuários</p></li>
+
+<li><p>Capítulo 9: Adicionando o marshmallow</p></li>
+
+<li><p>Capítulo 10: Criando um novo usuário com pytest</p></li>
+
+<li><p>Capítulo 11: Listando usuários</p></li>
+
+<li><p>Capítulo 11: Buscando usuários</p></li>
+
+<li><p>Capítulo 12: Editando um usuário</p></li>
+
+<li><p>Capítulo 13: Deletando um usuário</p></li>
+
+<li><p>Capítulo 14: Adicionando o JWT a API</p></li>
+
+<li><p>Capítulo 15: Criando a app de autenticação por JWT</p></li>
+
+<li><p>Capítulo 16: Conclusão</p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="pacotes">Pacotes</h2>
+
+<p>Nos tempos atuais existe um gerenciador de pacotes como parte da configuração da aplicação. No <a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">capítulo 1 - Introdução, configuração e Hello World</a> vimos o comando <code>pip</code> responsável por instalar estes pacotes como o <code>flask, flask-restful, python-dotenv</code> com suas respectivas versões.</p>
+
+<p>Para termos uma visão geral do que está instalado em nosso ambiente executamos o comando <code>pip freeze</code>.</p>
+
+<p><strong>Nota</strong>: Lembrando que o virtualenv deve estar ativo. O <a href="https://virtualenvwrapper.readthedocs.io/" target="_blank">virtualenvwrapper</a> deve estar instalado e configurado. Logo execute o comando <code>workon flask-api-users</code>.</p>
+
+<p>Voltando, ao executar o <code>pip freeze</code>, temos uma listagem do que foi instalado.</p>
+
+<pre><code class="language-shell">$ pip freeze
+aniso8601==3.0.0
+click==6.7
+Flask==1.0.2
+Flask-RESTful==0.3.6
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+python-dotenv==0.8.2
+pytz==2018.4
+six==1.11.0
+Werkzeug==0.14.1
+wheel==0.24.0
+</code></pre>
+
+<p>Algumas informações importantes devem ser feitas para entendimento dos requerimentos da aplicação:</p>
+
+<ul>
+<li><p>Flask==1.0.2: Ao temos um <code>==</code> interpretamos que a dependência do Flask esta fixada a versão <code>1.0.2</code>. Desta maneira nosso projeto sempre que for instalado utilizará essa versão do pacote, já que, o pacote pode sofrer atualizações e mudanças.</p></li>
+
+<li><p>Flask&gt;=1.0.2: Da mesma forma que o sinal de <code>==</code> definimos uma versão minima a ser instalada. O sinal de <code>&gt;=</code> é interpretado como qualquer versão do Flask superior ou igual a versão <code>1.0.2</code>. Logo se existir uma versão <code>1.1.10</code> ela será a versão instalada. Também podemos definir um intervalo de versões, por exemplo, Flask&gt;=0.12,&lt;=1.0.2.</p></li>
+
+<li><p>Flask: Sempre irá instalar a última versão disponível deste pacote.</p></li>
+
+<li><p><code>git+https://github.com/lucassimon/django-sendgrid.git@master#egg=django-sendgrid</code>: Através deste caminho podemos instalar os pacotes disponíveis no Github do branch master - <code>@master</code> - com o nome django-sendgrid - <code>#egg=django-sendgrid</code> -. É uma dica útil pois podemos instalar os forks dos projetos oficiais do <code>PyPi</code> como foi neste caso.</p></li>
+</ul>
+
+<h2 id="organização">Organização</h2>
+
+<p>O intuito de organizar é separar os pacotes de desenvolvimento, testes, produção e os comuns entre eles.</p>
+
+<p>Vamos primeiro criar um diretório <code>$ mkdir requirements</code> na raiz da pasta <code>flask-api-users</code>. Depois executar o comando <code>pip freeze &gt; requirements/base.txt</code>. Observe que ele irá gerar um arquivo txt no diretório criado com o conteúdo do comando <code>pip freeze</code>.</p>
+
+<h3 id="dependências-de-teste">Dependências de teste</h3>
+
+<p>Crie um arquivo chamado <code>tests.txt</code> dentro deste diretório <code>requirements/</code>.</p>
+
+<p>Seu conteúdo deve ser conforme esse:</p>
+
+<pre><code class="language-txt">-r base.txt
+
+flake8==3.5.0
+pytest==3.6.1
+pytest-cov==2.5.1
+pytest-flask==0.10.0
+pytest-runner==4.2
+Faker==0.8.15
+</code></pre>
+
+<p>A opção <code>-r base.txt</code> significa que estamos importando todas as configurações de pacotes listadas no arquivo <code>base.txt</code></p>
+
+<ul>
+<li><p>O <a href="http://flake8.pycqa.org/en/latest/" target="_blank">flake8</a> é um styleguide e também uma ferramenta de lint para melhorar a codificação.</p></li>
+
+<li><p>O <a href="https://docs.pytest.org/en/latest/getting-started.html" target="_blank">pytest</a> é um framework de testes simples. <code>pytest-cov, pytest-flask, pytest-runner</code> são extensões do <code>pytest</code></p></li>
+
+<li><p>O <a href="http://faker.readthedocs.io/en/master/" target="_blank">Faker</a> é um utilitário para gerar dados fakes e randômicos, por exemplo nomes de países, cidades, pessoas, data de nascimento, cores, datas e etc..</p></li>
+</ul>
+
+<h3 id="dependências-de-desenvolvimento">Dependências de desenvolvimento</h3>
+
+<p>Agora criamos nossos pacotes de desenvolvimento, útil para padronizar os pacotes comuns dos desenvolvedores envolvidos na aplicação.</p>
+
+<pre><code class="language-txt">-r base.txt
+-r test.txt
+
+ipdb==0.11
+ipython==6.4.0
+flask-shell-ipython==0.3.0
+isort==4.3.4
+</code></pre>
+
+<ul>
+<li><p>O <a href="https://ipython.org/" target="_blank">Ipython</a> melhora a experiência em utilizar o <code>REPL</code> do python adicionando cores, auto complete e demais outras facilidades.</p></li>
+
+<li><p>O <a href="http://faker.readthedocs.io/en/master/" target="_blank">ipdb</a> é um utilitário para melhorar a experiência e uso da depuração de erros do python <code>pdb</code>. Por utilizar o <code>Ipython</code> deu-se o nome de <code>ipdb</code>.</p></li>
+
+<li><p>O <a href="https://github.com/ei-grad/flask-shell-ipython" target="_blank">flask-shell-ipython</a> substituí o <code>flask shell</code> instalado por padrão pelo <code>flask</code> utilizando o <code>ipython</code>.</p></li>
+
+<li><p>O <a href="http://timothycrosley.github.io/isort/" target="_blank">isort</a> nos ajuda a padronizar os <code>imports</code> de pacotes em ordem alfabética e por seções. É útil pois cada desenvolvedor tem manias e pode fazer de um jeito. Com esse utilitário definimos um padrão e a ferramenta fica responsável por automatizar esse processo nos arquivos da aplicação.</p></li>
+</ul>
+
+<h3 id="dependências-de-produção">Dependências de produção</h3>
+
+<p>Por fim temos as dependências de produção.</p>
+
+<pre><code class="language-txt">-r base.txt
+
+gunicorn==19.7.1
+</code></pre>
+
+<ul>
+<li>O <a href="http://gunicorn.org/" target="_blank">gunicorn</a> é responsável por servir um servidor http utilizando o wsgi.</li>
+</ul>
+
+<p>Agora por quê separamos? Primeiro é pela organização. Segundo é separar os pacotes de desenvolvimento de produção de forma simples, ou seja, não precisamos do <code>ipython</code> ou <code>pytest</code> exclusivos dos ambientes de desenvolvimento e teste em nosso servidor de produção.</p>
+
+<p>Feito todo esse processo podemos instalar os pacotes através dos arquivos que criamos. Para isso execute</p>
+
+<pre><code class="language-shell">pip install -r requirements.dev.txt
+</code></pre>
+
+<p>Esse comando irá instalar todas as dependências dos arquivos <code>base.txt</code> e <code>test.txt</code> incluindo os de <code>dev.txt</code>. Vale lembrar que, somente o comando <code>pip install [nome do pacote]</code> não adicionará automaticamente esse comando nos requerimentos da aplicação. Logo é necessário escreve-los cada pacote em seu respectivo arquivo.</p>
+
+<p>Concluindo, comitamos essas alterações em nossa ferramenta de versionamento e agora todos os envolvidos e participantes saberão o que este aplicativo web utiliza e quais pacotes compõem o aplicativo.</p>
+
+<p>Espero ter colaborado com o entendimento e a importância em utilizar o gerenciador de pacotes e versões. Ele é extensível a todos os outros pacotes, bibliotecas e aplicações utilizando python como base.</p>
+
+<p>Abraços a todos.</p>
+
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/">Série API em Flask - Parte 2 - Organizando as dependências e requerimentos</a></li>
+
+<li><a href="/2018/06/um-caminho-para-aprender-elixir/">Um caminho para aprender Elixir</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="//lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/categories/flask">flask (2)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="//lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
