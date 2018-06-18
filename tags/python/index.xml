@@ -6,10 +6,21 @@
     <description>Recent content in Python on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 14 Jun 2018 13:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 17 Jun 2018 13:00:00 -0300</lastBuildDate>
     
 	<atom:link href="//lucassimon.com.br/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>O Python virtualenv</title>
+      <link>//lucassimon.com.br/2018/06/o-python-virtualenv/</link>
+      <pubDate>Sun, 17 Jun 2018 13:00:00 -0300</pubDate>
+      
+      <guid>//lucassimon.com.br/2018/06/o-python-virtualenv/</guid>
+      <description>Para iniciarmos o ambiente, precisamos instalar alguns pacotes do Python. Nos exemplos abaixo utilizarei o Debian como sistema operacional, e o apt como gerenciador de pacotes.
+Primeiro atualize o gerenciador de pacotes sudo aptitude update &amp;amp;&amp;amp; sudo aptitude upgrade e instale os pacotes de desenvolvimento.
+sudo aptitude install build-essential python-dev python-virtualenv python-pip python-software-properties  Organizando os diretórios Eu gosto de separar meus projetos em espaços de trabalhos diferentes.</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 2 - Organizando as dependências e requerimentos</title>

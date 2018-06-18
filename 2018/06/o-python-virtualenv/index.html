@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="O Python virtualenv" />
+<meta property="og:description" content="Para iniciarmos o ambiente, precisamos instalar alguns pacotes do Python. Nos exemplos abaixo utilizarei o Debian como sistema operacional, e o apt como gerenciador de pacotes.
+Primeiro atualize o gerenciador de pacotes sudo aptitude update &amp;&amp; sudo aptitude upgrade e instale os pacotes de desenvolvimento.
+sudo aptitude install build-essential python-dev python-virtualenv python-pip python-software-properties  Organizando os diretórios Eu gosto de separar meus projetos em espaços de trabalhos diferentes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//lucassimon.com.br/2018/06/o-python-virtualenv/" />
+
+
+
+<meta property="article:published_time" content="2018-06-17T13:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-06-17T13:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="O Python virtualenv"/>
+<meta name="twitter:description" content="Para iniciarmos o ambiente, precisamos instalar alguns pacotes do Python. Nos exemplos abaixo utilizarei o Debian como sistema operacional, e o apt como gerenciador de pacotes.
+Primeiro atualize o gerenciador de pacotes sudo aptitude update &amp;&amp; sudo aptitude upgrade e instale os pacotes de desenvolvimento.
+sudo aptitude install build-essential python-dev python-virtualenv python-pip python-software-properties  Organizando os diretórios Eu gosto de separar meus projetos em espaços de trabalhos diferentes."/>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "O Python virtualenv",
+  "url": "//lucassimon.com.br/2018/06/o-python-virtualenv/",
+  "wordCount": "603",
+  "datePublished": "2018-06-17T13:00:00-03:00",
+  "dateModified": "2018-06-17T13:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "python, virtualenvwrapper, virtualenv"
+}
+</script>
+
+
+
+    <link rel="canonical" href="//lucassimon.com.br/2018/06/o-python-virtualenv/">
+
+    <title>O Python virtualenv | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="//lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="//lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="//lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer.</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="//lucassimon.com.br/2018/06/o-python-virtualenv/">O Python virtualenv</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-06-17T13:00:00-03:00">Sun Jun 17, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/python" rel="category tag">python</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>
+
+</p>
+  </header>
+  
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/r9Rcact11sE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>Para iniciarmos o ambiente, precisamos instalar alguns pacotes do Python. Nos exemplos abaixo utilizarei o Debian como sistema operacional, e o <code>apt</code> como gerenciador de pacotes.</p>
+
+<p>Primeiro atualize o gerenciador de pacotes <code>sudo aptitude update &amp;&amp; sudo aptitude upgrade</code> e instale os pacotes de desenvolvimento.</p>
+
+<pre><code class="language-shell">sudo aptitude install build-essential python-dev python-virtualenv python-pip python-software-properties
+</code></pre>
+
+<h2 id="organizando-os-diretórios">Organizando os diretórios</h2>
+
+<p>Eu gosto de separar meus projetos em espaços de trabalhos diferentes.</p>
+
+<p>Por exemplo:</p>
+
+<p>Em meu diretório <code>$HOME</code> crio as seguintes pastas.</p>
+
+<pre><code class="language-shell">mkdir workspace-python
+mkdir workspace-[nome da empresa]
+mkdir venvs
+</code></pre>
+
+<p>O diretório <code>workspace-python</code>, dispensa comentários. E o <code>workspace-[nome da empresa]</code> é para separar por projeto e empresa respectivamente.</p>
+
+<p>A pasta <code>venvs</code> será aborada na próxima seção.</p>
+
+<h2 id="criando-o-ambiente-virtual-com-o-comando-virtualenv">Criando o ambiente virtual com o comando virtualenv</h2>
+
+<p>Para o desenvolvimento web com python é de suma importância que haja um ambiente virtual isolado do seu sistema operacional.</p>
+
+<p>Pois caso, instale o Django sem esse ambiente, as bibliotecas baixadas do Django podem atrapalhar as bibliotecas do seu sistema operacional e também em outras instalações por exemplo do web2py ou Flask caso você queira instala-las.</p>
+
+<p>Ha particularidades ao se instalar pacotes do python, como o <code>python-psycopg2</code>. Citando um exemplo, em um servidor de produção onde todos os seus projetos utilizam o Postgresql como SGBD, vale a pena a instalação desse pacote globalmente. Logo abaixo mostrarei como utilizar o virtualenv para utilizar o pacote global.</p>
+
+<ul>
+<li>Criando o seu virtualenv</li>
+</ul>
+
+<pre><code class="language-shell">lucas @ notebook in /venvs
+$ virtualenv --unzip-setuptools nome_do_projeto
+$ cd nome_do_projeto
+</code></pre>
+
+<ul>
+<li>Ativando o virtualenv</li>
+</ul>
+
+<pre><code class="language-shell">lucas @ notebook in /venvs
+$ source bin/activate
+</code></pre>
+
+<p>Após a ativação do ambiente virtualenv o seu shell deverá aparecer algo parecido com isto.</p>
+
+<pre><code class="language-shell">(nome_do_projeto)
+lucas @ notebook in /venvs
+$
+</code></pre>
+
+<p>O <code>(nome_do_projeto)</code> nos parentêsis, significa que você esta no ambiente virtual ativado.</p>
+
+<ul>
+<li>Desativar o ambiente virtualenv</li>
+</ul>
+
+<pre><code class="language-shell">(nome_do_projeto)
+# lucas @ notebook in /venvs
+$ deactivate
+</code></pre>
+
+<h3 id="opções-do-virtualenv">Opções do virtualenv</h3>
+
+<p>O comando virtualenv possui muitas opções. Uma delas utilizada no exemplo acima é o <code>--unzip-setuptools</code>, que descompacta os arquivos fontes e .egg para que você possa visualiza-los.</p>
+
+<p>Abaixo segue o diretório, onde são salvos os pacotes instalados.</p>
+
+<pre><code class="language-shell">(nome_do_projeto)
+# lucas @ notebook in /venvs/nome_do_projeto/lib/python2.7/site-packages
+
+</code></pre>
+
+<p>Outra opção interessante falada anteriormente é a capacidade do virtualenv utilizar os pacotes instalados globalmente em seus sistema operacional.</p>
+
+<p>Para isso utilize a opção <code>--system-site-packages</code>.</p>
+
+<p>No virtualenv ha varias opções que podem ser usadas, como também passar qual será a versão do interpretador python <code>(-p /usr/bin/python3.3)</code>.</p>
+
+<h2 id="o-virtualenvwrapper">O virtualenvwrapper</h2>
+
+<p>O <a href="https://virtualenvwrapper.readthedocs.io/en/latest/" target="_blank">virtualenvwrapper</a> nada mais é que uma extensão do virtualenv. Ele entra como um utilitáro, para que se tenha menos trabalho ao criar ambientes virtuais.</p>
+
+<p>É necessário ter o pip instalado em seu sistema operacional. Caso não tenha utilize o comando <code>sudo aptitude install python-pip</code>.</p>
+
+<p>Com usuário comum, execute os comandos.</p>
+
+<pre><code class="language-shell"># lucas @ notebook in /venvs
+$ sudo pip install virtualenvwrapper
+</code></pre>
+
+<p>Como estou utilizando o zsh devo editar o arquivo .<code>.zshrc</code> encontrado dentro do meu diretório <code>$HOME</code>.</p>
+
+<p>Se você utiliza o bash, altere o arquivo <code>.bashrc</code>.</p>
+
+<p>Adicione as linhas abaixo no final do arquivo, para que, quando você abra um terminal os comandos relacionados ao virtualenvwrapper sejam sempre executados.</p>
+
+<pre><code>$ tail .zshrc
+export WORKON_HOME=~/venvs
+source /usr/local/bin/virtualenvwrapper.sh
+</code></pre>
+
+<h3 id="utilizando-o-virtualenvwrapper">Utilizando o virtualenvwrapper</h3>
+
+<p>Para criar um ambiente virtual, sem ter que utilizar o extenso comando <code>virtualenv --unzip-setuptools nome_do_projeto; cd nome_do_projeto; source bin/activate</code> faça:</p>
+
+<pre><code class="language-shell"># lucas @ notebook in /venvs
+$ mkvirtualenv nome_do_projeto_um 
+$ mkvirtualenv nome_do_projeto_dois
+</code></pre>
+
+<p><strong>Nota</strong>: O mkvirtualenv aceita as mesmas opções do virtualenv</p>
+
+<p>Para alterar de ambiente virtual utilize o <code>workon</code></p>
+
+<pre><code class="language-shell"># lucas @ notebook in /venvs
+$ workon nome_do_projeto_um
+
+(nome_do_projeto_um)
+# lucas @ notebook in /venvs
+$ workon nome_do_projeto_dois
+
+(nome_do_projeto_dois)
+# lucas @ notebook in /venvs
+$
+</code></pre>
+
+<p>Nunca se esqueçam de que o ambiente virtual deve estar ativado.</p>
+
+<p>Abraços a todos!</p>
+
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=%2f%2flucassimon.com.br%2f2018%2f06%2fo-python-virtualenv%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=%2f%2flucassimon.com.br%2f2018%2f06%2fo-python-virtualenv%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flucassimon.com.br%2f2018%2f06%2fo-python-virtualenv%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=%2f%2flucassimon.com.br%2f2018%2f06%2fo-python-virtualenv%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/06/o-python-virtualenv/">O Python virtualenv</a></li>
+
+<li><a href="/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/">Série API em Flask - Parte 2 - Organizando as dependências e requerimentos</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="//lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/categories/flask">flask (2)</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/categories/python">python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="//lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
