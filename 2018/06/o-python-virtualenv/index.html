@@ -128,7 +128,7 @@ sudo aptitude install build-essential python-dev python-virtualenv python-pip py
 </div>
 
 
-<p>Para iniciarmos o ambiente, precisamos instalar alguns pacotes do Python. Nos exemplos abaixo utilizarei o Debian como sistema operacional, e o <code>apt</code> como gerenciador de pacotes.</p>
+<p>Para iniciarmos o ambiente, precisamos instalar alguns pacotes do <code>Python</code>. Nos exemplos abaixo utilizarei o <code>Debian</code> como sistema operacional, e o <code>apt</code> como gerenciador de pacotes.</p>
 
 <p>Primeiro atualize o gerenciador de pacotes <code>sudo aptitude update &amp;&amp; sudo aptitude upgrade</code> e instale os pacotes de desenvolvimento.</p>
 
@@ -150,18 +150,18 @@ mkdir venvs
 
 <p>O diretório <code>workspace-python</code>, dispensa comentários. E o <code>workspace-[nome da empresa]</code> é para separar por projeto e empresa respectivamente.</p>
 
-<p>A pasta <code>venvs</code> será aborada na próxima seção.</p>
+<p>A pasta <code>venvs</code> será abordada na próxima seção.</p>
 
 <h2 id="criando-o-ambiente-virtual-com-o-comando-virtualenv">Criando o ambiente virtual com o comando virtualenv</h2>
 
-<p>Para o desenvolvimento web com python é de suma importância que haja um ambiente virtual isolado do seu sistema operacional.</p>
+<p>Para o desenvolvimento web com <code>Python</code> é de suma importância que haja um ambiente virtual isolado do seu sistema operacional.</p>
 
-<p>Pois caso, instale o Django sem esse ambiente, as bibliotecas baixadas do Django podem atrapalhar as bibliotecas do seu sistema operacional e também em outras instalações por exemplo do web2py ou Flask caso você queira instala-las.</p>
+<p>Pois caso, instale o <code>Django</code> sem esse ambiente, as bibliotecas baixadas do <code>Django</code> podem atrapalhar as bibliotecas do seu sistema operacional e também em outras instalações por exemplo do <code>Web2py</code> ou <code>Flask</code> caso você queira instalá-las.</p>
 
-<p>Ha particularidades ao se instalar pacotes do python, como o <code>python-psycopg2</code>. Citando um exemplo, em um servidor de produção onde todos os seus projetos utilizam o Postgresql como SGBD, vale a pena a instalação desse pacote globalmente. Logo abaixo mostrarei como utilizar o virtualenv para utilizar o pacote global.</p>
+<p>Ha particularidades ao se instalar pacotes do <code>python</code>, como o <code>python-psycopg2</code>. Citando um exemplo, em um servidor de produção onde todos os seus projetos utilizam o <code>PostgresSql</code> como <code>SGBD</code>, vale a pena a instalação desse pacote globalmente. Logo abaixo mostrarei como utilizar o <code>virtualenv</code> para utilizar o pacote global.</p>
 
 <ul>
-<li>Criando o seu virtualenv</li>
+<li>Criando o seu <code>virtualenv</code></li>
 </ul>
 
 <pre><code class="language-shell">lucas @ notebook in /venvs
@@ -170,24 +170,24 @@ $ cd nome_do_projeto
 </code></pre>
 
 <ul>
-<li>Ativando o virtualenv</li>
+<li>Ativando o <code>virtualenv</code></li>
 </ul>
 
 <pre><code class="language-shell">lucas @ notebook in /venvs
 $ source bin/activate
 </code></pre>
 
-<p>Após a ativação do ambiente virtualenv o seu shell deverá aparecer algo parecido com isto.</p>
+<p>Após a ativação do ambiente <code>virtualenv</code> o seu shell deverá aparecer algo parecido com isto.</p>
 
 <pre><code class="language-shell">(nome_do_projeto)
 lucas @ notebook in /venvs
 $
 </code></pre>
 
-<p>O <code>(nome_do_projeto)</code> nos parentêsis, significa que você esta no ambiente virtual ativado.</p>
+<p>O <code>(nome_do_projeto)</code> nos parêntesis, significa que você esta no ambiente virtual ativado.</p>
 
 <ul>
-<li>Desativar o ambiente virtualenv</li>
+<li>Desativar o ambiente <code>virtualenv</code></li>
 </ul>
 
 <pre><code class="language-shell">(nome_do_projeto)
@@ -197,7 +197,7 @@ $ deactivate
 
 <h3 id="opções-do-virtualenv">Opções do virtualenv</h3>
 
-<p>O comando virtualenv possui muitas opções. Uma delas utilizada no exemplo acima é o <code>--unzip-setuptools</code>, que descompacta os arquivos fontes e .egg para que você possa visualiza-los.</p>
+<p>O comando <code>virtualenv</code> possui muitas opções. Uma delas utilizada no exemplo acima é o <code>--unzip-setuptools</code>, que descompacta os arquivos fontes e <code>.egg</code> para que você possa visualizá-los.</p>
 
 <p>Abaixo segue o diretório, onde são salvos os pacotes instalados.</p>
 
@@ -206,17 +206,17 @@ $ deactivate
 
 </code></pre>
 
-<p>Outra opção interessante falada anteriormente é a capacidade do virtualenv utilizar os pacotes instalados globalmente em seus sistema operacional.</p>
+<p>Outra opção interessante falada anteriormente é a capacidade do <code>virtualenv</code> utilizar os pacotes instalados globalmente em seus sistema operacional.</p>
 
 <p>Para isso utilize a opção <code>--system-site-packages</code>.</p>
 
-<p>No virtualenv ha varias opções que podem ser usadas, como também passar qual será a versão do interpretador python <code>(-p /usr/bin/python3.3)</code>.</p>
+<p>No <code>virtualenv</code> ha varias opções que podem ser usadas, como também passar qual será a versão do interpretador <code>python</code> <code>(-p /usr/bin/python3.3)</code>.</p>
 
 <h2 id="o-virtualenvwrapper">O virtualenvwrapper</h2>
 
-<p>O <a href="https://virtualenvwrapper.readthedocs.io/en/latest/" target="_blank">virtualenvwrapper</a> nada mais é que uma extensão do virtualenv. Ele entra como um utilitáro, para que se tenha menos trabalho ao criar ambientes virtuais.</p>
+<p>O <a href="https://virtualenvwrapper.readthedocs.io/en/latest/" target="_blank">virtualenvwrapper</a> nada mais é que uma extensão do <code>virtualenv</code>. Ele entra como um utilitário, para que se tenha menos trabalho ao criar ambientes virtuais.</p>
 
-<p>É necessário ter o pip instalado em seu sistema operacional. Caso não tenha utilize o comando <code>sudo aptitude install python-pip</code>.</p>
+<p>É necessário ter o <code>pip</code> instalado em seu sistema operacional. Caso não tenha utilize o comando <code>sudo aptitude install python-pip</code>.</p>
 
 <p>Com usuário comum, execute os comandos.</p>
 
@@ -224,11 +224,11 @@ $ deactivate
 $ sudo pip install virtualenvwrapper
 </code></pre>
 
-<p>Como estou utilizando o zsh devo editar o arquivo .<code>.zshrc</code> encontrado dentro do meu diretório <code>$HOME</code>.</p>
+<p>Como estou utilizando o <code>zsh</code> devo editar o arquivo .<code>.zshrc</code> encontrado dentro do meu diretório <code>$HOME</code>.</p>
 
-<p>Se você utiliza o bash, altere o arquivo <code>.bashrc</code>.</p>
+<p>Se você utiliza o <code>bash</code>, altere o arquivo <code>.bashrc</code>.</p>
 
-<p>Adicione as linhas abaixo no final do arquivo, para que, quando você abra um terminal os comandos relacionados ao virtualenvwrapper sejam sempre executados.</p>
+<p>Adicione as linhas abaixo no final do arquivo, para que, quando você abra um terminal os comandos relacionados ao <code>virtualenvwrapper</code> sejam sempre executados.</p>
 
 <pre><code>$ tail .zshrc
 export WORKON_HOME=~/venvs
@@ -240,11 +240,11 @@ source /usr/local/bin/virtualenvwrapper.sh
 <p>Para criar um ambiente virtual, sem ter que utilizar o extenso comando <code>virtualenv --unzip-setuptools nome_do_projeto; cd nome_do_projeto; source bin/activate</code> faça:</p>
 
 <pre><code class="language-shell"># lucas @ notebook in /venvs
-$ mkvirtualenv nome_do_projeto_um 
+$ mkvirtualenv nome_do_projeto_um
 $ mkvirtualenv nome_do_projeto_dois
 </code></pre>
 
-<p><strong>Nota</strong>: O mkvirtualenv aceita as mesmas opções do virtualenv</p>
+<p><strong>Nota</strong>: O <code>mkvirtualenv</code> aceita as mesmas opções do <code>virtualenv</code></p>
 
 <p>Para alterar de ambiente virtual utilize o <code>workon</code></p>
 
@@ -303,9 +303,9 @@ $
     <ol class="list-unstyled">
 
 
-<li><a href="/2018/06/o-python-virtualenv/">O Python virtualenv</a></li>
+<li><a href="/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/">Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</a></li>
 
-<li><a href="/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/">Série API em Flask - Parte 2 - Organizando as dependências e requerimentos</a></li>
+<li><a href="/2018/06/o-python-virtualenv/">O Python virtualenv</a></li>
 
     </ol>
   </section>
@@ -325,7 +325,7 @@ $
         <li><a href="//lucassimon.com.br/categories/elixir">elixir (2)</a>
         </li>
         
-        <li><a href="//lucassimon.com.br/categories/flask">flask (2)</a>
+        <li><a href="//lucassimon.com.br/categories/flask">flask (3)</a>
         </li>
         
         <li><a href="//lucassimon.com.br/categories/python">python (1)</a>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste" />
+<meta property="og:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos
+ Capítulo 3: Configurando o pytest e nosso primeiro teste Estamos aqui" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" />
+
+
+
+<meta property="article:published_time" content="2018-06-18T13:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-06-18T13:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste"/>
+<meta name="twitter:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos
+ Capítulo 3: Configurando o pytest e nosso primeiro teste Estamos aqui"/>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste",
+  "url": "//lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/",
+  "wordCount": "1409",
+  "datePublished": "2018-06-18T13:00:00-03:00",
+  "dateModified": "2018-06-18T13:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, python, api, rest"
+}
+</script>
+
+
+
+    <link rel="canonical" href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/">
+
+    <title>Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="//lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="//lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="//lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer.</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/">Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-06-18T13:00:00-03:00">Mon Jun 18, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  
+
+<p>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação <code>REST</code> com <code>Python</code> e <code>Flask Framework</code>. No final deste projeto você será capaz de rodar localmente uma API com autenticação <code>JWT</code>.</p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: Configurando o pytest e nosso primeiro teste <strong>Estamos aqui</strong></p></li>
+
+<li><p>Capítulo 4: Configurando o Makefile</p></li>
+
+<li><p>Capítulo 5: Adicionando o MongoDB a API</p></li>
+
+<li><p>Capítulo 7: Padronizando retornos da API com jsonify</p></li>
+
+<li><p>Capítulo 8: Criando o modelo de usuários</p></li>
+
+<li><p>Capítulo 8: Testando o modelo de usuários</p></li>
+
+<li><p>Capítulo 9: Adicionando o marshmallow</p></li>
+
+<li><p>Capítulo 10: Criando um novo usuário com pytest</p></li>
+
+<li><p>Capítulo 11: Listando usuários</p></li>
+
+<li><p>Capítulo 11: Buscando usuários</p></li>
+
+<li><p>Capítulo 12: Editando um usuário</p></li>
+
+<li><p>Capítulo 13: Deletando um usuário</p></li>
+
+<li><p>Capítulo 14: Adicionando o JWT a API</p></li>
+
+<li><p>Capítulo 15: Criando a app de autenticação por JWT</p></li>
+
+<li><p>Capítulo 16: Conclusão</p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="pytest">Pytest</h2>
+
+<p>O <a href="https://docs.pytest.org/en/latest/index.html" target="_blank">Pytest</a> é um <code>framework</code> ou uma ferramenta para escrever testes no desenvolvimento de software e bibliotecas em <code>Python</code>. Existem inúmeras outras ferramentas como o <code>nose</code>, <code>unittest</code>, <code>doctest</code> e outras&hellip; Dentre elas vejo que o <code>pytest</code> é a mais poderosa.</p>
+
+<p>No capítulo anterior <a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a>, em Dependências de teste, colocamos no <code>requirements/tests.txt</code> o <code>pytest==3.6.1</code> como dependência. Também podemos instalar via linha de comando <code>pip install -U pytest</code> desde que o <strong>ambiente virtual esteja ativo</strong>.</p>
+
+<p>Para executar um teste simples criamos um arquivo de exemplo:</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+# content of test_sample.py
+
+def func(x):
+    return x + 1
+
+
+def test_answer():
+    assert func(3) == 5
+
+</code></pre>
+
+<p>Em seguida, executando o comando <code>pytest</code> temos:</p>
+
+<pre><code class="language-shell">$ pytest
+=========================== test session starts ============================
+platform linux -- Python 3.x.y, pytest-3.x.y, py-1.x.y, pluggy-0.x.y
+rootdir: $REGENDOC_TMPDIR, inifile:
+collected 1 item
+
+test_sample.py F                                                     [100%]
+
+================================= FAILURES =================================
+_______________________________ test_answer ________________________________
+
+    def test_answer():
+&gt;       assert func(3) == 5
+E       assert 4 == 5
+E        +  where 4 = func(3)
+
+test_sample.py:5: AssertionError
+========================= 1 failed in 0.12 seconds =========================
+</code></pre>
+
+<h2 id="dicas-de-uso">Dicas de uso</h2>
+
+<p>Separei aqui uma lista de vídeos que irão ajudar a utilizar o <code>pytest</code>.</p>
+
+<h3 id="skip-select-tests">Skip/select tests</h3>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/nv9zw454bEk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>Também é possível executar testes diretamente via linha de comando:</p>
+
+<pre><code class="language-shell">$ pytest tests/auth/
+</code></pre>
+
+<p>Executa todos os testes da pasta <code>auth</code></p>
+
+<hr />
+
+<pre><code class="language-shell">$ pytest tests/auth/test_resources.py
+</code></pre>
+
+<p>Executa todos os testes do módulo <code>test_resources</code>.</p>
+
+<hr />
+
+<pre><code class="language-shell">$ pytest tests/auth/test_resources.py::TestAuthenticateUser
+</code></pre>
+
+<p>Executa todos os teste da classe <code>TestAuthenticateUser</code>.</p>
+
+<p>Ou seja podem haver inúmeras classes de teste e você pode selecionar uma somente via linha de comando.</p>
+
+<hr />
+
+<pre><code class="language-shell">$ pytest tests/auth/test_resources.py::TestAuthenticateUser::test_raise_exception_payload_is_empty
+</code></pre>
+
+<p>Executa o teste específico chamado <code>test_raise_exception_payload_is_empty</code>.</p>
+
+<h3 id="fixtures">Fixtures</h3>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/IVrGz8w0H8c" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h3 id="parameters">Parameters</h3>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/2EGgtlf7BN0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h3 id="depuração-de-erros">Depuração de erros</h3>
+
+<p>O <code>pytest</code> possui um módulo próprio para fazer depuração do código em <code>Pyhton</code>.</p>
+
+<p>Para isso precisamos importar o módulo <code>import pytest</code> e colocar um ponto de parada <code>pytest.set_trace()</code>. Exemplo:</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+import pytest
+
+
+def func(x):
+    pytest.set_trace()
+
+    return x + 1
+
+
+def test_answer():
+    pytest.set_trace()
+
+    assert func(3) == 5
+
+
+</code></pre>
+
+<p>Ao executar o comando <code>$ pytest</code> no terminal, ele irá parar a execução duas vezes. A primeira na função <code>test_answer()</code> e a segunda na função <code>func(x)</code>.</p>
+
+<h2 id="configurando-a-api">Configurando a API</h2>
+
+<p>Agora que temos uma visão geral da ferramenta <code>pytest</code> podemos aplicá-la no desenvolvimento da API. Algumas mudanças serão feitas.</p>
+
+<p>Primeiro, no arquivo <code>flask-api-users/setup.py</code> altere o arquivo para:</p>
+
+<pre><code class="language-python">...
+__author__ = 'Lucas Simon'
+__author_email__ = 'lucassrod@gmail.com'
+
+# adicione essa lista logo após __author_email__
+
+testing_extras = [
+    'pytest',
+    'pytest-cov',
+]
+
+# adicione as configurações na função setup como abaixo
+
+setup(
+    name='api',
+    ...
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
+    extras_require={
+        'testing': testing_extras,
+    },
+)
+</code></pre>
+
+<p>Precisamos agora criar dois arquivos nesse mesmo diretório. O primeiro será o <code>setup.cfg</code> com o conteúdo do <code>[aliases]</code> abaixo:</p>
+
+<pre><code class="language-shell"># lucas @ notebook in flask-api-users
+$ cat setup.cfg
+[aliases]
+test=pytest
+</code></pre>
+
+<p>Segundo arquivo de configuração será o <code>pytest.ini</code>.</p>
+
+<pre><code class="language-shell"># lucas @ notebook in flask-api-users
+$ cat pytest.ini
+[pytest]
+python_files = tests/*/*.py
+norecursedirs = build* .git _build tmp*
+</code></pre>
+
+<p>A configuração <code>python_files</code> faz com que o <code>pytest</code> busque todos os testes dentro do diretório e subdiretórios da pasta <code>tests/</code>. Existem outras configuração como:</p>
+
+<ul>
+<li>Executar em todos os arquivos que começam com <code>tests_*.py</code></li>
+</ul>
+
+<p>O <code>norecursedirs</code>, faz com que o <code>pytest</code> ignore os testes das pastas ou arquivos atribuídos.</p>
+
+<p>Para maiores informações <a href="https://docs.pytest.org/en/latest/example/pythoncollection.html#changing-directory-recursion" target="_blank">verifique essa parte da documentação.</a></p>
+
+<p>Em seguida, criar a classe <code>TestingConfig</code> em <code>config.py</code>. Nós criamos esse arquivo no <a href="//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">primeiro artigo da série</a>.</p>
+
+<pre><code class="language-shell"># lucas @ notebook in flask-api-users
+$ cat config.py
+# -*- coding: utf-8 -*-
+
+# Python
+from os import getenv
+
+...
+
+class TestingConfig(Config):
+    FLASK_ENV = 'testing'
+    TESTING = True
+
+
+config = {
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+    'default': DevelopmentConfig
+}
+</code></pre>
+
+<p>No diretório da aplicação crie a seguinte estrutura:</p>
+
+<pre><code class="language-shell"># lucas @ notebook in flask-api-users
+$ mkdir tests
+$ cd tests
+$ touch __init__.py conftest.py
+$ mkdir home
+$ cd home
+$ touch __init__.py test_home.py
+</code></pre>
+
+<p>Nosso diretório de testes deve ficar assim:</p>
+
+<pre><code class="language-shell">$ tree tests
+tests
+├── conftest.py
+├── home
+│   ├── __init__.py
+│   └── test_home.py
+├── __init__.py
+</code></pre>
+
+<p>Agora vamos codificar uma <code>fixture</code> no <code>conftest.py</code></p>
+
+<pre><code class="language-shell">$ cat conftest.py
+# -*- coding: utf-8 -*-
+
+# Python
+from os.path import dirname, isfile, join
+
+import pytest
+from dotenv import load_dotenv
+
+# a partir do arquivo atual adicione ao path o arquivo .env
+_ENV_FILE = join(dirname(__file__), '../.env')
+
+# existindo o arquivo faça a leitura do arquivo através da função load_dotenv
+if isfile(_ENV_FILE):
+    load_dotenv(dotenv_path=_ENV_FILE)
+
+# Cria uma fixture que será utilizada no escopo sessão
+# ou seja a cada execução do comando pytest
+
+
+@pytest.fixture(scope='session')
+def client():
+    from apps import create_app
+    # instancia nossa função factory criada anteriormente
+    flask_app = create_app('testing')
+
+    # O Flask fornece um caminho para testar a aplicação
+    # utilizando o Werkzeug test Client
+    # e manipulando o contexto (configurações)
+    testing_client = flask_app.test_client()
+
+    # Antes de executar os testes, é criado um contexto com as configurações
+    # da aplicação
+    ctx = flask_app.app_context()
+    ctx.push()
+
+    # retorna o client criado
+    yield testing_client  # this is where the testing happens!
+
+    # remove o contexto ao terminar os testes
+    ctx.pop()
+
+</code></pre>
+
+<h2 id="nosso-primeiro-teste">Nosso primeiro teste</h2>
+
+<p>Para codificar nosso teste e realmente afirmar que nosso <code>endpoint</code> <code>/</code> está funcionando corretamente façamos o seguinte:</p>
+
+<p>Edite o arquivo <code>tests/home/test_home.py</code> e cole o conteúdo abaixo:</p>
+
+<pre><code class="language-shell"># -*- coding: utf-8 -*-
+
+# Python
+import json
+
+# O `client` é a fixture que criamos dentro do arquivo conftest.py
+# ela é passada por parâmetro na função e pode ser usada dentro do escopo dela
+
+
+def test_index_response_200(client):
+    # Realiza uma requisição HTTP do tipo get para o endpoint /
+    response = client.get('/')
+
+    # Verificamos a assertividade do código de resposta da requisição
+    # http. Ela deve ser exatamente igual 200 retornando um True para
+    # o teste
+    assert response.status_code == 200
+
+</code></pre>
+
+<p>Ao executar o teste teremos a seguinte resposta:</p>
+
+<pre><code class="language-shell"># lucas @ notebook in /workspaces/python/flask-api-users
+$ pytest -v
+========================================================================== test session starts ==========================================================================
+platform linux -- Python 3.6.5, pytest-3.6.1, py-1.5.3, pluggy-0.6.0 -- /workspaces/venvs/flask-api-users/bin/python3
+cachedir: .pytest_cache
+rootdir: /workspaces/python/flask-api-users, inifile: pytest.ini
+plugins: flask-0.10.0, cov-2.5.1
+collected 1 item
+
+tests/home/test_home.py::test_index_response_200 PASSED                                                                                                           [100%]
+
+======================================================================= 1 passed in 0.04 seconds ========================================================================
+</code></pre>
+
+<p>Vamos implementar um novo teste. Pensando no seguinte cenário <code>BDD</code></p>
+
+<p><strong>Given</strong> Luiza está acessando a API,
+<strong>When</strong> ela informa a rota/<code>endpoint</code> <code>/</code>,
+<strong>Then</strong> api deve responder um objeto com a chave <code>['hello']</code>,
+<strong>And</strong> seu conteúdo deve ser <code>world by apps</code></p>
+
+<p>Logo, adicione o código para este caso de teste no <code>tests/home/test_resource.py</code>.</p>
+
+<pre><code class="language-shell">def test_home_response_hello(client):
+    &quot;&quot;&quot;
+    **Given** Luiza está acessando a API,
+    **When** ela informa a rota/endpoint `/`,
+    **Then** a api deve responder um objeto com a chave `['hello']`,
+    **And** seu conteúdo deve ser `world by apps`
+    &quot;&quot;&quot;
+    # Realiza uma requisição HTTP do tipo get para o endpoint /
+    response = client.get('/')
+
+    # Utilizamos a função loads do modulo json para retornar um dict
+    # para a váriavel data.
+    # Precisamos passar por parâmetro para essa função a resposta
+    # retornada pelo servidor, através da váriavel response.data
+    # e decodificar para utf-8
+    data = json.loads(response.data.decode('utf-8'))
+
+    # Fazemos o teste de asserção pela chave 'hello'
+    assert data['hello'] == 'world by apps'
+</code></pre>
+
+<p>Ao executar o <code>pytest -v</code> teremos como resposta:</p>
+
+<pre><code class="language-shell">$ pytest -v
+========================================================================== test session starts ==========================================================================
+platform linux -- Python 3.6.5, pytest-3.6.1, py-1.5.3, pluggy-0.6.0 -- /workspaces/venvs/flask-api-users/bin/python3
+cachedir: .pytest_cache
+rootdir: /workspaces/python/flask-api-users, inifile: pytest.ini
+plugins: flask-0.10.0, cov-2.5.1
+collected 2 items
+
+tests/home/test_home.py::test_index_response_200 PASSED                                                                                                           [ 50%]
+tests/home/test_home.py::test_home_response_hello PASSED                                                                                                          [100%]
+
+======================================================================= 2 passed in 0.11 seconds ========================================================================
+</code></pre>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>Os passos que mostrei neste artigo são extensos porém são feitos somente uma vez. Vez ou outra precisará fazer alguma outra configuração mais elaborada para o <code>pytest</code> executar.</p>
+
+<p>Sendo assim, configuramos nossa aplicação e agora podemos desenvolver testes com ela. Quero ressaltar que é muito importante em qualquer projeto de software termos teste e saber testar a aplicação e as funcionalidades que a compõem.</p>
+
+<p>No mais bom estudos.</p>
+
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/">Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</a></li>
+
+<li><a href="/2018/06/o-python-virtualenv/">O Python virtualenv</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="//lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/categories/flask">flask (3)</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/categories/python">python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="//lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="//lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
