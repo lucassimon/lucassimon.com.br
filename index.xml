@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lucas Simon</title>
-    <link>http://lucassimon.com.br/</link>
+    <link>https://lucassimon.com.br/</link>
     <description>Recent content on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Mon, 18 Jun 2018 13:00:00 -0300</lastBuildDate>
     
-	<atom:link href="http://lucassimon.com.br/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lucassimon.com.br/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</title>
-      <link>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</link>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</link>
       <pubDate>Mon, 18 Jun 2018 13:00:00 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</guid>
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</guid>
       <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
 Para entendimento, segue os capítulos que serão abordados.
  Capítulo 1: Introdução, configuração e Hello World
@@ -26,10 +26,10 @@ Para entendimento, segue os capítulos que serão abordados.
     
     <item>
       <title>O Python virtualenv</title>
-      <link>http://lucassimon.com.br/2018/06/o-python-virtualenv/</link>
+      <link>https://lucassimon.com.br/2018/06/o-python-virtualenv/</link>
       <pubDate>Sun, 17 Jun 2018 13:00:00 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/o-python-virtualenv/</guid>
+      <guid>https://lucassimon.com.br/2018/06/o-python-virtualenv/</guid>
       <description>Para iniciarmos o ambiente, precisamos instalar alguns pacotes do Python. Nos exemplos abaixo utilizarei o Debian como sistema operacional, e o apt como gerenciador de pacotes.
 Primeiro atualize o gerenciador de pacotes sudo aptitude update &amp;amp;&amp;amp; sudo aptitude upgrade e instale os pacotes de desenvolvimento.
 sudo aptitude install build-essential python-dev python-virtualenv python-pip python-software-properties  Organizando os diretórios Eu gosto de separar meus projetos em espaços de trabalhos diferentes.</description>
@@ -37,10 +37,10 @@ sudo aptitude install build-essential python-dev python-virtualenv python-pip py
     
     <item>
       <title>Série API em Flask - Parte 2 - Organizando as dependências e requerimentos</title>
-      <link>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</link>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</link>
       <pubDate>Thu, 14 Jun 2018 13:00:00 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</guid>
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</guid>
       <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
 Para entendimento, segue os capítulos que serão abordados.
  Capítulo 1: Introdução, configuração e Hello World
@@ -50,10 +50,10 @@ Para entendimento, segue os capítulos que serão abordados.
     
     <item>
       <title>Um caminho para aprender Elixir</title>
-      <link>http://lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</link>
+      <link>https://lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</link>
       <pubDate>Wed, 13 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</guid>
+      <guid>https://lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</guid>
       <description>Bem vindos, com o recente despertar e interesse por programação funcional estou montando aqui um compilado com fontes de estudos. Nas próximas seções deixo um cronograma de estudos que pode ser adaptado a sua maneira.
 Um dos primeiros passos e importante é receber uma introdução sobre o que são linguagens funcionais e o Elixir de quem trabalha com a linguagem e tem experiência. Segue os links:
  Linguagens funcionais Hipsters.</description>
@@ -61,10 +61,10 @@ Um dos primeiros passos e importante é receber uma introdução sobre o que sã
     
     <item>
       <title>Série API em Flask - Parte 1 - Introdução, configuração e Hello World</title>
-      <link>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</link>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</link>
       <pubDate>Tue, 12 Jun 2018 20:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</guid>
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</guid>
       <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT
 Para entendimento, segue os capítulos que serão abordados.
  Capítulo 1: Introdução, configuração e Hello World
@@ -75,10 +75,10 @@ Para entendimento, segue os capítulos que serão abordados.
     
     <item>
       <title>Introdução ao elixir</title>
-      <link>http://lucassimon.com.br/2018/06/introducao-ao-elixir/</link>
+      <link>https://lucassimon.com.br/2018/06/introducao-ao-elixir/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/introducao-ao-elixir/</guid>
+      <guid>https://lucassimon.com.br/2018/06/introducao-ao-elixir/</guid>
       <description>Ola, vamos fazer uma breve introdução sobre o Elixir, uma linguagem de programação funcional.
 Elixir O Elixir é uma linguagem de programação funcional que foi desenvolvida pelo brasileiro José Valim. Essa linguagem tem como objetivo resolver problemas de escalabilidade, ser tolerante a falhas e alta concorrência.
 O Elixir utiliza a máquina virtual do Erlang, conhecida por executar sistemas de baixa latência e com execução de processos concorrentes executando próximo de 99%.</description>
@@ -86,10 +86,10 @@ O Elixir utiliza a máquina virtual do Erlang, conhecida por executar sistemas d
     
     <item>
       <title>Sobre</title>
-      <link>http://lucassimon.com.br/about/</link>
+      <link>https://lucassimon.com.br/about/</link>
       <pubDate>Tue, 12 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/about/</guid>
+      <guid>https://lucassimon.com.br/about/</guid>
       <description>Sou desenvolvedor web e amo arquiteturas de software e análise de sistemas. Utilizo Python como minha principal linguagem de programação em conjunto com o PostgresSQL / MySQL / MongoDB. Para melhorar a minha produtividade gosto de utilizar o Python com Django Framework ou Flask.
 Atualmente, estou estudando arquiteturas de software com o GRAPHQL em conjunto com o NodeJS. Escolhi o NodeJs porque sinto a necessidade de melhorar minhas habilidades em JavaScript, dado que ele é usado no navegador, frameworks frontend como Vuejs, ReactJS e também para criar aplicativos desktop e celulares.</description>
     </item>

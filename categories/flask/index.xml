@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Flask on Lucas Simon</title>
-    <link>http://lucassimon.com.br/categories/flask/</link>
+    <link>https://lucassimon.com.br/categories/flask/</link>
     <description>Recent content in Flask on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <lastBuildDate>Mon, 18 Jun 2018 13:00:00 -0300</lastBuildDate>
     
-	<atom:link href="http://lucassimon.com.br/categories/flask/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lucassimon.com.br/categories/flask/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</title>
-      <link>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</link>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</link>
       <pubDate>Mon, 18 Jun 2018 13:00:00 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</guid>
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</guid>
       <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
 Para entendimento, segue os capítulos que serão abordados.
  Capítulo 1: Introdução, configuração e Hello World
@@ -26,10 +26,10 @@ Para entendimento, segue os capítulos que serão abordados.
     
     <item>
       <title>Série API em Flask - Parte 2 - Organizando as dependências e requerimentos</title>
-      <link>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</link>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</link>
       <pubDate>Thu, 14 Jun 2018 13:00:00 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</guid>
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</guid>
       <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
 Para entendimento, segue os capítulos que serão abordados.
  Capítulo 1: Introdução, configuração e Hello World
@@ -39,10 +39,10 @@ Para entendimento, segue os capítulos que serão abordados.
     
     <item>
       <title>Série API em Flask - Parte 1 - Introdução, configuração e Hello World</title>
-      <link>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</link>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</link>
       <pubDate>Tue, 12 Jun 2018 20:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</guid>
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</guid>
       <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT
 Para entendimento, segue os capítulos que serão abordados.
  Capítulo 1: Introdução, configuração e Hello World

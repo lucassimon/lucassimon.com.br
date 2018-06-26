@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Lucas Simon</title>
-    <link>http://lucassimon.com.br/categories/</link>
+    <link>https://lucassimon.com.br/categories/</link>
     <description>Recent content in Categories on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     
-	<atom:link href="http://lucassimon.com.br/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lucassimon.com.br/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Elixir</title>
-      <link>http://lucassimon.com.br/categories/elixir/</link>
+      <link>https://lucassimon.com.br/categories/elixir/</link>
       <pubDate>Wed, 13 Jun 2018 09:07:41 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/categories/elixir/</guid>
+      <guid>https://lucassimon.com.br/categories/elixir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Flask</title>
-      <link>http://lucassimon.com.br/categories/flask/</link>
+      <link>https://lucassimon.com.br/categories/flask/</link>
       <pubDate>Mon, 18 Jun 2018 13:00:00 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/categories/flask/</guid>
+      <guid>https://lucassimon.com.br/categories/flask/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>http://lucassimon.com.br/categories/python/</link>
+      <link>https://lucassimon.com.br/categories/python/</link>
       <pubDate>Sun, 17 Jun 2018 13:00:00 -0300</pubDate>
       
-      <guid>http://lucassimon.com.br/categories/python/</guid>
+      <guid>https://lucassimon.com.br/categories/python/</guid>
       <description></description>
     </item>
     
