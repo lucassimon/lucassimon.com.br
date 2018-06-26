@@ -3,148 +3,148 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>//lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</loc>
+    <loc>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</loc>
     <lastmod>2018-06-18T13:00:00-03:00</lastmod>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/2018/06/o-python-virtualenv/</loc>
+    <loc>http://lucassimon.com.br/2018/06/o-python-virtualenv/</loc>
     <lastmod>2018-06-17T13:00:00-03:00</lastmod>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</loc>
+    <loc>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</loc>
     <lastmod>2018-06-14T13:00:00-03:00</lastmod>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</loc>
+    <loc>http://lucassimon.com.br/2018/06/um-caminho-para-aprender-elixir/</loc>
     <lastmod>2018-06-13T09:07:41-03:00</lastmod>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</loc>
+    <loc>http://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</loc>
     <lastmod>2018-06-12T20:07:41-03:00</lastmod>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/2018/06/introducao-ao-elixir/</loc>
+    <loc>http://lucassimon.com.br/2018/06/introducao-ao-elixir/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/about/</loc>
+    <loc>http://lucassimon.com.br/about/</loc>
     <lastmod>2018-06-12T09:07:41-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/about/"
+                href="http://lucassimon.com.br/en/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/about/"
+                href="http://lucassimon.com.br/about/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/tags/api/</loc>
+    <loc>http://lucassimon.com.br/tags/api/</loc>
     <lastmod>2018-06-18T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/categories/</loc>
+    <loc>http://lucassimon.com.br/categories/</loc>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/categories/"
+                href="http://lucassimon.com.br/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/categories/"
+                href="http://lucassimon.com.br/categories/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/tags/elixir/</loc>
+    <loc>http://lucassimon.com.br/tags/elixir/</loc>
     <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/categories/elixir/</loc>
+    <loc>http://lucassimon.com.br/categories/elixir/</loc>
     <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/categories/flask/</loc>
+    <loc>http://lucassimon.com.br/categories/flask/</loc>
     <lastmod>2018-06-18T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/tags/functional-programming/</loc>
+    <loc>http://lucassimon.com.br/tags/functional-programming/</loc>
     <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/</loc>
+    <loc>http://lucassimon.com.br/</loc>
     <lastmod>2018-06-18T13:00:00-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/"
+                href="http://lucassimon.com.br/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/"
+                href="http://lucassimon.com.br/"
                 />
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/post/</loc>
+    <loc>http://lucassimon.com.br/post/</loc>
     <lastmod>2018-06-18T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/tags/python/</loc>
+    <loc>http://lucassimon.com.br/tags/python/</loc>
     <lastmod>2018-06-18T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/categories/python/</loc>
+    <loc>http://lucassimon.com.br/categories/python/</loc>
     <lastmod>2018-06-17T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/tags/rest/</loc>
+    <loc>http://lucassimon.com.br/tags/rest/</loc>
     <lastmod>2018-06-18T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//lucassimon.com.br/tags/</loc>
+    <loc>http://lucassimon.com.br/tags/</loc>
     <lastmod>2018-06-18T13:00:00-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//lucassimon.com.br/en/tags/"
+                href="http://lucassimon.com.br/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
-                href="//lucassimon.com.br/tags/"
+                href="http://lucassimon.com.br/tags/"
                 />
   </url>
   
