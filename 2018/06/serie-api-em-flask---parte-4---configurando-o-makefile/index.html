@@ -49,7 +49,7 @@ Para entendimento, segue os capítulos que serão abordados.
   "@type": "BlogPosting",
   "headline": "Série API em Flask - Parte 4 - Configurando o Makefile",
   "url": "https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/",
-  "wordCount": "779",
+  "wordCount": "924",
   "datePublished": "2018-06-27T13:00:00-03:00",
   "dateModified": "2018-06-27T13:00:00-03:00",
   "author": {
@@ -298,9 +298,52 @@ help:
 
 <h2 id="conclusão">Conclusão.</h2>
 
-<p>Através do comando <code>make</code> e de suas configurações <code>makefile</code> podemos padronizar e organizar o desenvolvimento de nossa aplicação.</p>
+<p>O arquivo final <code>Makefile</code> fica assim:</p>
 
-<p>Próxima seção vamos fazer uma conexão com o banco de dados MongoDB. Abraços a todos.</p>
+<pre><code>.PHONY: help clean test clean-build isort run
+
+.DEFAULT: help
+
+help:
+    @echo &quot;make clean&quot;
+    @echo &quot;       prepare development environment, use only once&quot;
+    @echo &quot;make clean-build&quot;
+    @echo &quot;       Clear all build directories&quot;
+    @echo &quot;make isort&quot;
+    @echo &quot;       run isort command cli in development features&quot;
+    @echo &quot;make lint&quot;
+    @echo &quot;       run lint&quot;
+    @echo &quot;make test&quot;
+    @echo &quot;       run tests&quot;
+    @echo &quot;make run&quot;
+    @echo &quot;       run the web application&quot;
+
+clean:
+    find . -name '*.pyc' -exec rm --force {} +
+    find . -name '*.pyo' -exec rm --force {} +
+    find . | grep -E &quot;__pycache__|.pyc|.DS_Store$$&quot; | xargs rm -rf
+
+clean-build:
+    rm --force --recursive build/
+    rm --force --recursive dist/
+    rm --force --recursive *.egg-info
+
+isort:
+    sh -c &quot;isort --skip-glob=.tox --recursive . &quot;
+
+lint: clean
+    flake8
+
+test: lint
+    pytest --verbose --color=yes
+
+run: test
+    python application.py
+</code></pre>
+
+<p>Pode parecer perfumaria, entretanto, através do comando <code>make</code> e de suas configurações <code>Makefile</code> podemos padronizar e organizar o desenvolvimento de nossa aplicação.</p>
+
+<p>Próxima seção vamos fazer uma conexão com o banco de dados MongoDB, um pouco do uso do docker. Até breve, abraços a todos.</p>
 
 
   
