@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 4 - Configurando o Makefile" />
+<meta property="og:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos
+ Capítulo 3: Configurando o pytest e nosso primeiro teste
+ Capítulo 4: Configurando o Makefile." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/" />
+
+
+
+<meta property="article:published_time" content="2018-06-27T13:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-06-27T13:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 4 - Configurando o Makefile"/>
+<meta name="twitter:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos
+ Capítulo 3: Configurando o pytest e nosso primeiro teste
+ Capítulo 4: Configurando o Makefile."/>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 4 - Configurando o Makefile",
+  "url": "https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/",
+  "wordCount": "779",
+  "datePublished": "2018-06-27T13:00:00-03:00",
+  "dateModified": "2018-06-27T13:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, python, api, rest"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/">
+
+    <title>Série API em Flask - Parte 4 - Configurando o Makefile | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="https://lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer.</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/">Série API em Flask - Parte 4 - Configurando o Makefile</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-06-27T13:00:00-03:00">Wed Jun 27, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  
+
+<p>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação <code>REST</code> com <code>Python</code> e <code>Flask Framework</code>. No final deste projeto você será capaz de rodar localmente uma API com autenticação <code>JWT</code>.</p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: Configurando o Makefile. <strong>Estamos aqui</strong></p></li>
+
+<li><p>Capítulo 5: Adicionando o MongoDB a API</p></li>
+
+<li><p>Capítulo 7: Padronizando retornos da API com jsonify</p></li>
+
+<li><p>Capítulo 8: Criando o modelo de usuários</p></li>
+
+<li><p>Capítulo 8: Testando o modelo de usuários</p></li>
+
+<li><p>Capítulo 9: Adicionando o marshmallow</p></li>
+
+<li><p>Capítulo 10: Criando um novo usuário com pytest</p></li>
+
+<li><p>Capítulo 11: Listando usuários</p></li>
+
+<li><p>Capítulo 11: Buscando usuários</p></li>
+
+<li><p>Capítulo 12: Editando um usuário</p></li>
+
+<li><p>Capítulo 13: Deletando um usuário</p></li>
+
+<li><p>Capítulo 14: Adicionando o JWT a API</p></li>
+
+<li><p>Capítulo 15: Criando a app de autenticação por JWT</p></li>
+
+<li><p>Capítulo 16: Conclusão</p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="makefile">MakeFile</h2>
+
+<p>O <a href="https://en.wikipedia.org/wiki/Make_(software)" target="_blank">Make</a> é um utilitário criado para automatizar o processo de construção de aplicações executando o compilador, linkador, testes, e até mesmo fazendo o deploy, entre outras operações possíveis.</p>
+
+<p>O <strong>Makefile</strong>, é um arquivo de configurações que possui instruções para executar um processo. Podendo ser, conforme dito acima, executar testes, gerar arquivos binários e etc&hellip;</p>
+
+<p>Particulamente eu gosto de utilizar esse método por questões de organização, documentação e facilitar o uso de comandos que serão utilizados repetidamente. Também posso encadear uma lista de instruções antes de executar a instrução solicitada. Isso ficará mais claro após a configuração e exemplos.</p>
+
+<h3 id="configurações-adicionais">Configurações adicionais</h3>
+
+<p>Em nosso arquivo <code>setup.cfg</code> adicione o conteúdo abaixo para configurar o <code>flake8</code> e <code>isort</code></p>
+
+<pre><code>[flake8]
+exclude = application.py, conftest.py
+
+[isort]
+skip=application.py,conftest.py
+default_section = THIRDPARTY
+known_first_party = apps
+known_flask = flask
+sections = FUTURE,STDLIB,FLASK,THIRDPARTY,FIRSTPARTY,LOCALFOLDER
+import_heading_future = Future
+import_heading_stdlib = Python
+import_heading_thirdparty = Third
+import_heading_firstparty = Apps
+import_heading_localfolder = Local
+indent='    '
+multi_line_output=3
+</code></pre>
+
+<h3 id="o-help">O help</h3>
+
+<p>O MakeFile exige que os comandos sejam identados por tabulação de 4 espaços. O primeiro passo é criar uma entrada <code>help:</code> e especificar o uso do comando através do <code>@echo</code>. Em seguida definimos qual será o comando parão do nosso <code>make</code> através do <code>.DEFAULT</code>.</p>
+
+<pre><code>$ cat Makefile
+
+.DEFAULT: help
+
+help:
+    @echo &quot;make clean&quot;
+    @echo &quot;       prepare development environment, use only once&quot;
+    @echo &quot;make clean-build&quot;
+    @echo &quot;       Clear all build directories&quot;
+    @echo &quot;make isort&quot;
+    @echo &quot;       run isort command cli in development features&quot;
+    @echo &quot;make lint&quot;
+    @echo &quot;       run lint&quot;
+    @echo &quot;make test&quot;
+    @echo &quot;       run tests&quot;
+    @echo &quot;make run&quot;
+    @echo &quot;       run the web application&quot;
+</code></pre>
+
+<h3 id="o-clean">O clean</h3>
+
+<p>Nossa primeira cadeia de instruções são comandos linux que irão deletar todos os arquivos <code>.pyc e pyo</code> e diretórios <code>pycache e .DS_Store</code>.</p>
+
+<ol>
+<li><p>.py: São arquivos com o código fonte que escrevemos.</p></li>
+
+<li><p>.pyc: Estes arquivos são compilados para binários. Ao importar um módulo o python irá compilar o fonte contendo somente o fonte. Após ser importado e passado pelo processo de compilação a primeira vez esse módulo será importado mais rápido.</p></li>
+
+<li><p>.pyo: Possui a mesma caracteristicas do <code>.pyc</code> porém otimizado com a flag <code>-O</code>.</p></li>
+</ol>
+
+<p><a href="https://stackoverflow.com/questions/8822335/what-do-the-python-file-extensions-pyc-pyd-pyo-stand-for" target="_blank">Fonte</a></p>
+
+<pre><code>clean:
+    find . -name '*.pyc' -exec rm --force {} +
+    find . -name '*.pyo' -exec rm --force {} +
+    find . | grep -E &quot;__pycache__|.pyc|.DS_Store$$&quot; | xargs rm -rf
+
+</code></pre>
+
+<p><img src="/make_clean.gif" alt="MakeClean" /></p>
+
+<h3 id="o-clean-build">O clean-build</h3>
+
+<p>Quando instalamos um pacote via <code>python setup.py install</code> ou <code>pip install -e .</code> Fizemos esse processo para instalar os testes no capítulo anterior.</p>
+
+<pre><code>clean-build:
+    rm --force --recursive build/
+    rm --force --recursive dist/
+    rm --force --recursive *.egg-info
+</code></pre>
+
+<h3 id="o-isort">O Isort</h3>
+
+<p>O <a href="https://github.com/timothycrosley/isort" target="_blank">Isort</a> é um utilitário para padronizar as importações de pacotes no código fonte. É útil pois cada desenvolvedor tem uma maneira de codificar que nem sempre é igual ao outro. Logo dessa forma o <code>isort</code> padroniza todo o código fonte.</p>
+
+<pre><code>isort:
+    sh -c &quot;isort --skip-glob=.tox --recursive . &quot;
+</code></pre>
+
+<p><img src="https://camo.githubusercontent.com/841a7830ea6e8d363a53214917144b259685cc15/68747470733a2f2f7261772e6769746875622e636f6d2f74696d6f74687963726f736c65792f69736f72742f646576656c6f702f6578616d706c652e676966" alt="Isort in action" /></p>
+
+<h3 id="o-lint">O lint</h3>
+
+<p>Escolhi <code>flake8</code> como utilitário para padronizar o código. Quando executamos o comando ele avisa qual arquivo, linha e uma descrição do erro. Observe que o este comando irá executar o clean também.</p>
+
+<pre><code>lint: clean
+    flake8
+</code></pre>
+
+<p><img src="/flake8.gif" alt="Flake8" /></p>
+
+<h3 id="o-teste">O teste</h3>
+
+<p>Para executar os testes conforme o capítulo anterior chamamos o <code>pytest</code>. Mas para facilitar podemos chamar <code>clean</code> encadeado com o <code>lint</code> que por sua vez executa o <code>test</code></p>
+
+<pre><code>test: lint
+    pytest --verbose --color=yes
+</code></pre>
+
+<p><img src="/make_test.gif" alt="MakeTest" /></p>
+
+<h3 id="o-run">O run</h3>
+
+<p>Por fim a execução da aplicação utilizando o <code>make run</code>. Veja que antes de executar a aplicação ele executa um <code>clean</code>, <code>lint</code> e <code>test</code>. Assim previnimos que antes de começar a desenvolver estaremos executando os testes e demais comandos</p>
+
+<pre><code>run: test
+    python application.py
+</code></pre>
+
+<p><img src="/make_run.gif" alt="MakeTest" /></p>
+
+<h2 id="conclusão">Conclusão.</h2>
+
+<p>Através do comando <code>make</code> e de suas configurações <code>makefile</code> podemos padronizar e organizar o desenvolvimento de nossa aplicação.</p>
+
+<p>Próxima seção vamos fazer uma conexão com o banco de dados MongoDB. Abraços a todos.</p>
+
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-4---configurando-o-makefile%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-4---configurando-o-makefile%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-4---configurando-o-makefile%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f06%2fserie-api-em-flask---parte-4---configurando-o-makefile%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/">Série API em Flask - Parte 4 - Configurando o Makefile</a></li>
+
+<li><a href="/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/">Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (4)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>

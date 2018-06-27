@@ -47,7 +47,7 @@ Para entendimento, segue os capítulos que serão abordados.
   "@type": "BlogPosting",
   "headline": "Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste",
   "url": "https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/",
-  "wordCount": "1409",
+  "wordCount": "1442",
   "datePublished": "2018-06-18T13:00:00-03:00",
   "dateModified": "2018-06-18T13:00:00-03:00",
   "author": {
@@ -137,7 +137,7 @@ Para entendimento, segue os capítulos que serão abordados.
 
 <li><p>Capítulo 3: Configurando o pytest e nosso primeiro teste <strong>Estamos aqui</strong></p></li>
 
-<li><p>Capítulo 4: Configurando o Makefile</p></li>
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/" target="_blank">Configurando o Makefile</a></p></li>
 
 <li><p>Capítulo 5: Adicionando o MongoDB a API</p></li>
 
@@ -468,6 +468,13 @@ def test_index_response_200(client):
 
 </code></pre>
 
+<p>Antes de executar o teste que criamos, execute o comando abaixo para instalar o pacote API e termos referência para executarmos o teste com nossa suite de testes.</p>
+
+<pre><code class="language-shell">pip install -e .
+</code></pre>
+
+<p><a href="https://docs.pytest.org/en/latest/existingtestsuite.html" target="_blank">Fonte</a></p>
+
 <p>Ao executar o teste teremos a seguinte resposta:</p>
 
 <pre><code class="language-shell"># lucas @ notebook in /workspaces/python/flask-api-users
@@ -577,9 +584,9 @@ tests/home/test_home.py::test_home_response_hello PASSED                        
     <ol class="list-unstyled">
 
 
-<li><a href="/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/">Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</a></li>
+<li><a href="/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/">Série API em Flask - Parte 4 - Configurando o Makefile</a></li>
 
-<li><a href="/2018/06/o-python-virtualenv/">O Python virtualenv</a></li>
+<li><a href="/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/">Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</a></li>
 
     </ol>
   </section>
@@ -599,7 +606,7 @@ tests/home/test_home.py::test_home_response_hello PASSED                        
         <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/categories/flask">flask (3)</a>
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (4)</a>
         </li>
         
         <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>
