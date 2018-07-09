@@ -6,10 +6,24 @@
     <description>Recent content in Rest on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 27 Jun 2018 13:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 08 Jul 2018 13:00:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/tags/rest/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 5 - MongoDB</title>
+      <link>https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/</link>
+      <pubDate>Sun, 08 Jul 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/</guid>
+      <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
+Para entendimento, segue os capítulos que serão abordados.
+ Capítulo 1: Introdução, configuração e Hello World
+ Capítulo 2: Organizando as dependências e requerimentos
+ Capítulo 3: Configurando o pytest e nosso primeiro teste
+ Capítulo 4: Configurando o Makefile</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 4 - Configurando o Makefile</title>
