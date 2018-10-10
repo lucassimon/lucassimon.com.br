@@ -6,11 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <meta property="og:title" content="Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste" />
-<meta property="og:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
-Para entendimento, segue os capítulos que serão abordados.
- Capítulo 1: Introdução, configuração e Hello World
- Capítulo 2: Organizando as dependências e requerimentos
- Capítulo 3: Configurando o pytest e nosso primeiro teste Estamos aqui" />
+<meta property="og:description" content="Um ponto importante para todo o processo de desenvolvimento de software é a implementação de testes. Claro que nem sempre conseguimos cobrir toda a aplicação com testes unitários porém a idéia aqui é minimizar os erros que podem ocorrer em produção.
+
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" />
 
@@ -32,24 +30,20 @@ Para entendimento, segue os capítulos que serão abordados.
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste"/>
-<meta name="twitter:description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
-Para entendimento, segue os capítulos que serão abordados.
- Capítulo 1: Introdução, configuração e Hello World
- Capítulo 2: Organizando as dependências e requerimentos
- Capítulo 3: Configurando o pytest e nosso primeiro teste Estamos aqui"/>
+<meta name="twitter:description" content="Um ponto importante para todo o processo de desenvolvimento de software é a implementação de testes. Claro que nem sempre conseguimos cobrir toda a aplicação com testes unitários porém a idéia aqui é minimizar os erros que podem ocorrer em produção.
+
+"/>
 
 
 <meta itemprop="name" content="Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste">
-<meta itemprop="description" content="Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
-Para entendimento, segue os capítulos que serão abordados.
- Capítulo 1: Introdução, configuração e Hello World
- Capítulo 2: Organizando as dependências e requerimentos
- Capítulo 3: Configurando o pytest e nosso primeiro teste Estamos aqui">
+<meta itemprop="description" content="Um ponto importante para todo o processo de desenvolvimento de software é a implementação de testes. Claro que nem sempre conseguimos cobrir toda a aplicação com testes unitários porém a idéia aqui é minimizar os erros que podem ocorrer em produção.
+
+">
 
 
 <meta itemprop="datePublished" content="2018-06-18T13:00:00-03:00" />
 <meta itemprop="dateModified" content="2018-06-18T13:00:00-03:00" />
-<meta itemprop="wordCount" content="1427">
+<meta itemprop="wordCount" content="1437">
 
 
 
@@ -69,7 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@type": "BlogPosting",
   "headline": "Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste",
   "url": "https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/",
-  "wordCount": "1427",
+  "wordCount": "1437",
   "datePublished": "2018-06-18T13:00:00-03:00",
   "dateModified": "2018-06-18T13:00:00-03:00",
   "author": {
@@ -147,9 +141,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </p>
   </header>
-  
+  <p>Um ponto importante para todo o processo de desenvolvimento de software é a implementação de testes. Claro que nem sempre conseguimos cobrir toda a aplicação com testes unitários porém a idéia aqui é minimizar os erros que podem ocorrer em produção.</p>
 
-<p>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação <code>REST</code> com <code>Python</code> e <code>Flask Framework</code>. No final deste projeto você será capaz de rodar localmente uma API com autenticação <code>JWT</code>.</p>
+<p></p>
 
 <p>Para entendimento, segue os capítulos que serão abordados.</p>
 
@@ -164,7 +158,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
 
-<li><p>Capítulo 6: Testando o modelo de usuários</p></li>
+<li><p>Capítulo 6: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" target="_blank">Criando e testando o modelo de usuários</a></p></li>
 
 <li><p>Capítulo 7: Criando e listando usuários</p></li>
 
@@ -564,7 +558,6 @@ tests/home/test_home.py::test_home_response_hello PASSED                        
 
 <p>No mais bom estudos.</p>
 
-
   
 
   
@@ -603,9 +596,9 @@ tests/home/test_home.py::test_home_response_hello PASSED                        
     <ol class="list-unstyled">
 
 
-<li><a href="/2018/07/serie-api-em-flask---parte-5---mongodb/">Série API em Flask - Parte 5 - MongoDB</a></li>
+<li><a href="/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/">Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários</a></li>
 
-<li><a href="/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/">Série API em Flask - Parte 4 - Configurando o Makefile</a></li>
+<li><a href="/2018/07/serie-api-em-flask---parte-5---mongodb/">Série API em Flask - Parte 5 - MongoDB</a></li>
 
     </ol>
   </section>
@@ -625,7 +618,7 @@ tests/home/test_home.py::test_home_response_hello PASSED                        
         <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/categories/flask">flask (5)</a>
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (6)</a>
         </li>
         
         <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>

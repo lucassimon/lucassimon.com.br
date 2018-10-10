@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários" />
+<meta property="og:description" content="Oi pessoal, vamos criar nosso modelo de usuários e realizar alguns testes em cima dele. Graças ao pacote mongoengine fica bem fácil de criar nossas classes referente ao modelo de dados e é bem parecido com o Django, porém sem as migrations.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" />
+
+
+
+<meta property="article:published_time" content="2018-10-09T13:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-10-09T13:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários"/>
+<meta name="twitter:description" content="Oi pessoal, vamos criar nosso modelo de usuários e realizar alguns testes em cima dele. Graças ao pacote mongoengine fica bem fácil de criar nossas classes referente ao modelo de dados e é bem parecido com o Django, porém sem as migrations.
+
+"/>
+
+
+<meta itemprop="name" content="Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários">
+<meta itemprop="description" content="Oi pessoal, vamos criar nosso modelo de usuários e realizar alguns testes em cima dele. Graças ao pacote mongoengine fica bem fácil de criar nossas classes referente ao modelo de dados e é bem parecido com o Django, porém sem as migrations.
+
+">
+
+
+<meta itemprop="datePublished" content="2018-10-09T13:00:00-03:00" />
+<meta itemprop="dateModified" content="2018-10-09T13:00:00-03:00" />
+<meta itemprop="wordCount" content="985">
+
+
+
+<meta itemprop="keywords" content="python,api,rest," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários",
+  "url": "https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/",
+  "wordCount": "985",
+  "datePublished": "2018-10-09T13:00:00-03:00",
+  "dateModified": "2018-10-09T13:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, python, api, rest"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/">
+
+    <title>Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+  </head>
+
+  <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="https://lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer.</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/">Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-10-09T13:00:00-03:00">Tue Oct 09, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  <p>Oi pessoal, vamos criar nosso modelo de usuários e realizar alguns testes em cima dele. Graças ao pacote <code>mongoengine</code> fica bem fácil de criar nossas classes referente ao modelo de dados e é bem parecido com o Django, porém sem as migrations.</p>
+
+<p></p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o Makefile</a></p></li>
+
+<li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
+
+<li><p>Capítulo 6: Criando e testando o modelo de usuários <strong>Estamos aqui</strong></p></li>
+
+<li><p>Capítulo 7: Criando e listando usuários</p></li>
+
+<li><p>Capítulo 8: Adicionando o marshmallow</p></li>
+
+<li><p>Capítulo 9: Padronizando retornos da API com jsonify</p></li>
+
+<li><p>Capítulo 10: Buscando usuários</p></li>
+
+<li><p>Capítulo 11: Editando um usuário</p></li>
+
+<li><p>Capítulo 12: Deletando um usuário</p></li>
+
+<li><p>Capítulo 13: Adicionando o JWT a API</p></li>
+
+<li><p>Capítulo 14: Criando a app de autênticação por JWT</p></li>
+
+<li><p>Capítulo 15: Conclusão</p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="model-users">Model Users</h2>
+
+<p>Dentro de nossa pasta <code>apps</code> vamos criar um novo diretório chamado <code>users</code> e adicionar nosso módulo <code>models.py</code>. Não se esqueçam de sempre criar o <code>__init__.py</code>.</p>
+
+<p>Ficando assim nossa estrutura:</p>
+
+<pre><code>$ tree .
+.
+├── api.py
+├── db.py
+├── __init__.py
+└── users
+    ├── __init__.py
+    └── models.py
+</code></pre>
+
+<p>Em nosso <code>models.py</code> vamos primeiro criar uma classe abtrata chamada <code>UserMixin</code>, apenas para titulo de curiosidade e saber que existe, em seguida criaremos nossa classe <code>User</code>. Vamos ao código:</p>
+
+<pre><code class="language-python"># Python
+from datetime import datetime
+
+# Third
+from mongoengine import (
+    BooleanField,
+    DateTimeField,
+    DictField,
+    EmailField,
+    EmbeddedDocument,
+    EmbeddedDocumentField,
+    StringField,
+    URLField
+)
+
+# Apps
+from apps.db import db
+
+
+class UserMixin(db.Document):
+    &quot;&quot;&quot;
+    Default implementation for User fields
+    &quot;&quot;&quot;
+    meta = {
+        'abstract': True,
+        'ordering': ['email']
+    }
+
+    email = EmailField(required=True, unique=True)
+    password = StringField(required=True)
+
+    created = DateTimeField(default=datetime.now)
+    active = BooleanField(default=False)
+
+    def is_active(self):
+        return self.active
+
+# Abaixo fica o código para a classe Adress
+</code></pre>
+
+<p>Em complemento vamos criar uma classe <code>Address</code> que será utilizada em nosso model <code>Users</code>. Essa classe herda de <code>EmbbededDocument</code> do <code>mongoengine</code> e nada mais é de uma maneira simples colocar dicionários dentro de um campo, com campos fixos.</p>
+
+<pre><code class="language-python">
+class Address(EmbeddedDocument):
+    &quot;&quot;&quot;
+    Default implementation for address fields
+    &quot;&quot;&quot;
+    meta = {
+        'ordering': ['zip_code']
+    }
+    zip_code = StringField(default='')
+    address = StringField(default='')
+    number = StringField(default='')
+    complement = StringField(default='')
+    neighborhood = StringField(default='')
+    city = StringField(default='')
+    city_id = StringField(default='')
+    state = StringField(default='')
+    country = StringField(default='BRA')
+
+# Abaixo fica o código para a classe User
+</code></pre>
+
+<p>E por fim criaremos nossa classe <code>User</code> a qual possui herança da nossa classe abstrata <code>UserMixin</code>.</p>
+
+<pre><code class="language-python">
+class User(UserMixin):
+    '''
+    Users
+    '''
+    meta = {'collection': 'users'}
+
+    full_name = StringField(required=True)
+    cpf_cnpj = StringField(default='')
+    address = EmbeddedDocumentField(Address, default=Address)
+
+</code></pre>
+
+<p>O que fizemos até aqui foi modelar nossa entidade usuário com os campos herdados da classe <code>UserMixin</code> e alteramos o nome da nossa coleção através do <code>meta = {'collection': 'users'}</code>.</p>
+
+<p>É importante ler a documentação do <a href="http://docs.mongoengine.org/tutorial.html" target="_blank">mongoengine</a> pois ela irá ajudar muito quando precisar de criar novos campos como uma lista de strings, <code>tags = ListField(StringField(max_length=30))</code> e opções mais avançadas quando se trabalha com o MongoDB.</p>
+
+<h2 id="testes">Testes</h2>
+
+<p>Neste artigo eu não quis fazer através de TDD pois iria ficar muito extenso. Logo nada impede que você e o time que está trabalhando faça o desenvolvimento utilizando o TDD e refatorando o sistema.</p>
+
+<p>Antes de codificar os testes eu gostaria de reforçar que geralmente eu faço as seguintes validações em cima de modelos.</p>
+
+<ol>
+<li><p>Verifico se o campo existe</p></li>
+
+<li><p>Verifico se o campo é requerido</p></li>
+
+<li><p>Verifico se o campo é unique</p></li>
+
+<li><p>Verifico o tipo do campo: String, Int, Bool</p></li>
+</ol>
+
+<p>Isso é o básico de um teste. Lógico que você pode aumentar a sua gama verificando tamanho da string, validadores, mensagens de erro e etc&hellip;</p>
+
+<p>Agora vamos la. Na nossa pasta <code>tests</code>, vamos criar um novo diretório <code>users</code> e criar um módulo chamado <code>test_models.py</code>. Ficando com essa estrutura:</p>
+
+<pre><code class="language-shell">.
+├── conftest.py
+├── home
+│   ├── __init__.py
+│   └── test_home.py
+├── __init__.py
+└── users
+    ├── __init__.py
+    └── test_models.py
+</code></pre>
+
+<p>Abaixo segue o código auto explicativo nas docstrings:</p>
+
+<pre><code class="language-python"># Third
+
+from mongoengine import (
+    BooleanField,
+    StringField,
+)
+
+# Apps
+
+from apps.users.models import User
+
+
+class TestUser:
+
+    def setup_method(self):
+        self.data = {
+            'email': 'teste1@teste.com', 'password': 'teste123',
+            'active': True, 'full_name': 'Teste',
+            'cpf_cnpj': '11111111111'
+        }
+
+        # Crio uma instancia do modelo User
+        self.model = User(**self.data)
+
+    def test_email_field_exists(self):
+        &quot;&quot;&quot;
+        Verifico se o campo email existe
+        &quot;&quot;&quot;
+        assert 'email' in self.model._fields
+
+    def test_email_field_is_required(self):
+        &quot;&quot;&quot;
+        Verifico se o campo email é requirido
+        &quot;&quot;&quot;
+        assert self.model._fields['email'].required is True
+
+    def test_email_field_is_unique(self):
+        &quot;&quot;&quot;
+        Verifico se o campo email é unico
+        &quot;&quot;&quot;
+        assert self.model._fields['email'].unique is True
+
+    def test_email_field_is_str(self):
+        &quot;&quot;&quot;
+        Verifico se o campo email é do tipo string
+        &quot;&quot;&quot;
+        assert isinstance(self.model._fields['email'], StringField)
+
+    def test_active_field_exists(self):
+        assert 'active' in self.model._fields
+
+    def test_active_field_is_default_true(self):
+        assert self.model._fields['active'].default is False
+
+    def test_active_field_is_bool(self):
+        &quot;&quot;&quot;
+        Verifico se o campo active é booleano
+        &quot;&quot;&quot;
+        assert isinstance(self.model._fields['active'], BooleanField)
+
+    def test_full_name_field_exists(self):
+        &quot;&quot;&quot;
+        Verifico se o campo full_name existe
+        &quot;&quot;&quot;
+        assert 'full_name' in self.model._fields
+
+    def test_full_name_field_is_str(self):
+        assert isinstance(self.model._fields['full_name'], StringField)
+
+    def test_all_fields_in_model(self):
+        &quot;&quot;&quot;
+        Verifico se todos os campos estão de fato no meu modelo
+        &quot;&quot;&quot;
+        fields = [
+            'active', 'address', 'cpf_cnpj', 'created', 'email',
+            'full_name', 'id', 'password',
+        ]
+
+        model_keys = [i for i in self.model._fields.keys()]
+
+        fields.sort()
+        model_keys.sort()
+
+        assert fields == model_keys
+</code></pre>
+
+<p>Em seguida basta executarmos nosso comando de testes <code>make test</code>:</p>
+
+<pre><code class="language-shell">$ make test
+find . -name '*.pyc' -exec rm --force {} +
+find . -name '*.pyo' -exec rm --force {} +
+find . | grep -E &quot;__pycache__|.pyc|.DS_Store$&quot; | xargs rm -rf
+flake8
+pytest --verbose --color=yes 
+========================================================================== test session starts ==========================================================================
+platform linux -- Python 3.6.5, pytest-3.6.1, py-1.5.3, pluggy-0.6.0 -- /workspaces/venvs/flask-api-users/bin/python3
+cachedir: .pytest_cache
+rootdir: /workspaces/python/flask-api-users, inifile: pytest.ini
+plugins: flask-0.10.0, cov-2.5.1
+collected 12 items                                                                                                                                                      
+
+tests/home/test_home.py::test_index_response_200 PASSED                                                                                                           [  8%]
+tests/home/test_home.py::test_home_response_hello PASSED                                                                                                          [ 16%]
+tests/users/test_models.py::TestUser::test_email_field_exists PASSED                                                                                              [ 25%]
+tests/users/test_models.py::TestUser::test_email_field_is_required PASSED                                                                                         [ 33%]
+tests/users/test_models.py::TestUser::test_email_field_is_unique PASSED                                                                                           [ 41%]
+tests/users/test_models.py::TestUser::test_email_field_is_str PASSED                                                                                              [ 50%]
+tests/users/test_models.py::TestUser::test_active_field_exists PASSED                                                                                             [ 58%]
+tests/users/test_models.py::TestUser::test_active_field_is_default_true PASSED                                                                                    [ 66%]
+tests/users/test_models.py::TestUser::test_active_field_is_bool PASSED                                                                                            [ 75%]
+tests/users/test_models.py::TestUser::test_full_name_field_exists PASSED                                                                                          [ 83%]
+tests/users/test_models.py::TestUser::test_full_name_field_is_str PASSED                                                                                          [ 91%]
+tests/users/test_models.py::TestUser::test_all_fields_in_model PASSED                                                                                             [100%]
+
+======================================================================= 12 passed in 0.34 seconds =======================================================================
+(flask-api-users) 
+</code></pre>
+
+<p>Chegamos ao fim deste artigo. Caso queiram baixar o projeto acesse o <a href="https://github.com/lucassimon/flask-api-users/tree/capitulo6/criando-e-testando-nosso-modelo-de-usuarios" target="_blank">repositório no Github</a>. Abraços a todos.</p>
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/">Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários</a></li>
+
+<li><a href="/2018/07/serie-api-em-flask---parte-5---mongodb/">Série API em Flask - Parte 5 - MongoDB</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (6)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>

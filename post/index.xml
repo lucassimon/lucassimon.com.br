@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 08 Jul 2018 13:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 09 Oct 2018 13:00:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/</link>
+      <pubDate>Tue, 09 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/</guid>
+      <description>&lt;p&gt;Oi pessoal, vamos criar nosso modelo de usuários e realizar alguns testes em cima dele. Graças ao pacote &lt;code&gt;mongoengine&lt;/code&gt; fica bem fácil de criar nossas classes referente ao modelo de dados e é bem parecido com o Django, porém sem as migrations.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 5 - MongoDB</title>
@@ -17,12 +28,9 @@
       <pubDate>Sun, 08 Jul 2018 13:00:00 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/</guid>
-      <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
-Para entendimento, segue os capítulos que serão abordados.
- Capítulo 1: Introdução, configuração e Hello World
- Capítulo 2: Organizando as dependências e requerimentos
- Capítulo 3: Configurando o pytest e nosso primeiro teste
- Capítulo 4: Configurando o Makefile</description>
+      <description>&lt;p&gt;Nesta seção vamos instalar os pacotes necessários para conectar com o MongoDB, através de um container docker e configurá-lo em nossa aplicação Flask. Não tem segredo e bem simples.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,12 +39,9 @@ Para entendimento, segue os capítulos que serão abordados.
       <pubDate>Wed, 27 Jun 2018 13:00:00 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/</guid>
-      <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
-Para entendimento, segue os capítulos que serão abordados.
- Capítulo 1: Introdução, configuração e Hello World
- Capítulo 2: Organizando as dependências e requerimentos
- Capítulo 3: Configurando o pytest e nosso primeiro teste
- Capítulo 4: Configurando o Makefile.</description>
+      <description>&lt;p&gt;Para melhorar nosso desenvolvimento, coloco no arquivo Makefile todos os comandos que utilizo durante o processo de desenvolvimento de software. Leia o artigo e veja algumas dicas e como o &lt;code&gt;make&lt;/code&gt; pode facilitar nossa vida.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,11 +50,9 @@ Para entendimento, segue os capítulos que serão abordados.
       <pubDate>Mon, 18 Jun 2018 13:00:00 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</guid>
-      <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
-Para entendimento, segue os capítulos que serão abordados.
- Capítulo 1: Introdução, configuração e Hello World
- Capítulo 2: Organizando as dependências e requerimentos
- Capítulo 3: Configurando o pytest e nosso primeiro teste Estamos aqui</description>
+      <description>&lt;p&gt;Um ponto importante para todo o processo de desenvolvimento de software é a implementação de testes. Claro que nem sempre conseguimos cobrir toda a aplicação com testes unitários porém a idéia aqui é minimizar os erros que podem ocorrer em produção.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -58,9 +61,14 @@ Para entendimento, segue os capítulos que serão abordados.
       <pubDate>Sun, 17 Jun 2018 13:00:00 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/2018/06/o-python-virtualenv/</guid>
-      <description>Para iniciarmos o ambiente, precisamos instalar alguns pacotes do Python. Nos exemplos abaixo utilizarei o Debian como sistema operacional, e o apt como gerenciador de pacotes.
-Primeiro atualize o gerenciador de pacotes sudo aptitude update &amp;amp;&amp;amp; sudo aptitude upgrade e instale os pacotes de desenvolvimento.
-sudo aptitude install build-essential python-dev python-virtualenv python-pip python-software-properties  Organizando os diretórios Eu gosto de separar meus projetos em espaços de trabalhos diferentes.</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/r9Rcact11sE&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Para iniciarmos o ambiente, precisamos instalar alguns pacotes do &lt;code&gt;Python&lt;/code&gt;. Nos exemplos abaixo utilizarei o &lt;code&gt;Debian&lt;/code&gt; como sistema operacional, e o &lt;code&gt;apt&lt;/code&gt; como gerenciador de pacotes.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -69,11 +77,9 @@ sudo aptitude install build-essential python-dev python-virtualenv python-pip py
       <pubDate>Thu, 14 Jun 2018 13:00:00 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</guid>
-      <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.
-Para entendimento, segue os capítulos que serão abordados.
- Capítulo 1: Introdução, configuração e Hello World
- Capítulo 2: Organizando as dependências e requerimentos Estamos aqui
- Capítulo 3: Configurando o pytest e nosso primeiro teste</description>
+      <description>&lt;p&gt;Hoje, vamos organizar e estruturar toda a aplicação assim como instalar os pacotes de desenvolvimento para a nossa API.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -93,12 +99,9 @@ Um dos primeiros passos e importante é receber uma introdução sobre o que sã
       <pubDate>Tue, 12 Jun 2018 20:07:41 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</guid>
-      <description>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT
-Para entendimento, segue os capítulos que serão abordados.
- Capítulo 1: Introdução, configuração e Hello World
- Capítulo 2: Organizando as dependências e requerimentos
- Capítulo 3: Configurando o pytest e nosso primeiro teste
- Capítulo 4: Configurando o Makefile</description>
+      <description>&lt;p&gt;Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.sss&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
