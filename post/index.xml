@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 10 Oct 2018 13:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 11 Oct 2018 13:00:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 8 - Listando usuários</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/</link>
+      <pubDate>Thu, 11 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/</guid>
+      <description>&lt;p&gt;A partir deste até o Capítulo 11: Deletando um usuário as rotas serão administrativas. Ou seja somente quem for da &lt;code&gt;role.admin = true&lt;/code&gt; poderá acessar essas rotas. A validação e autenticação será feita posteriormente, por agora, vamos apenas construir os recursos necessários.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 7 - Criando usuários</title>

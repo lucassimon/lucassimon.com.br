@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 8 - Listando usuários" />
+<meta property="og:description" content="A partir deste até o Capítulo 11: Deletando um usuário as rotas serão administrativas. Ou seja somente quem for da role.admin = true poderá acessar essas rotas. A validação e autenticação será feita posteriormente, por agora, vamos apenas construir os recursos necessários.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/" />
+
+
+
+<meta property="article:published_time" content="2018-10-11T13:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-10-11T13:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 8 - Listando usuários"/>
+<meta name="twitter:description" content="A partir deste até o Capítulo 11: Deletando um usuário as rotas serão administrativas. Ou seja somente quem for da role.admin = true poderá acessar essas rotas. A validação e autenticação será feita posteriormente, por agora, vamos apenas construir os recursos necessários.
+
+"/>
+
+
+<meta itemprop="name" content="Série API em Flask - Parte 8 - Listando usuários">
+<meta itemprop="description" content="A partir deste até o Capítulo 11: Deletando um usuário as rotas serão administrativas. Ou seja somente quem for da role.admin = true poderá acessar essas rotas. A validação e autenticação será feita posteriormente, por agora, vamos apenas construir os recursos necessários.
+
+">
+
+
+<meta itemprop="datePublished" content="2018-10-11T13:00:00-03:00" />
+<meta itemprop="dateModified" content="2018-10-11T13:00:00-03:00" />
+<meta itemprop="wordCount" content="502">
+
+
+
+<meta itemprop="keywords" content="python,api,rest," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 8 - Listando usuários",
+  "url": "https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/",
+  "wordCount": "502",
+  "datePublished": "2018-10-11T13:00:00-03:00",
+  "dateModified": "2018-10-11T13:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, python, api, rest"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/">
+
+    <title>Série API em Flask - Parte 8 - Listando usuários | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+  </head>
+
+  <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+          
+          <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">Github</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="https://lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer. lucassrod@gmail.com</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/">Série API em Flask - Parte 8 - Listando usuários</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-10-11T13:00:00-03:00">Thu Oct 11, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  <p>A partir deste até o Capítulo 11: Deletando um usuário as rotas serão administrativas. Ou seja somente quem for da <code>role.admin = true</code> poderá acessar essas rotas. A validação e autenticação será feita posteriormente, por agora, vamos apenas construir os recursos necessários.</p>
+
+<p></p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o Makefile</a></p></li>
+
+<li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
+
+<li><p>Capítulo 6: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" target="_blank">Criando e testando o modelo de usuários</a></p></li>
+
+<li><p>Capítulo 7: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/" target="_blank">Criando usuários</a></p></li>
+
+<li><p>Capítulo 8: Listando usuários <strong>Estamos aqui</strong></p></li>
+
+<li><p>Capítulo 9: Buscando usuários</p></li>
+
+<li><p>Capítulo 10: Editando um usuário</p></li>
+
+<li><p>Capítulo 11: Deletando um usuário</p></li>
+
+<li><p>Capítulo 12: Adicionando o JWT a API</p></li>
+
+<li><p>Capítulo 13: Criando a app de autênticação por JWT</p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="configurando-a-rota">Configurando a rota</h2>
+
+<p>Em nosso arquivo <code>apps/api.py</code> vamos adicionar nosso recurso:</p>
+
+<pre><code class="language-python">
+# Importar o recurso
+from apps.users.resources_admin import AdminUserPageList
+
+
+def configure_api(app):
+    # ...
+
+    # rotas para os admins
+    api.add_resource(AdminUserPageList, '/admin/users/&lt;int:page_id&gt;')
+
+    #...
+
+</code></pre>
+
+<p>Observe que colocamos um parametro nomeado na url <code>&lt;int:page_id&gt;</code>. Ele é usado
+no recurso <code>AdminUserPageList</code> que será criado logo abaixo.</p>
+
+<h2 id="o-recurso-adminuserpagelist">O recurso AdminUserPageList</h2>
+
+<p>Primeiro vou organizar essas rotas em um único módulo chamados <code>apps/users/resources_admin.py</code>. Esses recursos pouco se diferem um dos outros, apenas que no futuro quando formos realizar uma autenticação iremos validar pelo <a href="http://jwt.io" target="_blank">jwt</a> recebido.</p>
+
+<p>Após criar o arquivo adicione o código abaixo:</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+# Flask
+from flask import request
+
+# Third
+from flask_restful import Resource
+from mongoengine.errors import FieldDoesNotExist
+
+# Apps
+from apps.responses import resp_ok, resp_exception
+
+from apps.messages import MSG_RESOURCE_FETCHED_PAGINATED
+
+# Local
+from .models import User
+from .schemas import UserSchema
+
+
+class AdminUserPageList(Resource):
+
+    # Lembra-se do page_id criado na rota ele pode ser acessado como parâmetro
+    # do metodo get
+
+    def get(self, page_id=1):
+        # inicializa o schema podendo conter varios objetos
+        schema = UserSchema(many=True)
+        # incializa o page_size sempre com 10
+        page_size = 10
+
+        # se enviarmos o page_size como parametro
+        if 'page_size' in request.args:
+            # verificamos se ele é menor que 1
+            if int(request.args.get('page_size')) &lt; 1:
+                page_size = 10
+            else:
+                # fazemos um type cast convertendo para inteiro
+                page_size = int(request.args.get('page_size'))
+
+        try:
+            # buscamos todos os usuarios da base utilizando o paginate
+            users = User.objects().paginate(page_id, page_size)
+
+        except FieldDoesNotExist as e:
+            return resp_exception('Users', description=e.__str__())
+
+        except Exception as e:
+            return resp_exception('Users', description=e.__str__())
+
+        # criamos dados extras a serem respondidos
+        extra = {
+            'page': users.page, 'pages': users.pages, 'total': users.total,
+            'params': {'page_size': page_size}
+        }
+
+        # fazemos um dump dos objetos pesquisados
+        result = schema.dump(users.items)
+
+        return resp_ok(
+            'Users', MSG_RESOURCE_FETCHED_PAGINATED.format('usuários'),  data=result.data,
+            **extra
+        )
+</code></pre>
+
+<h2 id="testando">Testando</h2>
+
+<pre><code class="language-shell">$ http -v GET 0.0.0.0:5000/admin/users/1?page_size=40
+GET /admin/users/1?page_size=40 HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: 0.0.0.0:5000
+User-Agent: HTTPie/0.9.8
+
+
+
+HTTP/1.0 200 OK
+Content-Length: 331
+Content-Type: application/json
+Date: Thu, 11 Oct 2018 19:30:34 GMT
+Server: Werkzeug/0.14.1 Python/3.6.5
+
+{
+    &quot;data&quot;: [
+        {
+            &quot;active&quot;: false,
+            &quot;cpf_cnpj&quot;: &quot;&quot;,
+            &quot;email&quot;: &quot;teste@teste.com&quot;,
+            &quot;full_name&quot;: &quot;07368680629&quot;
+        }
+    ],
+    &quot;message&quot;: &quot;Lista os/as usuários paginados(as).&quot;,
+    &quot;page&quot;: 1,
+    &quot;pages&quot;: 1,
+    &quot;params&quot;: {
+        &quot;page_size&quot;: 40
+    },
+    &quot;resource&quot;: &quot;Users&quot;,
+    &quot;status&quot;: 200,
+    &quot;total&quot;: 1
+}
+</code></pre>
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-8---listando-usuarios%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-8---listando-usuarios%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-8---listando-usuarios%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-8---listando-usuarios%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/10/serie-api-em-flask---parte-8---listando-usuarios/">Série API em Flask - Parte 8 - Listando usuários</a></li>
+
+<li><a href="/2018/10/serie-api-em-flask---parte-7---criando-usuarios/">Série API em Flask - Parte 7 - Criando usuários</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (8)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
