@@ -6,10 +6,21 @@
     <description>Recent content in Python on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Tue, 09 Oct 2018 13:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 10 Oct 2018 13:00:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 7 - Criando usuários</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/</link>
+      <pubDate>Wed, 10 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/</guid>
+      <description>&lt;p&gt;Neste artigo vamos abordar como criar um endpoint para registrar o usuário em nossa base de dados de acordo com o modelo do artigo anterior. Também vamos utilizar o pacote &lt;code&gt;marshmallow&lt;/code&gt; para validar nosso schema e padronizar algumas mensagens de erro.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários</title>

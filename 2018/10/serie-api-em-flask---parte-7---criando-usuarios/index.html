@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 7 - Criando usuários" />
+<meta property="og:description" content="Neste artigo vamos abordar como criar um endpoint para registrar o usuário em nossa base de dados de acordo com o modelo do artigo anterior. Também vamos utilizar o pacote marshmallow para validar nosso schema e padronizar algumas mensagens de erro.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/" />
+
+
+
+<meta property="article:published_time" content="2018-10-10T13:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-10-10T13:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 7 - Criando usuários"/>
+<meta name="twitter:description" content="Neste artigo vamos abordar como criar um endpoint para registrar o usuário em nossa base de dados de acordo com o modelo do artigo anterior. Também vamos utilizar o pacote marshmallow para validar nosso schema e padronizar algumas mensagens de erro.
+
+"/>
+
+
+<meta itemprop="name" content="Série API em Flask - Parte 7 - Criando usuários">
+<meta itemprop="description" content="Neste artigo vamos abordar como criar um endpoint para registrar o usuário em nossa base de dados de acordo com o modelo do artigo anterior. Também vamos utilizar o pacote marshmallow para validar nosso schema e padronizar algumas mensagens de erro.
+
+">
+
+
+<meta itemprop="datePublished" content="2018-10-10T13:00:00-03:00" />
+<meta itemprop="dateModified" content="2018-10-10T13:00:00-03:00" />
+<meta itemprop="wordCount" content="1859">
+
+
+
+<meta itemprop="keywords" content="python,api,rest," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 7 - Criando usuários",
+  "url": "https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/",
+  "wordCount": "1859",
+  "datePublished": "2018-10-10T13:00:00-03:00",
+  "dateModified": "2018-10-10T13:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, python, api, rest"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/">
+
+    <title>Série API em Flask - Parte 7 - Criando usuários | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+  </head>
+
+  <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+          
+          <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">Github</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="https://lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer. lucassrod@gmail.com</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/">Série API em Flask - Parte 7 - Criando usuários</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-10-10T13:00:00-03:00">Wed Oct 10, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  <p>Neste artigo vamos abordar como criar um endpoint para registrar o usuário em nossa base de dados de acordo com o modelo do artigo anterior. Também vamos utilizar o pacote <code>marshmallow</code> para validar nosso schema e padronizar algumas mensagens de erro.</p>
+
+<p></p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o Makefile</a></p></li>
+
+<li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
+
+<li><p>Capítulo 6: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" target="_blank">Criando e testando o modelo de usuários</a></p></li>
+
+<li><p>Capítulo 7: Criando usuários <strong>Estamos aqui</strong></p></li>
+
+<li><p>Capítulo 8: Listando usuários</p></li>
+
+<li><p>Capítulo 9: Buscando usuários</p></li>
+
+<li><p>Capítulo 10: Editando um usuário</p></li>
+
+<li><p>Capítulo 11: Deletando um usuário</p></li>
+
+<li><p>Capítulo 12: Adicionando o JWT a API</p></li>
+
+<li><p>Capítulo 13: Criando a app de autênticação por JWT</p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="introdução">Introdução</h2>
+
+<p>Estamos entrando na fase de implementação dos endpoints. A idéia deste endpoint  é fazer com que o qualquer cliente (SPA, REST Client, curl e etc&hellip;) possa registrar um usuário chamando a rota e o payload correto.</p>
+
+<p>Nos próximos artigos os recursos para listagem, detalhes/atualização/deleção por id serão somente utilizados por quem tiver uma permissão <code>admin</code> setada como <code>true</code> no modelo de usuários.</p>
+
+<p>Para detalhes do perfil logado e atualização do usuário logado serão implementados após o artigo de autenticação.</p>
+
+<p>Assim vamos abordar todo o Crud de usuários da plataforma.</p>
+
+<h2 id="instalando-o-pacote-marshmallow-e-seu-uso">Instalando o pacote marshmallow e seu uso</h2>
+
+<p>Primeiramente o <a href="https://marshmallow.readthedocs.io/en/3.0/" target="_blank">marshmallow</a> é responsável por converter dados para tipos nativos do Python. Eu utilizo bastante para validar os payloads de entrada e saída dos meus recursos.</p>
+
+<p>Existem outras alteranativas para isso como o <a href="https://schematics.readthedocs.io/en/latest/" target="_blank">schematics</a> porém por questão de habito optei por usar o <a href="https://marshmallow.readthedocs.io/en/3.0/" target="_blank">marshmallow</a>.</p>
+
+<p>Sendo assim, façamos, <code>pip install marshmallow --upgrade</code>. O ideal é cria-lo em nosso <code>requirements/base.txt</code> com a entrada <code>marshmallow==2.15.6</code> em seguida executar o comando <code>$ pip install -r requirements/base.txt</code></p>
+
+<p>Após instalar vamos criar o arquivo dentro de <code>apps/users/schemas.py</code>. Ele irá conter nossas definições de schema.</p>
+
+<p>A principio precisamos somente de schema para registrar o usuário então:</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+from marshmallow import Schema
+from marshmallow.fields import Email, Str
+
+
+class UserRegistrationSchema(Schema):
+    full_name = Str(required=True, error_messages={'required': 'Campo obrigatório'})
+    email = Email(required=True, error_messages={'required': 'Campo obrigatório'})
+    password = Str(required=True, error_messages={'required': 'Campo obrigatório'})
+
+
+class UserSchema(Schema):
+    full_name = Str(required=True, error_messages={'required': 'Campo obrigatório'})
+    email = Email(required=True, error_messages={'required': 'Campo obrigatório'})
+    cpf_cnpj = Str()
+    active = Boolean()
+
+
+</code></pre>
+
+<p>Dado essa classe podemos utilizá-la da seguinte forma. Desserialização de um dicionário para tipos nativos do python e realizando validações.</p>
+
+<pre><code class="language-python">In [1]: from apps.users.schemas import UserRegistrationSchema
+
+In [2]: payload = {'email': 'teste@teste.com', 'password': '123456'}
+
+In [3]: schema = UserRegistrationSchema()
+
+In [4]: schema.load(payload)
+Out[4]: UnmarshalResult(data={'password': '123456', 'email': 'teste@teste.com'}, errors={'full_name': ['Campo obrigatório']})
+
+In [5]: data, errors = schema.load(payload)
+
+In [6]: data
+Out[6]: {'password': '123456', 'email': 'teste@teste.com'}
+
+In [7]: errors
+Out[7]: {'full_name': ['Campo obrigatório']}
+</code></pre>
+
+<p>Podem observar que na minha variável <code>payload</code> eu não coloquei a chave <code>full_name</code> e ao executar o metódo <code>.load()</code> ele me retorna múltiplos valores.
+Com isso posso retornar erros logo após o meu <code>payload</code> de dados serem inválidos.</p>
+
+<p>Outro uso para o <code>marshmallow</code> é serializar objetos de um determinado modelo por exemplo:</p>
+
+<pre><code class="language-python">In [1]: from apps.users.schemas import UserRegistrationSchema, UserSchema
+
+In [2]: from apps.users.models import User
+
+In [3]: user = User(email='teste@teste.com', password='123456', full_name='Teste OSchema')
+
+In [4]: schema = UserSchema()
+
+In [5]: result = schema.dump(user)
+
+In [6]: result.data
+Out[6]: 
+{'cpf_cnpj': '',
+ 'email': 'teste@teste.com',
+ 'full_name': 'Teste OSchema',
+ 'active': False}
+</code></pre>
+
+<p>Veja que eu criei uma instância do modelo User e através do método <code>dump()</code> consigo pegar através da variável <code>result.data</code> um dicionário com as informações que eu preciso e que podem ser respondidas imediatamente pelo meu recurso.</p>
+
+<p>Claro que esta são uma das possibilidades do <code>marshmallow</code> e existem inúmeras outras possibilidades para o seu uso.</p>
+
+<h2 id="padronizando-mensagens-da-aplicação">Padronizando mensagens da aplicação</h2>
+
+<p>Uma coisa que eu tenho costume de fazer é padronizar as mensagens da aplicação. Lembro que antigamente existia um documento de mensagens, em análise de sistemas, que detalhava todas as mensagens que a aplicação retornaria. De fato é bem usual essa padronização pois evita escrever mensagens com ou sem acentos (Campo obrigatório / Campo obrigatorio), com ou sem pontos no final da frase e etc&hellip; Outro ponto importante é que centraliza as mensagens em um único local facilitando a manutenção posteriormente.</p>
+
+<p>Por isso, vamos criar um arquivo <code>apps/messages.py</code> que será responsável por documentar essa mensagens.</p>
+
+<pre><code class="language-python">
+MSG_FIELD_REQUIRED = 'Campo obrigatório.'
+
+</code></pre>
+
+<p>Vamos voltar e refatorar nosso arquivo <code>apps/users/schemas.py</code> e alterar o nosso <code>error_messages</code>.</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+# importar nossas CONSTANTES
+from apps.messages import MSG_FIELD_REQUIRED
+
+class UserRegistrationSchema(Schema):
+    full_name = Str(required=True, error_messages={'required': MSG_FIELD_REQUIRED})
+
+    # Fazer isso para os demais campos
+
+</code></pre>
+
+<p>Bem simples e útil certo!? Após importar as constantes, refatore as mensagens <code>required</code> para receber a constante <code>MSG_FIELD_REQUIRED</code>. A medida que a aplicação for crescendo iremos visitar esse módulo (<code>messages.py</code>) várias vezes&hellip;</p>
+
+<h2 id="instalando-o-bcrypt-e-salvando-a-senha-encriptada">Instalando o Bcrypt e salvando a senha encriptada</h2>
+
+<p>Dando sequência, precisamos que nossa senha ao registrarmos através do endpoint seja encriptada, hoje o banco de dados não realiza essa segurança de um dado sensível por isso vamos fazer essa parte na aplicação.</p>
+
+<p>Antes de tudo, devemos instalar o pacote <a href="https://github.com/pyca/bcrypt/" target="_blank">bcrypt</a> através do comando <code>pip install bcrypt</code> ou pelo <code>pip install -r requirements/base.txt</code>.</p>
+
+<pre><code class="language-python">In [1]: from bcrypt import gensalt, hashpw, checkpw
+In [2]: hashed = hashpw('123456'.encode('utf-8'), gensalt(12))
+In [3]: hashed
+Out[3]: b'$2b$12$E6FDm6tCBOVPiQfu6wFr1uU3Lqmyv8Ci7BR92XJ8ZAEXwQ31fi6Qe'
+In [4]: checkpw('123456'.encode('utf-8'), hashed)
+Out[4]: True
+</code></pre>
+
+<p>Esse script é bem simples. Importamos as funções do pacote e faço um hash com a string <code>123456</code>. Em seguida com o método <code>checkpw</code> verificamos se a string do primeiro parâmetro é igual ao hashed criado acima.</p>
+
+<h2 id="padronizando-as-mensagens-de-resposta-json">Padronizando as mensagens de resposta JSON.</h2>
+
+<p>Mais uma forma de organizar a aplicação é padronizar as mensagens de resposta de cada recurso. Para isso eu crio vários métodos de acordo com cada tipo de <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status" target="_blank">status code do HTTP</a>, com o objetivo de reaproveitamento e padronização.</p>
+
+<p>Antes de seguirmos vamos criar novas mensagens para cada tipo de resposta. No arquivo <code>apps/messages.py</code> adicione:</p>
+
+<pre><code class="language-python">MSG_INVALID_DATA = 'Ocorreu um erro nos campos informados.'
+MSG_DOES_NOT_EXIST = 'Este(a) {} não existe.'
+MSG_EXCEPTION = 'Ocorreu um erro no servidor. Contate o administrador.'
+MSG_ALREADY_EXISTS = 'Já existe um(a) {} com estes dados.'
+</code></pre>
+
+<p>Agora, no arquivo <code>apps/responses.py</code> vamos criar os métodos.</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+from flask import jsonify
+
+from .messages import MSG_INVALID_DATA, MSG_DOES_NOT_EXIST, MSG_EXCEPTION
+from .messages import MSG_ALREADY_EXISTS
+
+
+def resp_data_invalid(resource :str, errors: dict, msg: str = MSG_INVALID_DATA):
+    '''
+    Responses 422 Unprocessable Entity
+    '''
+
+    if not isinstance(resource, str):
+        raise ValueError('O recurso precisa ser uma string.')
+
+    resp = jsonify({
+        'resource': resource,
+        'message': msg,
+        'errors': errors,
+    })
+
+    resp.status_code = 422
+
+    return resp
+
+
+def resp_exception(resource :str, description :str = '', msg :str = MSG_EXCEPTION):
+    '''
+    Responses 500
+    '''
+
+    if not isinstance(resource, str):
+        raise ValueError('O recurso precisa ser uma string.')
+
+    resp = jsonify({
+        'resource': resource,
+        'message': msg,
+        'description': description
+    })
+
+    resp.status_code = 500
+
+    return resp
+
+
+def resp_does_not_exist(resource :str, description :str):
+    '''
+    Responses 404 Not Found
+    '''
+
+    if not isinstance(resource, str):
+        raise ValueError('O recurso precisa ser uma string.')
+
+    resp = jsonify({
+        'resource': resource,
+        'message': MSG_DOES_NOT_EXIST.format(description),
+    })
+
+    resp.status_code = 404
+
+    return resp
+
+
+def resp_already_exists(resource :str, description :str):
+    '''
+    Responses 400
+    '''
+
+    if not isinstance(resource, str):
+        raise ValueError('O recurso precisa ser uma string.')
+
+    resp = jsonify({
+        'resource': resource,
+        'message': MSG_ALREADY_EXISTS.format(description),
+    })
+
+    resp.status_code = 400
+
+    return resp
+
+
+def resp_ok(resource :str, message :str, data=None, **extras):
+    '''
+    Responses 200
+    '''
+
+    response = {'status': 200, 'message': message, 'resource': resource}
+
+    if data:
+        response['data'] = data
+
+    response.update(extras)
+
+    resp = jsonify(response)
+
+    resp.status_code = 200
+
+    return resp
+
+</code></pre>
+
+<h2 id="um-novo-endpoint-na-nossa-api">Um novo endpoint na nossa api</h2>
+
+<p>Após todas essas configurações vamos codificar nosso recurso User. Crie um módulo <code>apps/users/resources.py</code>.</p>
+
+<p>Vou deixar aqui o código comentado e abaixo farei algumas considerações:</p>
+
+<pre><code class="language-python"># -*- coding:utf-8 -*-
+
+# Python
+
+# Flask
+from flask import request
+
+# Third
+from flask_restful import Resource
+from bcrypt import gensalt, hashpw
+from mongoengine.errors import NotUniqueError, ValidationError
+
+# Apps
+from apps.responses import (
+    resp_already_exists,
+    resp_exception,
+    resp_data_invalid,
+    resp_ok
+)
+from apps.messages import MSG_NO_DATA, MSG_PASSWORD_WRONG, MSG_INVALID_DATA
+from apps.messages import MSG_RESOURCE_CREATED
+
+# Local
+from .models import User
+from .schemas import UserRegistrationSchema, UserSchema
+from .utils import check_password_in_signup
+
+
+class SignUp(Resource):
+    def post(self, *args, **kwargs):
+        # Inicializo todas as variaveis utilizadas
+        req_data = request.get_json() or None
+        data, errors, result = None, None, None
+        password, confirm_password = None, None
+        schema = UserRegistrationSchema()
+
+        # Se meus dados postados forem Nulos retorno uma respota inválida
+        if req_data is None:
+            return resp_data_invalid('Users', [], msg=MSG_NO_DATA)
+
+        password = req_data.get('password', None)
+        confirm_password = req_data.pop('confirm_password', None)
+
+        # verifico através de uma função a senha e a confirmação da senha
+        # Se as senhas não são iguais retorno uma respota inválida
+        if not check_password_in_signup(password, confirm_password):
+            errors = {'password': MSG_PASSWORD_WRONG}
+            return resp_data_invalid('Users', errors)
+
+        # Desserialização os dados postados ou melhor meu payload
+        data, errors = schema.load(req_data)
+
+        # Se houver erros retorno uma resposta inválida
+        if errors:
+            return resp_data_invalid('Users', errors)
+
+        # Crio um hash da minha senha
+        hashed = hashpw(password.encode('utf-8'), gensalt(12))
+
+        # Salvo meu modelo de usuário com a senha criptografada e email em lower case
+        # Qualquer exceção ao salvar o modelo retorno uma resposta em JSON
+        # ao invés de levantar uma exception no servidor
+        try:
+            data['password'] = hashed
+            data['email'] = data['email'].lower()
+            model = User(**data)
+            model.save()
+
+        except NotUniqueError:
+            return resp_already_exists('Users', 'fornecedor')
+
+        except ValidationError as e:
+            return resp_exception('Users', msg=MSG_INVALID_DATA, description=e)
+
+        except Exception as e:
+            return resp_exception('Users', description=e)
+
+        # Realizo um dump dos dados de acordo com o modelo salvo
+        schema = UserSchema()
+        result = schema.dump(model)
+
+        # Retorno 200 o meu endpoint
+        return resp_ok(
+            'Users', MSG_RESOURCE_CREATED.format('Usuário'),  data=result.data,
+        )
+</code></pre>
+
+<p>Seguem alguma considerações de desenvolvimento da aplicação:</p>
+
+<ol>
+<li><p>Sempre inicializo as variáveis no inicio da método. Talvez seja mania vinda do JavaScript como também uma maneira de precaver de exceptions de variável não declarada.</p></li>
+
+<li><p>Faço o possível para tratar validar os inputs de dados no incio e tratar os erros antes do processamento real.</p></li>
+
+<li><p>É preciso separar o código em pequenas partes como foi feito na chamada do método <code>check_password_in_signup</code>. Dessa maneira fica fácil realizar teste unitário além de deixar o código mais limpo. O problema de deixar tudo numa unica função é quantidade de testes que teremos de fazer para cercar todos os casos, de cada condição <strong>if else</strong>.</p></li>
+
+<li><p>Em API&rsquo;s Rest não deixo levantar exceptions. Sempre procuro retornar uma resposta json com o status code diferente de 200.</p></li>
+</ol>
+
+<h2 id="criar-nosso-endpoint">Criar nosso endpoint</h2>
+
+<p>Em nosso módulo <code>apps/api.py</code> faça a importação do recurso <code>from apps.users.resources import SignUp</code> e na função  <code>configure_api</code> adicione nosso endpoint:</p>
+
+<pre><code class="language-python">
+def configure_api(app):
+    # demais rotas
+
+    # rotas para o endpoint de usuarios
+    api.add_resource(SignUp, '/users')
+
+    # restante do código
+</code></pre>
+
+<h2 id="testando-nosso-modelo">Testando nosso modelo</h2>
+
+<p>Algumas opções para realizar testes funcionais em nossa API são:</p>
+
+<ol>
+<li><p><a href="https://insomnia.rest/" target="_blank">Insomnia REST Client</a></p></li>
+
+<li><p><a href="https://www.getpostman.com/" target="_blank">Postman</a></p></li>
+
+<li><p><a href="https://httpie.org/" target="_blank">Httpie</a></p></li>
+
+<li><p><a href="https://curl.haxx.se/" target="_blank">Curl</a></p></li>
+
+<li><p>etc&hellip;</p></li>
+</ol>
+
+<p>Exemplo de uma requisiçaõ utilizando o <a href="https://httpie.org/" target="_blank">Httpie</a> e a resposta do nosso servidor.</p>
+
+<pre><code class="language-shell">$ http -v POST 0.0.0.0:5000/users full_name=&quot;07368680629&quot; email=&quot;teste@teste.com&quot; password='123456' confirm_password='123456'
+POST /users HTTP/1.1
+Accept: application/json, */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 108
+Content-Type: application/json
+Host: 0.0.0.0:5000
+User-Agent: HTTPie/0.9.8
+
+{
+    &quot;confirm_password&quot;: &quot;123456&quot;,
+    &quot;email&quot;: &quot;teste@teste.com&quot;,
+    &quot;full_name&quot;: &quot;07368680629&quot;,
+    &quot;password&quot;: &quot;123456&quot;
+}
+
+HTTP/1.0 200 OK
+Content-Length: 210
+Content-Type: application/json
+Date: Thu, 11 Oct 2018 02:02:58 GMT
+Server: Werkzeug/0.14.1 Python/3.6.5
+
+{
+    &quot;data&quot;: {
+        &quot;active&quot;: false,
+        &quot;cpf_cnpj&quot;: &quot;&quot;,
+        &quot;email&quot;: &quot;teste@teste.com&quot;,
+        &quot;full_name&quot;: &quot;07368680629&quot;
+    },
+    &quot;message&quot;: &quot;Usuário criado(a).&quot;,
+    &quot;resource&quot;: &quot;Users&quot;,
+    &quot;status&quot;: 200
+}
+</code></pre>
+
+<p>Concluindo, quis mostrar através deste artigo como padronizo minhas aplicações Flask e o modo de como gosto de desenvolver utilizando padrões para facilitar a leitura e a manutenção do código.</p>
+
+<p>Um grande abraço a todos, até o próximo capítulo.</p>
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-7---criando-usuarios%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-7---criando-usuarios%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-7---criando-usuarios%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-7---criando-usuarios%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/10/serie-api-em-flask---parte-7---criando-usuarios/">Série API em Flask - Parte 7 - Criando usuários</a></li>
+
+<li><a href="/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/">Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (7)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
