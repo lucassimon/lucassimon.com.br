@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/</loc>
+    <lastmod>2018-10-12T13:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/</loc>
     <lastmod>2018-10-11T13:00:00-03:00</lastmod>
   </url>
@@ -74,7 +79,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/tags/api/</loc>
-    <lastmod>2018-10-11T13:00:00-03:00</lastmod>
+    <lastmod>2018-10-12T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -107,7 +112,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/categories/flask/</loc>
-    <lastmod>2018-10-11T13:00:00-03:00</lastmod>
+    <lastmod>2018-10-12T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -119,7 +124,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/</loc>
-    <lastmod>2018-10-11T13:00:00-03:00</lastmod>
+    <lastmod>2018-10-12T13:00:00-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -135,13 +140,13 @@
   
   <url>
     <loc>https://lucassimon.com.br/post/</loc>
-    <lastmod>2018-10-11T13:00:00-03:00</lastmod>
+    <lastmod>2018-10-12T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/tags/python/</loc>
-    <lastmod>2018-10-11T13:00:00-03:00</lastmod>
+    <lastmod>2018-10-12T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -153,13 +158,13 @@
   
   <url>
     <loc>https://lucassimon.com.br/tags/rest/</loc>
-    <lastmod>2018-10-11T13:00:00-03:00</lastmod>
+    <lastmod>2018-10-12T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/tags/</loc>
-    <lastmod>2018-10-11T13:00:00-03:00</lastmod>
+    <lastmod>2018-10-12T13:00:00-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
