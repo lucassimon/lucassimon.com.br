@@ -17,7 +17,7 @@
       <pubDate>Fri, 12 Oct 2018 13:00:00 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/</guid>
-      <description>&lt;p&gt;A partir deste até o Capítulo 11: Deletando um usuário as rotas serão administrativas. Ou seja somente quem for da &lt;code&gt;role.admin = true&lt;/code&gt; poderá acessar essas rotas. A validação e autenticação será feita posteriormente, por agora, vamos apenas construir os recursos necessários.&lt;/p&gt;
+      <description>&lt;p&gt;Esse capítulo iremos buscar um usuário pelo seu &lt;code&gt;id&lt;/code&gt;. É um dos recursos mais simples que teremos nessa API.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
