@@ -12,7 +12,7 @@
 
 
 
-<meta property="og:updated_time" content="2018-10-12T13:00:00-03:00"/>
+<meta property="og:updated_time" content="2018-10-17T13:00:00-03:00"/>
 
 
 
@@ -101,6 +101,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="col-sm-8 blog-main">
 
           
+
+
+
+
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/">Série API em Flask - Parte 11 - Deletando um usuário</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-10-17T13:00:00-03:00">Wed Oct 17, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  <p>Chegando ao fim de nosso CRUD vamos implementar a deleção de usuaŕios. Aqui eu escolhi fazer um <code>soft delete</code> ou seja re-utilizei o campo <code>active</code> setando-o como <code>False</code> para indicar que meu usuário foi deletado. A outra maneira seria de fato deletar o usuário da nossa base utilizando o método <code>User.objects.get(id=user_id).delete()</code>, porém não quero perder dados. E claro para recuperar esse usuário basta ativá-lo novamente.</p>
+
+<p></p>
+  <a href='https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/'>Leia Mais →</a>
+</article> 
+
+
+
+
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/">Série API em Flask - Parte 10 - Editando um usuário</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-10-15T13:00:00-03:00">Mon Oct 15, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  <p>Hoje vamos implementar a atualização de dados, refatorar algumas linhas de código e criar uma validação simples no campo e-mail.</p>
+
+<p></p>
+  <a href='https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/'>Leia Mais →</a>
+</article> 
 
 
 
@@ -282,26 +326,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-
-<article class="blog-post">
-  <header>
-    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/">Série API em Flask - Parte 1 - Introdução, configuração e Hello World</a></h2>
-    <p class="blog-post-meta"><time datetime="2018-06-12T20:07:41-03:00">Tue Jun 12, 2018</time> by Lucas Simon in 
-<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
-
-
-<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
-
-</p>
-  </header>
-  <p>Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.sss</p>
-
-<p></p>
-  <a href='https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/'>Leia Mais →</a>
-</article> 
-
-
-
+<nav class="blog-pagination">
+  
+  
+  
+  <a class="btn btn-outline-primary disabled" href="#" role="button" aria-disabled="true">Página anterior</a>
+  <a class="btn btn-outline-primary" href="/tags/api/page/2/" rel="next" role="button">Próxima página</a>
+  
+</nav>
 
 
 
@@ -318,9 +350,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <ol class="list-unstyled">
 
 
-<li><a href="/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/">Série API em Flask - Parte 9 - Buscando usuários</a></li>
+<li><a href="/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/">Série API em Flask - Parte 11 - Deletando um usuário</a></li>
 
-<li><a href="/2018/10/serie-api-em-flask---parte-8---listando-usuarios/">Série API em Flask - Parte 8 - Listando usuários</a></li>
+<li><a href="/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/">Série API em Flask - Parte 10 - Editando um usuário</a></li>
 
     </ol>
   </section>
@@ -340,7 +372,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/categories/flask">flask (9)</a>
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (11)</a>
         </li>
         
         <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>

@@ -6,10 +6,32 @@
     <description>Recent content in Python on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 12 Oct 2018 13:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 17 Oct 2018 13:00:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 11 - Deletando um usuário</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/</link>
+      <pubDate>Wed, 17 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/</guid>
+      <description>&lt;p&gt;Chegando ao fim de nosso CRUD vamos implementar a deleção de usuaŕios. Aqui eu escolhi fazer um &lt;code&gt;soft delete&lt;/code&gt; ou seja re-utilizei o campo &lt;code&gt;active&lt;/code&gt; setando-o como &lt;code&gt;False&lt;/code&gt; para indicar que meu usuário foi deletado. A outra maneira seria de fato deletar o usuário da nossa base utilizando o método &lt;code&gt;User.objects.get(id=user_id).delete()&lt;/code&gt;, porém não quero perder dados. E claro para recuperar esse usuário basta ativá-lo novamente.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 10 - Editando um usuário</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/</link>
+      <pubDate>Mon, 15 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/</guid>
+      <description>&lt;p&gt;Hoje vamos implementar a atualização de dados, refatorar algumas linhas de código e criar uma validação simples no campo e-mail.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 9 - Buscando usuários</title>
