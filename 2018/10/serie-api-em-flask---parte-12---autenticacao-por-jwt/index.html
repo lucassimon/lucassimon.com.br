@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 12 - Autênticação por JWT" />
+<meta property="og:description" content="O JWT é um dos meios mais comuns de autorização entre aplicações web e SPA&rsquo;s desenvolvidos com ReactJS ou outros frameworks JavaScript. Por ser um meio fácil de conter informações o JWT pode ter dados do usuário e um tempo de expiração.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/" />
+
+
+
+<meta property="article:published_time" content="2018-10-17T21:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-10-17T21:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 12 - Autênticação por JWT"/>
+<meta name="twitter:description" content="O JWT é um dos meios mais comuns de autorização entre aplicações web e SPA&rsquo;s desenvolvidos com ReactJS ou outros frameworks JavaScript. Por ser um meio fácil de conter informações o JWT pode ter dados do usuário e um tempo de expiração.
+
+"/>
+
+
+<meta itemprop="name" content="Série API em Flask - Parte 12 - Autênticação por JWT">
+<meta itemprop="description" content="O JWT é um dos meios mais comuns de autorização entre aplicações web e SPA&rsquo;s desenvolvidos com ReactJS ou outros frameworks JavaScript. Por ser um meio fácil de conter informações o JWT pode ter dados do usuário e um tempo de expiração.
+
+">
+
+
+<meta itemprop="datePublished" content="2018-10-17T21:00:00-03:00" />
+<meta itemprop="dateModified" content="2018-10-17T21:00:00-03:00" />
+<meta itemprop="wordCount" content="1909">
+
+
+
+<meta itemprop="keywords" content="python,api,rest," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 12 - Autênticação por JWT",
+  "url": "https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/",
+  "wordCount": "1909",
+  "datePublished": "2018-10-17T21:00:00-03:00",
+  "dateModified": "2018-10-17T21:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, python, api, rest"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/">
+
+    <title>Série API em Flask - Parte 12 - Autênticação por JWT | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+  </head>
+
+  <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+          
+          <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">Github</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="https://lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer. lucassrod@gmail.com</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/">Série API em Flask - Parte 12 - Autênticação por JWT</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-10-17T21:00:00-03:00">Wed Oct 17, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
+
+</p>
+  </header>
+  <p>O <a href="https://jwt.io/" target="_blank">JWT</a> é um dos meios mais comuns de autorização entre aplicações web e SPA&rsquo;s desenvolvidos com ReactJS ou outros frameworks JavaScript. Por ser um meio fácil de conter informações o <a href="https://jwt.io/" target="_blank">JWT</a> pode ter dados do usuário e um tempo de expiração.</p>
+
+<p></p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o Makefile</a></p></li>
+
+<li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
+
+<li><p>Capítulo 6: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" target="_blank">Criando e testando o modelo de usuários</a></p></li>
+
+<li><p>Capítulo 7: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/" target="_blank">Criando usuários</a></p></li>
+
+<li><p>Capítulo 8: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/" target="_blank">Listando usuários</a></p></li>
+
+<li><p>Capítulo 9: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/" target="_blank">Buscando usuários</a></p></li>
+
+<li><p>Capítulo 10: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/" target="_blank">Editando um usuário</a></p></li>
+
+<li><p>Capítulo 11: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/" target="_blank">Deletando um usuário</a></p></li>
+
+<li><p>Capítulo 12: Autênticação por JWT <strong>Estamos aqui</strong></p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="adição-e-configurações-do-jwt">Adição e configurações do JWT</h2>
+
+<p>Nesse projeto existem dois pacotes que irei utilizar. O primeiro é o <a href="https://pypi.org/project/PyJWT/" target="_blank">PyJWT</a> e a extensão do flask <a href="https://flask-jwt-extended.readthedocs.io/en/latest/" target="_blank">Flask-JWT-Extended</a>.</p>
+
+<p>Vamos editar os nossos <code>requeriments/base.txt</code> e adicionar esses dois pacotes.</p>
+
+<pre><code class="language-txt">Flask-JWT-Extended==3.13.1
+PyJWT==1.6.4
+</code></pre>
+
+<p>Em seguida <code>pip install -r requirements/base.txt</code></p>
+
+<p>Feito isso vamos colocar algumas configurações iniciais em nosso <code>.env</code>.</p>
+
+<pre><code class="language-txt">JWT_ACCESS_TOKEN_EXPIRES=20
+JWT_REFRESH_TOKEN_EXPIRES=30
+</code></pre>
+
+<p>E em nossa classe de configurações do flask, <code>Config</code>, em <code>config.py</code>.</p>
+
+<pre><code class="language-python"># ...
+
+from datetime import timedelta
+
+
+class Config:
+    SECRET_KEY = getenv('SECRET_KEY') or 'uma string randômica e gigante'
+    APP_PORT = int(getenv('APP_PORT'))
+    DEBUG = eval(getenv('DEBUG').title())
+    MONGODB_HOST = getenv('MONGODB_URI')
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(
+        minutes=int(getenv('JWT_ACCESS_TOKEN_EXPIRES'))
+    )
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(
+        days=int(getenv('JWT_REFRESH_TOKEN_EXPIRES'))
+    )
+
+# ...
+</code></pre>
+
+<p>Para fins de segurança é importante setar um tempo maximo para expirar um Token de 20 minutos que é o tempo médio que um usuário permanece logado. Acima disso qualquer um que conseguir um token válido poderá entrar na conta do usuário e fazer algumas bagunças no perfil.</p>
+
+<p>Crie novas mensagens em nosso <code>apps/messages.py</code></p>
+
+<pre><code class="language-python">MSG_TOKEN_CREATED = 'Token criado.'
+MSG_INVALID_CREDENTIALS = 'As credenciais estão inválidas para log in.'
+MSG_TOKEN_EXPIRED = 'Token expirou.'
+MSG_PERMISSION_DENIED = 'Permissão negada.'
+</code></pre>
+
+<p>Crie uma nova resposta para nossas requisições no <code>apps/response.py</code></p>
+
+<pre><code class="language-python"># ...
+from .messages import MSG_ALREADY_EXISTS, MSG_PERMISSION_DENIED
+# ...
+
+def resp_notallowed_user(resource: str, msg: str = MSG_PERMISSION_DENIED):
+
+    if not isinstance(resource, str):
+        raise ValueError('Recurso precisa ser uma string')
+
+    resp = jsonify({
+        'status': 401,
+        'resource': resource,
+        'message': msg
+    })
+
+    resp.status_code = 401
+
+    return resp
+</code></pre>
+
+<p>Em seguida vamos criar uma função para buscar o usuaŕio por email. Abra o arquivo <code>apps/users/utils.py</code> e adicione o código abaixo:</p>
+
+<pre><code class="language-python"># ...
+
+def get_user_by_email(email: str):
+    try:
+        # buscamos todos os usuários da base utilizando o paginate
+        return User.objects.get(email=email)
+
+    except DoesNotExist as e:
+        return resp_does_not_exist('Users', 'Usuário')
+
+    except FieldDoesNotExist as e:
+        return resp_exception('Users', description=e.__str__())
+
+    except Exception as e:
+        return resp_exception('Users', description=e.__str__())
+
+# ...
+</code></pre>
+
+<p>Depois das configurações vamos criar um função factory adicionando o <code>JwtManager</code> extensão do plugin que instalamos anteriormente e aplicar em nossa api.</p>
+
+<p>Crie o módulo <code>apps/jwt.py</code> com o seguinte conteúdo.</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+# Flask
+
+from flask import jsonify
+
+# Third
+from flask_jwt_extended import JWTManager
+
+# Apps
+from apps.users.models import User
+
+# Local
+from .messages import MSG_INVALID_CREDENTIALS, MSG_TOKEN_EXPIRED
+
+
+def configure_jwt(app):
+
+    # Add jwt handler
+    jwt = JWTManager(app)
+
+    @jwt.user_claims_loader
+    def add_claims_to_access_token(identity):
+        user = User.objects.get(email=identity)
+
+        # Podemos extender as informações do usuaŕio adicionando
+        # novos campos: active, roles, full_name e etc...
+
+        if user:
+            return {
+                'active': user.active
+            }
+
+    @jwt.expired_token_loader
+    def my_expired_token_callback():
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 42,
+            'message': MSG_TOKEN_EXPIRED
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.unauthorized_loader
+    def my_unauthorized_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 1,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.claims_verification_loader
+    def my_claims_verification_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 2,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.invalid_token_loader
+    def my_invalid_token_loader_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 3,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.needs_fresh_token_loader
+    def my_needs_fresh_token_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 4,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.revoked_token_loader
+    def my_revoked_token_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 5,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.user_loader_callback_loader
+    def my_user_loader_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 6,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.user_loader_error_loader
+    def my_user_loader_error_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 7,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.token_in_blacklist_loader
+    def my_token_in_blacklist_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 8,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+    @jwt.claims_verification_failed_loader
+    def my_claims_verification_failed_callback(e):
+        resp = jsonify({
+            'status': 401,
+            'sub_status': 9,
+            'description': e,
+            'message': MSG_INVALID_CREDENTIALS
+        })
+
+        resp.status_code = 401
+
+        return resp
+
+</code></pre>
+
+<p>Todos os decorators como <code>@jwt.claims_verification_failed_loader</code> foram extendidos para retornar uma resposta JSON ao invés de retornar exceções.</p>
+
+<p>Em seguida vamos chamar no nosso arquivo <code>apps/__init__.py</code> dentro da função <code>create_app</code> a função que acabamos de criar <code>configure_jwt</code>. Ficando assim:</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+from flask import Flask
+from config import config
+
+# Realize a importação da função que configura a api
+from .api import configure_api
+from .db import db
+from .jwt import configure_jwt
+
+
+def create_app(config_name):
+    app = Flask('api-users')
+
+    app.config.from_object(config[config_name])
+
+    # Configure MongoEngine
+    db.init_app(app)
+
+    # Configure JWT
+    configure_jwt(app)
+
+    # executa a chamada da função de configuração
+    configure_api(app)
+
+    return app
+
+</code></pre>
+
+<h2 id="criando-nosso-app-e-o-recurso-de-login">Criando nosso app e o recurso de Login</h2>
+
+<p>Depois das configurações iniciais vamos criar nossos endpoints e recursos para autenticação. Adicione no <code>api.py</code> o endpoint  <code>/auth</code></p>
+
+<pre><code class="language-python">from apps.auth.resources import AuthResource
+
+# ...
+
+api = Api()
+
+
+def configure_api(app):
+    # ...
+
+    # rotas para autenticacao
+    api.add_resource(AuthResource, '/auth')
+
+    # ...
+
+</code></pre>
+
+<p>Crie um novo diretório chamado <code>apps/auth</code> e ele terá dois módulos:</p>
+
+<pre><code class="language-shell">$ tree .
+.
+├── api.py
+├── auth
+│   ├── __init__.py
+│   ├── resources.py
+│   └── schemas.py
+...
+</code></pre>
+
+<p>Nosso <code>apps/auth/schema.py</code> não tem nada de novo e bem simples por sinal.</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+
+from marshmallow import Schema
+from marshmallow.fields import Email, Str
+
+from apps.messages import MSG_FIELD_REQUIRED
+
+
+class LoginSchema(Schema):
+    email = Email(
+        required=True, error_messages={'required': MSG_FIELD_REQUIRED}
+    )
+    password = Str(
+        required=True, error_messages={'required': MSG_FIELD_REQUIRED}
+    )
+</code></pre>
+
+<p>E dentro do <code>apps/auth/resources.py</code> vamos criar nossa rota de autenticação.</p>
+
+<pre><code class="language-python"># -*- coding:utf-8 -*-
+
+# Python
+
+# Flask
+from flask import request
+
+# Third
+from flask_restful import Resource
+from flask_jwt_extended import create_access_token, create_refresh_token
+from bcrypt import checkpw
+
+# Apps
+from apps.users.models import User
+from apps.users.schemas import UserSchema
+from apps.users.utils import get_user_by_email
+from apps.messages import MSG_NO_DATA, MSG_TOKEN_CREATED
+from apps.responses import resp_ok, resp_data_invalid, resp_notallowed_user
+
+# Local
+from .schemas import LoginSchema
+
+
+class AuthResource(Resource):
+    def post(self, *args, **kwargs):
+        '''
+        Route to do login in API
+        '''
+        req_data = request.get_json() or None
+        user = None
+        login_schema = LoginSchema()
+        schema = UserSchema()
+
+        if req_data is None:
+            return resp_data_invalid('Users', [], msg=MSG_NO_DATA)
+
+        data, errors = login_schema.load(req_data)
+
+        if errors:
+            return resp_data_invalid('Users', errors)
+
+        # Buscamos nosso usuário pelo email
+        user = get_user_by_email(data.get('email'))
+
+        # Em caso de exceção ou não é uma instancia do Modelo de User
+        # retornamos a resposta
+        if not isinstance(user, User):
+            return user
+
+        # Verificamos se o usuário está ativo na plataforma. Se não ele
+        # não podera autenticar e não ter acesso a nada
+        if not user.is_active():
+            return resp_notallowed_user('Auth')
+
+        # Conferimos a senha informada no payload de dados com a senha cadastrada
+        # em nosso banco.
+        if checkpw(data.get('password').encode('utf-8'), user.password.encode('utf-8')):
+
+            # Chamamos os metodos para criar os tokens passando como identidade
+            # o email do nosso usuario
+            extras = {
+                'token': create_access_token(identity=user.email),
+                'refresh': create_refresh_token(identity=user.email)
+            }
+
+            result = schema.dump(user)
+
+            return resp_ok(
+                'Auth', MSG_TOKEN_CREATED, data=result.data, **extras
+            )
+
+        return resp_notallowed_user('Auth')
+</code></pre>
+
+<h2 id="vamos-testar-a-autenticaçaõ">Vamos testar a autenticaçaõ?</h2>
+
+<pre><code class="language-shell">$ http -v POST 0.0.0.0:5000/auth email=teste@teste.com password=123456
+POST /auth HTTP/1.1
+Accept: application/json, */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 50
+Content-Type: application/json
+Host: 0.0.0.0:5000
+User-Agent: HTTPie/0.9.8
+
+{
+    &quot;email&quot;: &quot;teste@teste.com&quot;,
+    &quot;password&quot;: &quot;123456&quot;
+}
+
+HTTP/1.0 200 OK
+Content-Length: 887
+Content-Type: application/json
+Date: Wed, 17 Oct 2018 22:11:04 GMT
+Server: Werkzeug/0.14.1 Python/3.6.5
+
+{
+    &quot;data&quot;: {
+        &quot;active&quot;: true,
+        &quot;cpf_cnpj&quot;: &quot;123456&quot;,
+        &quot;email&quot;: &quot;teste@teste.com&quot;,
+        &quot;full_name&quot;: &quot;teste sobrenome&quot;,
+        &quot;id&quot;: &quot;5bbeaf52fb5d1b0a32466c93&quot;
+    },
+    &quot;message&quot;: &quot;Token criado.&quot;,
+    &quot;refresh&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mzk4MTQyNjQsIm5iZiI6MTUzOTgxNDI2NCwianRpIjoiYTU3YmMwMTctMTFhOC00Yjc3LThkNmUtOWQxMDI5MTJkYTY0IiwiZXhwIjoxNTM5ODE1NDY0LCJpZGVudGl0eSI6InRlc3RlQHRlc3RlLmNvbSIsInR5cGUiOiJyZWZyZXNoIn0.0WiSlQ7_wJRUy0p7qfVyl0rdsPYTJxfGO2UMfXWryPI&quot;,
+    &quot;resource&quot;: &quot;Auth&quot;,
+    &quot;status&quot;: 200,
+    &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mzk4MTQyNjQsIm5iZiI6MTUzOTgxNDI2NCwianRpIjoiZjdiZmI4NDYtMjk4ZS00MmY1LWIxYzItMWJiOTM2NzkwZjU1IiwiZXhwIjoxNTM5ODE1NDY0LCJpZGVudGl0eSI6InRlc3RlQHRlc3RlLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImFjdGl2ZSI6dHJ1ZX19.BGEBy_XsAKXsu4_O_s8DBsbmWad16uNYWjZMevkYBGk&quot;
+}
+
+</code></pre>
+
+<h2 id="revalidando-nosso-token-expirado">Revalidando nosso token expirado</h2>
+
+<p>Para criar um novo token caso tenha expirado vamos criar um novo endpoint em nosso <code>api.py</code>.</p>
+
+<pre><code class="language-python">from apps.auth.resources import AuthResource, RefreshTokenResource,
+
+# ...
+
+api = Api()
+
+
+def configure_api(app):
+    # ...
+
+    # rotas para autenticacao
+    api.add_resource(AuthResource, '/auth')
+    api.add_resource(RefreshTokenResource, '/auth/refresh')
+    # ...
+
+</code></pre>
+
+<p>Agora vamos criar nosso recurso  <code>RefreshTokenResource</code>.</p>
+
+<pre><code class="language-python"># ...
+from flask_jwt_extended import jwt_refresh_token_required, get_jwt_identity
+
+#...
+
+class RefreshTokenResource(Resource):
+
+    @jwt_refresh_token_required
+    def post(self, *args, **kwargs):
+        '''
+        Refresh a token that expired.
+
+        http://flask-jwt-extended.readthedocs.io/en/latest/refresh_tokens.html
+        '''
+        extras = {
+            'token': create_access_token(identity=get_jwt_identity()),
+        }
+
+        return resp_ok(
+            'Auth', MSG_TOKEN_CREATED, **extras
+        )
+</code></pre>
+
+<p>E para testar:</p>
+
+<pre><code class="language-shell">$ http -v POST localhost:5000/auth/refresh &quot;Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mzk4MTg5MDYsIm5iZiI6MTUzOTgxODkwNiwianRpIjoiZGQwMzdhMTAtNjFjNS00ZjgwLTgxYWUtZmJmZjRlM2M4NDljIiwiZXhwIjoxNTQyNDEwOTA2LCJpZGVudGl0eSI6InRlc3RlQHRlc3RlLmNvbSIsInR5cGUiOiJyZWZyZXNoIn0.F26hCslA-iNvPI2r4yLAJuzM6m9n8F41ghDfThwfmtY&quot;
+POST /auth/refresh HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mzk4MTg5MDYsIm5iZiI6MTUzOTgxODkwNiwianRpIjoiZGQwMzdhMTAtNjFjNS00ZjgwLTgxYWUtZmJmZjRlM2M4NDljIiwiZXhwIjoxNTQyNDEwOTA2LCJpZGVudGl0eSI6InRlc3RlQHRlc3RlLmNvbSIsInR5cGUiOiJyZWZyZXNoIn0.F26hCslA-iNvPI2r4yLAJuzM6m9n8F41ghDfThwfmtY
+Connection: keep-alive
+Content-Length: 0
+Host: localhost:5000
+User-Agent: HTTPie/0.9.8
+
+
+
+HTTP/1.0 200 OK
+Content-Length: 419
+Content-Type: application/json
+Date: Wed, 17 Oct 2018 23:29:31 GMT
+Server: Werkzeug/0.14.1 Python/3.6.5
+
+{
+    &quot;message&quot;: &quot;Token criado.&quot;,
+    &quot;resource&quot;: &quot;Auth&quot;,
+    &quot;status&quot;: 200,
+    &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mzk4MTg5NzEsIm5iZiI6MTUzOTgxODk3MSwianRpIjoiYTY5MjlmODktN2EyMC00MjdhLTkxYjYtZjdjZjFhMzc4MjEwIiwiZXhwIjoxNTM5ODIwMTcxLCJpZGVudGl0eSI6InRlc3RlQHRlc3RlLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImFjdGl2ZSI6dHJ1ZX19.zN2WCq_Ou0dhQYvbOdn_IyD3iy-8ZneXgZKeaVI_tMA&quot;
+}
+</code></pre>
+
+<h2 id="rotas-com-autenticação-obrigatórias">Rotas com autenticação obrigatórias</h2>
+
+<p>Hoje todas as nossas rotas administrativas para controle de usuários estão abertas e sem autenticação. Logo precisamos fazer com que elas so possam ser acessadas através de um <code>access token</code> válido e claro vamos verificar se o usuário autenticado é <code>admin=True</code>. Caso contrário ele não poderá receber o resultado correto e sim uma mensagem de erro.</p>
+
+<p>Vamos voltar em nosso <code>apps/resources_admin.py</code> e refatora-lo.</p>
+
+<p>Primeiro vamos importar as seguintes funções do <code>flask_jwt_extend</code>.</p>
+
+<pre><code class="language-python"># ...
+
+# Third
+# ...
+from flask_jwt_extended import get_jwt_identity, jwt_required
+
+#...
+
+</code></pre>
+
+<p>O <code>jwt_required</code> é um decorator do pacote a qual verifica se estamos recebendo um token em nossa requisição HTTP através do cabeçalho <code>Authorization</code>. Com isso vamos alterar nossos métodos para:</p>
+
+<pre><code class="language-python">
+class AdminUserPageList(Resource):
+    @jwt_required
+    def get(self, page_id=1):
+        #...
+
+class AdminUserResource(Resource):
+    @jwt_required
+    def get(self, user_id):
+        #...
+
+    @jwt_required
+    def put(self, user_id):
+        #...
+
+    @jwt_required
+    def delete(self, user_id):
+        #...
+</code></pre>
+
+<p>Se tentarmos acessar qualquer uma desses endpoints teremos o seguinte erro:</p>
+
+<pre><code class="language-shell">$ http -v GET 0.0.0.0:5000/admin/users/5bbeaf52fb5d1b0a32466c93
+GET /admin/users/5bbeaf52fb5d1b0a32466c93 HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: 0.0.0.0:5000
+User-Agent: HTTPie/0.9.8
+
+
+
+HTTP/1.0 401 UNAUTHORIZED
+Content-Length: 161
+Content-Type: application/json
+Date: Wed, 17 Oct 2018 23:43:03 GMT
+Server: Werkzeug/0.14.1 Python/3.6.5
+
+{
+    &quot;description&quot;: &quot;Missing Authorization Header&quot;,
+    &quot;message&quot;: &quot;As credenciais estão inválidas para log in.&quot;,
+    &quot;status&quot;: 401,
+    &quot;sub_status&quot;: 1
+}
+</code></pre>
+
+<p>Certo, mas e agora? Agora teremos de criar dois novos metodos para verificar se nosso usuário esta ativo e possui permissões de admin.</p>
+
+<p>Em nosso <code>apps/users/resources_admin.py</code> vamos alterar <strong>TODOS</strong> os métodos com as seguintes linhas.</p>
+
+<pre><code class="language-python"># ...
+from flask_jwt_extended import get_jwt_identity, jwt_required
+
+# ...
+from .utils import get_user_by_id, exists_email_in_users, get_user_by_email
+
+
+#...
+
+class AdminUserResource(Resource):
+    @jwt_required
+    def get(self, user_id):
+        result = None
+        schema = UserSchema()
+        current_user = get_user_by_email(get_jwt_identity())
+
+        if not isinstance(current_user, User):
+            return current_user
+
+        if not (current_user.is_active()) and current_user.is_admin():
+            return resp_notallowed_user('Users')
+
+        # ...
+</code></pre>
+
+<p>Testando:</p>
+
+<pre><code class="language-shell">$ http -v GET 0.0.0.0:5000/admin/users/5bbeaf52fb5d1b0a32466c93 &quot;Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mzk4MjAzOTEsIm5iZiI6MTUzOTgyMDM5MSwianRpIjoiN2YwN2I5YTAtMmY3YS00ZDlmLWFmMzQtMTRmNzlmYmNlZjM4IiwiZXhwIjoxNTM5ODIxNTkxLCJpZGVudGl0eSI6InRlc3RlQHRlc3RlLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImFjdGl2ZSI6dHJ1ZX19.p_fjeR_Kc-5kJOLQ9F2EE6qeXe1iNL6amd-QkFEskJ8&quot;
+GET /admin/users/5bbeaf52fb5d1b0a32466c93 HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mzk4MjAzOTEsIm5iZiI6MTUzOTgyMDM5MSwianRpIjoiN2YwN2I5YTAtMmY3YS00ZDlmLWFmMzQtMTRmNzlmYmNlZjM4IiwiZXhwIjoxNTM5ODIxNTkxLCJpZGVudGl0eSI6InRlc3RlQHRlc3RlLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7ImFjdGl2ZSI6dHJ1ZX19.p_fjeR_Kc-5kJOLQ9F2EE6qeXe1iNL6amd-QkFEskJ8
+Connection: keep-alive
+Host: 0.0.0.0:5000
+User-Agent: HTTPie/0.9.8
+
+
+
+HTTP/1.0 200 OK
+Content-Length: 267
+Content-Type: application/json
+Date: Wed, 17 Oct 2018 23:53:29 GMT
+Server: Werkzeug/0.14.1 Python/3.6.5
+
+{
+    &quot;data&quot;: {
+        &quot;active&quot;: true,
+        &quot;cpf_cnpj&quot;: &quot;123456&quot;,
+        &quot;email&quot;: &quot;teste@teste.com&quot;,
+        &quot;full_name&quot;: &quot;teste sobrenome&quot;,
+        &quot;id&quot;: &quot;5bbeaf52fb5d1b0a32466c93&quot;
+    },
+    &quot;message&quot;: &quot;Usuários retornado(a).&quot;,
+    &quot;resource&quot;: &quot;Users&quot;,
+    &quot;status&quot;: 200
+}
+</code></pre>
+
+<h2 id="próximos-passos">Próximos passos</h2>
+
+<p>Chegamos a um nível bem satisfatório dessa série e ainda ha muito o que evoluir apenas com este pequeno projeto. Dentre minhas expectativas de estudos inclui:</p>
+
+<ul>
+<li><p>JWT por cookies e não por json como foi feito</p></li>
+
+<li><p>Revogar tokens quando fazer um logout</p></li>
+
+<li><p>JWT por assinatura RSA (id_rsa e id_rsa.pub)</p></li>
+
+<li><p>Deploy no Heroku</p></li>
+
+<li><p>Deploy na Digital Ocean</p></li>
+
+<li><p>Deploy no EC2 da AWS</p></li>
+
+<li><p>Criar um container via Docker</p></li>
+
+<li><p>Deploy na ECS da AWS</p></li>
+
+<li><p>Fazer todo o processo de CI e CD, talvez com Jenkins</p></li>
+
+<li><p>Criar um docker-compose contendo a api e o servidor mongo</p></li>
+
+<li><p>Evoluir para uma arquitetura de micro serviços baseado no protocolo HTTP com outro serviço mais simples.</p></li>
+</ul>
+
+<p>Por enquanto exitem uma boa gama de estudos principalmente na parte de cloud computing que devem ser estudados e colocados em prática. Espero que tenham gostado dessa série e que ela tenha ajudado os leitores.</p>
+
+<p>Em breve vou lançando novos capítulos para essa série. Agradeço a todos. Abraços e fiquem com Deus.</p>
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-12---autenticacao-por-jwt%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-12---autenticacao-por-jwt%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-12---autenticacao-por-jwt%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-12---autenticacao-por-jwt%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/">Série API em Flask - Parte 12 - Autênticação por JWT</a></li>
+
+<li><a href="/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/">Série API em Flask - Parte 11 - Deletando um usuário</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (12)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>

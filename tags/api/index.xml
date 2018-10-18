@@ -6,10 +6,21 @@
     <description>Recent content in Api on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 17 Oct 2018 13:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 17 Oct 2018 21:00:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/tags/api/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 12 - Autênticação por JWT</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/</link>
+      <pubDate>Wed, 17 Oct 2018 21:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/</guid>
+      <description>&lt;p&gt;O &lt;a href=&#34;https://jwt.io/&#34; target=&#34;_blank&#34;&gt;JWT&lt;/a&gt; é um dos meios mais comuns de autorização entre aplicações web e SPA&amp;rsquo;s desenvolvidos com ReactJS ou outros frameworks JavaScript. Por ser um meio fácil de conter informações o &lt;a href=&#34;https://jwt.io/&#34; target=&#34;_blank&#34;&gt;JWT&lt;/a&gt; pode ter dados do usuário e um tempo de expiração.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 11 - Deletando um usuário</title>
