@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 13 - Criando um container Docker" />
+<meta property="og:description" content="
+
+Neste capítulo, vamos aprender a como criar um container docker para desenvolvimento e para deploy da nossa aplicação futuramente em produção.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/" />
+
+
+
+<meta property="article:published_time" content="2018-10-19T18:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-10-19T18:00:00-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 13 - Criando um container Docker"/>
+<meta name="twitter:description" content="
+
+Neste capítulo, vamos aprender a como criar um container docker para desenvolvimento e para deploy da nossa aplicação futuramente em produção.
+
+"/>
+
+
+<meta itemprop="name" content="Série API em Flask - Parte 13 - Criando um container Docker">
+<meta itemprop="description" content="
+
+Neste capítulo, vamos aprender a como criar um container docker para desenvolvimento e para deploy da nossa aplicação futuramente em produção.
+
+">
+
+
+<meta itemprop="datePublished" content="2018-10-19T18:00:00-03:00" />
+<meta itemprop="dateModified" content="2018-10-19T18:00:00-03:00" />
+<meta itemprop="wordCount" content="1732">
+
+
+
+<meta itemprop="keywords" content="python,api,rest,docker," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 13 - Criando um container Docker",
+  "url": "https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/",
+  "wordCount": "1732",
+  "datePublished": "2018-10-19T18:00:00-03:00",
+  "dateModified": "2018-10-19T18:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, devops, python, api, rest, docker"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/">
+
+    <title>Série API em Flask - Parte 13 - Criando um container Docker | Lucas Simon</title>
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+  </head>
+
+  <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://lucassimon.com.br/">Home</a>
+          
+          <a class="nav-link" href="/about/" title="">Sobre</a>
+          
+          
+          
+          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
+          
+          
+          <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">Github</a>
+          
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title"><a href="https://lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
+        <p class="lead blog-description">Web Developer. lucassrod@gmail.com</p>
+      </div>
+    </header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/">Série API em Flask - Parte 13 - Criando um container Docker</a></h2>
+    <p class="blog-post-meta"><time datetime="2018-10-19T18:00:00-03:00">Fri Oct 19, 2018</time> by Lucas Simon in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>, <a href="/categories/devops" rel="category tag">devops</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>, <a href="/tags/docker" rel="tag">docker</a>
+
+</p>
+  </header>
+  <p><img src="/request_flask_api_user_in_container_docker.gif" alt="Do a request in container" /></p>
+
+<p>Neste capítulo, vamos aprender a como criar um container docker para desenvolvimento e para deploy da nossa aplicação futuramente em produção.</p>
+
+<p></p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o Makefile</a></p></li>
+
+<li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
+
+<li><p>Capítulo 6: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" target="_blank">Criando e testando o modelo de usuários</a></p></li>
+
+<li><p>Capítulo 7: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/" target="_blank">Criando usuários</a></p></li>
+
+<li><p>Capítulo 8: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/" target="_blank">Listando usuários</a></p></li>
+
+<li><p>Capítulo 9: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/" target="_blank">Buscando usuários</a></p></li>
+
+<li><p>Capítulo 10: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/" target="_blank">Editando um usuário</a></p></li>
+
+<li><p>Capítulo 11: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/" target="_blank">Deletando um usuário</a></p></li>
+
+<li><p>Capítulo 12: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/" target="_blank">Autênticação por JWT</a></p></li>
+
+<li><p>Capítulo 13: Criando um container Docker <strong>Estamos aqui</strong></p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="antes">Antes&hellip;</h2>
+
+<p>Houveram algumas mudanças no projeto para adequar a este capítulo. Vou passar aqui rapidamente as mudanças e seguir com o objetivo do artigo.</p>
+
+<p>Alterado a classe <code>Config</code> em <code>config.py</code> adicionando valores padrões e alterado o <code>APP_PORT</code> para somente <code>PORT</code>. Também foi criada uma nova configuração chamada <code>ProductionConfig</code>.</p>
+
+<pre><code class="language-python">class Config:
+    SECRET_KEY = getenv('SECRET_KEY') or 'uma string randômica e gigante'
+    PORT = int(getenv('PORT', 5000))
+    DEBUG = getenv('DEBUG') or False
+    MONGODB_HOST = getenv('MONGODB_URI', 'mongodb://localhost:27017/api-users')
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(
+        minutes=int(getenv('JWT_ACCESS_TOKEN_EXPIRES', 20))
+    )
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(
+        days=int(getenv('JWT_REFRESH_TOKEN_EXPIRES', 30))
+    )
+
+# ...
+
+class ProductionConfig(Config):
+    FLASK_ENV = 'production'
+    TESTING = False
+    DEBUG = False
+
+
+config = {
+    'production': ProductionConfig,
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+    'default': DevelopmentConfig
+}
+</code></pre>
+
+<p>Por conta dessa mudança no <code>application.py</code> tive de alterar a port.</p>
+
+<pre><code class="language-python">if __name__ == '__main__':
+    ip = '0.0.0.0'
+    port = app.config['PORT']
+</code></pre>
+
+<p>Outras mudanças substanciais ocorreram no arquivo <code>Makefile</code>.</p>
+
+<h2 id="construindo-nosso-container-de-desenvolvimento">Construindo nosso container de desenvolvimento</h2>
+
+<p>O primeiro passo antes de criar o nosso container é criar uma imagem do nosso aplicativo. Essa imagem vai ter todas os pacotes do sistema operacional que serão compiladas por alguns pacotes Python.</p>
+
+<p>Para isso escrever um script no <code>dockerfile</code> que será interpretado pelo comando <code>docker build</code>. Basicamente esse <code>dockerfile</code> é uma sequência de etapas para se criar a imagem.</p>
+
+<pre><code class="language-dockerfile">FROM python:3.6-alpine
+RUN rm -rf /var/cache/apk/* &amp;&amp; \
+    apk update &amp;&amp; \
+    apk add make &amp;&amp; \
+    apk add build-base &amp;&amp; \
+    apk add gcc &amp;&amp; \
+    apk add python3-dev &amp;&amp; \
+    apk add libffi-dev &amp;&amp; \
+    apk add musl-dev &amp;&amp; \
+    apk add openssl-dev &amp;&amp; \
+    apk del build-base &amp;&amp; \
+    rm -rf /var/cache/apk/*
+
+ENV HOME=/home/api FLASK_APP=application.py FLASK_ENV=development PORT=5000
+RUN adduser -D api
+USER api
+WORKDIR $HOME
+COPY --chown=api:api . $HOME
+
+RUN python -m venv venv &amp;&amp; \
+    venv/bin/pip install --upgrade pip &amp;&amp; \
+    venv/bin/pip install -r requirements/dev.txt
+
+EXPOSE 5000
+ENTRYPOINT [ &quot;./boot.sh&quot; ]
+</code></pre>
+
+<p>O primeiro comando <code>FROM</code> referencia a uma imagem base ja existente para construir a imagem da nossa aplicação. Foi escolhido o <code>python:3.6-alpine</code> pois ele pertence a uma distribuição linux conhecida como <code>alpine</code> pois ela possui um tamanho bem menor se comparada ao <code>ubuntu ou debian</code>. Além disso essa imagem por padrão já vem com o <code>python3.6</code> instalado além dos comandos básicos de shell <code>cat,ls, find, sh e etc...</code>.</p>
+
+<p>Uma observação importante é que o tamanho da imagem importa e muito quando for realizar um deploy para uma AWS, Azure, GoogleCloud. Quanto maior o tamanho maior será o download pela plataforma.</p>
+
+<p>Por isso ao executar o comando <code>RUN</code> abaixo estou fazendo três coisas.</p>
+
+<pre><code class="language-dockerfile">RUN rm -rf /var/cache/apk/* &amp;&amp; \
+    apk update &amp;&amp; \
+    apk add make &amp;&amp; \
+    apk add build-base &amp;&amp; \
+    apk add gcc &amp;&amp; \
+    apk add python3-dev &amp;&amp; \
+    apk add libffi-dev &amp;&amp; \
+    apk add musl-dev &amp;&amp; \
+    apk add openssl-dev &amp;&amp; \
+    apk del build-base &amp;&amp; \
+    rm -rf /var/cache/apk/*
+</code></pre>
+
+<ol>
+<li><p>Limpando o cache do <code>apk</code> usando o <code>rm -rf /var/cache/apk/*</code></p></li>
+
+<li><p>Instalando os pacotes que preciso para compilar pacotes python <code>apk add ....</code></p></li>
+
+<li><p>Removendo pacotes <code>apk del</code> e limpando o cache novamente.</p></li>
+</ol>
+
+<p>Tudo isso para reduzir o tamanho da imagem da aplicação. Você deve se perguntar o por que de ter colocado todos esses comandos em uma única entrada <code>RUN</code> e separando por <code>&amp;&amp; \</code>. A resposta é que o docker e feito por camadas ou melhor blocos que compoem uma imagem. Se fosse várias instruções <code>RUN</code> isso iria criar várias camadas e eu teria de limpar o cache após cada uma dessas instruções.</p>
+
+<p>Com o comando  <code>ENV</code> eu defino algumas váriaveis para serem utilizadas na aplicação e no shell da imagem.</p>
+
+<pre><code class="language-dockerfile">ENV HOME=/home/api FLASK_APP=application.py FLASK_ENV=development PORT=5000
+</code></pre>
+
+<p>No bloco abaixo eu crio uma instrução, <code>RUN</code>, para criar  um usuário chamado <code>api</code>. A instrução <code>USER</code> faz logon com o usuário criado e <code>WORKDIR</code> seta o <code>home directory</code> no caminho da váriavel <code>$HOME</code> definida anteriormente.</p>
+
+<pre><code class="language-dockerfile">RUN adduser -D api
+USER api
+WORKDIR $HOME
+</code></pre>
+
+<p>Em seguida, copiamos todo o conteúdo da minha pasta (projeto/aplicação/api) para o container docker.</p>
+
+<pre><code class="language-dockerfile">COPY --chown=api:api . $HOME
+</code></pre>
+
+<p>Duas coisas extremamente importantes:</p>
+
+<ol>
+<li><p>O parâmetro <code>--chown=api:api</code> realiza a cópia da minha pasta local para o container associando o dono para usuário <code>api</code> e o grupo também. Caso contrário todos os arquivos e deretórios iriam pertencer ao usuário <code>root</code>.</p></li>
+
+<li><p>O arquivo oculto <code>.dockerignore</code>. Esse arquivo tem como objetivo ignorar os arquivos e pastas ali contidos. Ele é bem similar ao <code>.gitignore</code> conhecido por todos nós.</p></li>
+</ol>
+
+<pre><code class="language-shell">.ash_history
+.cache
+.coverage
+.editorconfig
+.env
+.env-example
+.git
+.gitignore
+.pytest_cache
+.vscode
+.idea
+.cache/
+__pycache__/
+*.pytest_cache/
+.venv
+env/
+venv/
+.DS_Store
+*.eggs
+*.egg-info
+*.py[cod]
+*.swp
+*.log
+</code></pre>
+
+<p>Seguindo com a explicação do <code>Dockerfile</code>. Temos novamente a instrução <code>RUN</code>, para criar um virtualenv, atualizar o <code>pip</code> e instalar as dependências de desenvolvimento da <code>api</code></p>
+
+<pre><code class="language-dockerfile">RUN python -m venv venv &amp;&amp; \
+    venv/bin/pip install --upgrade pip &amp;&amp; \
+    venv/bin/pip install -r requirements/dev.txt
+</code></pre>
+
+<p>Depois expômos, <code>EXPOSE</code>, a porta 5000 do container pelas regras de rede do docker.</p>
+
+<pre><code class="language-dockerfile">EXPOSE 5000
+</code></pre>
+
+<p>E definimos através da instrução, <code>ENTRYPOINT</code>, o comando padrão quando nosso container for incializado.</p>
+
+<pre><code class="language-dockerfile">ENTRYPOINT [ &quot;./boot.sh&quot; ]
+</code></pre>
+
+<h2 id="o-boot-sh">O boot.sh</h2>
+
+<p>Este comando ou script é responsável por iniciar a aplicação do Flask e é bem simples de entender.</p>
+
+<pre><code class="language-shell">#!/bin/sh
+source venv/bin/activate
+
+case &quot;$FLASK_ENV&quot; in
+    production)
+        # exec gunicorn -b :$PORT --access-logfile - --error-logfile - &quot;apps:create_app('production')&quot;
+        exec gunicorn -w $WORKERS -b :$PORT --access-logfile - --error-logfile - application:app
+        ;;
+    *) exec make run ;;
+esac
+</code></pre>
+
+<p>Primeiro ativo o virtualenv previamente criado. Depois verifico através de um <code>case/esac</code> o conteúdo da variaǘel <code>$FLASK_ENV</code>.</p>
+
+<p>Caso seja <code>production</code>, executo o <code>gunicorn</code> com as respectivas flags.</p>
+
+<ul>
+<li><p><code>-w</code>: Número de workers que vou levantar</p></li>
+
+<li><p><code>-b</code>: Realizo um bind para a porta 5000 ou o que vier da variável <code>$PORT</code></p></li>
+
+<li><p><code>-access-logfile -</code>: Envia os logs de <strong>acesso</strong> para saída padrão do console. Nesse caso do <code>docker logs</code></p></li>
+
+<li><p><code>-error-logfile -</code>: Envia os logs de <strong>erro</strong> para saída padrão do console. Nesse caso do <code>docker logs</code></p></li>
+
+<li><p><code>application:app</code>: Este é o módulo <code>application.py</code> da raíz do meu projeto e <code>:app</code> é a instancia do flask criada pelo <code>create_app()</code> e <code>app.run()</code></p></li>
+</ul>
+
+<p>Vamos testar? Execute o comando <code>docker build -t api_users:latest .</code></p>
+
+<pre><code class="language-shell">$ docker build -t api_users:latest .
+Sending build context to Docker daemon  121.9kB
+Step 1/10 : FROM python:3.6-alpine
+
+ ---&gt; 9f65fe00d268
+Successfully built 9f65fe00d268
+Successfully tagged api_users:latest
+</code></pre>
+
+<h2 id="criando-nosso-container">Criando nosso container.</h2>
+
+<p>Ok, criamos a imagem mas quero ver o container. Simples, execute o comando abaixo:</p>
+
+<pre><code class="language-shell">$ docker run -itd --name flask_api_users_latest -p 5001:5000  -e SECRET_KEY=hard-secret-key --link mongo-latest:dbserver -e MONGODB_URI=mongodb://dbserver:27017/api-users api_users:latest
+</code></pre>
+
+<ul>
+<li><p><code>-itd</code>:  &ndash;interactive, &ndash;tty, &ndash;detach. Cria o container iterativo, com um terminal tty e executa ele em background</p></li>
+
+<li><p><code>--name</code>: Seta um nome para o container</p></li>
+
+<li><p><code>-p</code>: Realiza um roteamento de portas local (5001) para responder na porta (5000) do container.</p></li>
+
+<li><p><code>-e</code>: Passa variáveis de ambiente para o container</p></li>
+
+<li><p><code>--link</code>: <strong>Esse é importante</strong>. Eu tenho um container do MongoDB chamado <code>mongo-latest</code>. O que eu fiz aqui é dizer que esse container possui conexão de rede com este container e ele terá um hostname <code>dbserver</code>. Posteriormente esse <code>dbserver</code> irá compôr na variável de ambiente <code>MONGODB_URI</code></p></li>
+
+<li><p><code>api_users:latest</code>: É a imagem que criamos anteriormente.</p></li>
+</ul>
+
+<h2 id="nossa-api-funcionando-em-containers">Nossa API funcionando em containers</h2>
+
+<p>Dois comandos muito úteis.</p>
+
+<ol>
+<li><code>docker ps</code>, para ver containers ativos e  <code>docker ps -a</code> para ver todos os containers (ativos e inativos)</li>
+</ol>
+
+<pre><code class="language-shell">$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                      NAMES
+3898548e4c9c        api_users:latest    &quot;./boot.sh&quot;              8 minutes ago       Up 8 minutes        0.0.0.0:5001-&gt;5000/tcp     flask_api_users_latest
+508ffdbcce60        mongo               &quot;docker-entrypoint.s…&quot;   4 months ago        Up 5 hours          0.0.0.0:27017-&gt;27017/tcp   mongo-latest
+</code></pre>
+
+<ol>
+<li><code>docker logs 3898548e4c9c -f</code>. Muito útil para ver o console do container. A opção <code>-f</code> é similar a do <code>tail -f</code> ou seja fica observando a saida logs.</li>
+</ol>
+
+<pre><code class="language-shell">$ docker logs 3898548e4c9c -f
+python application.py
+ * Serving Flask app &quot;api-users&quot; (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 276-699-376
+</code></pre>
+
+<p><img src="/request_flask_api_user_in_container_docker.gif" alt="Do a request in container" /></p>
+
+<h2 id="dockerfile-de-produção">Dockerfile de produção</h2>
+
+<p>Nossa imagem para produção é levemente diferente do desenvolvimento. Observe as mudanças:</p>
+
+<pre><code class="language-dockerfile">FROM python:3.6-alpine
+RUN rm -rf /var/cache/apk/* &amp;&amp; \
+    apk update &amp;&amp; \
+    apk add make &amp;&amp; \
+    apk add build-base &amp;&amp; \
+    apk add gcc &amp;&amp; \
+    apk add python3-dev &amp;&amp; \
+    apk add libffi-dev &amp;&amp; \
+    apk add musl-dev &amp;&amp; \
+    apk add openssl-dev &amp;&amp; \
+    apk del build-base &amp;&amp; \
+    rm -rf /var/cache/apk/*
+
+ENV HOME=/home/api FLASK_APP=application.py FLASK_ENV=production WORKERS=4 PORT=5000
+RUN adduser -D api
+USER api
+WORKDIR $HOME
+COPY --chown=api:api . $HOME
+
+RUN python -m venv venv &amp;&amp; \
+    venv/bin/pip install --upgrade pip &amp;&amp; \
+    venv/bin/pip install -r requirements/prod.txt
+
+EXPOSE 5000
+ENTRYPOINT [ &quot;./boot.sh&quot; ]
+</code></pre>
+
+<p>Na variável <code>ENV</code> adicionamos mais alguns itens para serem passados par ao gunicorn. E instalamos agora as dependências de produção.</p>
+
+<p>Um ponto a observar que chamamos esse arquivo de <code>Dockerfile-prd</code>. Para construir a imagem de produção para este arquivo utilizamos a opção <code>-f</code>.</p>
+
+<pre><code class="language-shell">$ docker build -t api_users_prd -f Dockerfile-prd
+</code></pre>
+
+<p>Fazendo um teste:</p>
+
+<pre><code class="language-shell">172.17.0.1 - - [19/Oct/2018:01:27:00 +0000] &quot;GET / HTTP/1.1&quot; 200 27 &quot;-&quot; &quot;HTTPie/0.9.8&quot;
+[2018-10-19 01:54:54 +0000] [1] [INFO] Handling signal: term
+[2018-10-19 01:54:54 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2018-10-19 01:54:54 +0000] [10] [INFO] Worker exiting (pid: 10)
+[2018-10-19 01:54:54 +0000] [9] [INFO] Worker exiting (pid: 9)
+[2018-10-19 01:54:54 +0000] [12] [INFO] Worker exiting (pid: 12)
+[2018-10-19 01:54:54 +0000] [1] [INFO] Shutting down: Master
+[2018-10-19 23:05:13 +0000] [1] [INFO] Starting gunicorn 19.9.0
+[2018-10-19 23:05:13 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+[2018-10-19 23:05:13 +0000] [1] [INFO] Using worker: sync
+[2018-10-19 23:05:13 +0000] [8] [INFO] Booting worker with pid: 8
+[2018-10-19 23:05:13 +0000] [9] [INFO] Booting worker with pid: 9
+[2018-10-19 23:05:14 +0000] [10] [INFO] Booting worker with pid: 10
+[2018-10-19 23:05:14 +0000] [11] [INFO] Booting worker with pid: 11
+172.17.0.1 - - [19/Oct/2018:23:05:46 +0000] &quot;GET / HTTP/1.1&quot; 200 27 &quot;-&quot; &quot;HTTPie/0.9.8&quot;
+</code></pre>
+
+<p><img src="/request_flask_api_user_in_container_prd_docker.gif" alt="Do a request in container prd" /></p>
+
+<p>Finalizando as configurações do docker podemos dar um passo para o deploy da api e adentrar ao mundo DevOps em Cloud. Agradeço a todos e podem me mandar dúvidas, criticas e sugestões. Abraços a todos.</p>
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-13---criando-um-container-docker%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-13---criando-um-container-docker%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-13---criando-um-container-docker%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-13---criando-um-container-docker%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/">Série API em Flask - Parte 13 - Criando um container Docker</a></li>
+
+<li><a href="/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/">Série API em Flask - Parte 12 - Autênticação por JWT</a></li>
+
+    </ol>
+  </section>
+
+  
+
+
+  
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/devops">devops (1)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">flask (13)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+
+  
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> docker</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p>
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>

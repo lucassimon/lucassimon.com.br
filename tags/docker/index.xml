@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Lucas Simon</title>
+    <link>https://lucassimon.com.br/tags/docker/</link>
+    <description>Recent content in Docker on Lucas Simon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Fri, 19 Oct 2018 18:00:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://lucassimon.com.br/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Série API em Flask - Parte 13 - Criando um container Docker</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/</link>
+      <pubDate>Fri, 19 Oct 2018 18:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://lucassimon.com.br/request_flask_api_user_in_container_docker.gif&#34; alt=&#34;Do a request in container&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Neste capítulo, vamos aprender a como criar um container docker para desenvolvimento e para deploy da nossa aplicação futuramente em produção.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
