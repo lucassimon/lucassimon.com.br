@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-  <head>
+<head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -21,6 +21,10 @@
 
 
 
+
+
+  
+  
 
 
 
@@ -43,7 +47,7 @@
 
 <meta itemprop="datePublished" content="2018-10-17T13:00:00-03:00" />
 <meta itemprop="dateModified" content="2018-10-17T13:00:00-03:00" />
-<meta itemprop="wordCount" content="441">
+<meta itemprop="wordCount" content="451">
 
 
 
@@ -63,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@type": "BlogPosting",
   "headline": "Série API em Flask - Parte 11 - Deletando um usuário",
   "url": "https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/",
-  "wordCount": "441",
+  "wordCount": "451",
   "datePublished": "2018-10-17T13:00:00-03:00",
   "dateModified": "2018-10-17T13:00:00-03:00",
   "author": {
@@ -80,6 +84,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>Série API em Flask - Parte 11 - Deletando um usuário | Lucas Simon</title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
     <!-- combined, minified CSS -->
     <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
 
@@ -90,61 +96,122 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     
 
-  </head>
+</head>
 
-  <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<body><noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
     
 
     
     <div class="blog-masthead">
-      <div class="container">
-        <nav class="nav blog-nav">
-          <a class="nav-link " href="https://lucassimon.com.br/">Home</a>
-          
-          <a class="nav-link" href="/about/" title="">Sobre</a>
-          
-          
-          
-          <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">Curriculo</a>
-          
-          
-          <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">Github</a>
-          
-        </nav>
-      </div>
+        <div class="container">
+            <nav class="nav blog-nav">
+                <a class="nav-link " href="https://lucassimon.com.br/">
+                    Home
+                </a>
+                    
+                    <a class="nav-link" href="/about/" title="">
+                        Sobre
+                    </a>
+                
+
+                
+                    
+                    <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">
+                        Curriculo
+                    </a>
+                
+                    
+                    <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">
+                        Github
+                    </a>
+                
+            </nav>
+        </div>
     </div>
     
 
     
     <header class="blog-header">
-      <div class="container">
-        <h1 class="blog-title"><a href="https://lucassimon.com.br/" rel="home">Lucas Simon</a></h1>
-        <p class="lead blog-description">Web Developer. lucassrod@gmail.com</p>
-      </div>
+        <div class="container">
+            <h1 class="blog-title">
+                <a href="https://lucassimon.com.br/" rel="home">
+                    Lucas Simon
+                </a>
+            </h1>
+            
+                <p class="lead blog-description">
+                    Web Developer. lucassrod@gmail.com
+                </p>
+            
+        </div>
     </header>
     
 
     
     <div class="container">
-      <div class="row">
-        <div class="col-sm-8 blog-main">
-
-          
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
 
 
 <article class="blog-post">
-  <header>
-    <h2 class="blog-post-title"><a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/">Série API em Flask - Parte 11 - Deletando um usuário</a></h2>
-    <p class="blog-post-meta"><time datetime="2018-10-17T13:00:00-03:00">Wed Oct 17, 2018</time> by Lucas Simon in 
-<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/flask" rel="category tag">flask</a>
+    <header>
+        <h2 class="blog-post-title">
+            <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/">
+                Série API em Flask - Parte 11 - Deletando um usuário
+            </a>
+        </h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-10-17T13:00:00-03:00">
+                Wed Oct 17, 2018
+            </time>
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/api-em-flask" rel="tag">
+            Api em Flask
+        </a>
+    
 
 
-<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/python" rel="tag">python</a>, <a href="/tags/api" rel="tag">api</a>, <a href="/tags/rest" rel="tag">rest</a>
 
-</p>
-  </header>
-  <p>Chegando ao fim de nosso CRUD vamos implementar a deleção de usuaŕios. Aqui eu escolhi fazer um <code>soft delete</code> ou seja re-utilizei o campo <code>active</code> setando-o como <code>False</code> para indicar que meu usuário foi deletado. A outra maneira seria de fato deletar o usuário da nossa base utilizando o método <code>User.objects.get(id=user_id).delete()</code>, porém não quero perder dados. E claro para recuperar esse usuário basta ativá-lo novamente.</p>
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/flask" rel="category tag">
+            flask
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/python" rel="tag">
+            python
+        </a>
+    
+        , 
+        <a href="/tags/api" rel="tag">
+            api
+        </a>
+    
+        , 
+        <a href="/tags/rest" rel="tag">
+            rest
+        </a>
+    
+
+
+        </p>
+    </header>
+    <p>Chegando ao fim de nosso CRUD vamos implementar a deleção de usuaŕios. Aqui eu escolhi fazer um <code>soft delete</code> ou seja re-utilizei o campo <code>active</code> setando-o como <code>False</code> para indicar que meu usuário foi deletado. A outra maneira seria de fato deletar o usuário da nossa base utilizando o método <code>User.objects.get(id=user_id).delete()</code>, porém não quero perder dados. E claro para recuperar esse usuário basta ativá-lo novamente.</p>
 
 <p></p>
 
@@ -176,6 +243,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Capítulo 12: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/" target="_blank">Autênticação por JWT</a></p></li>
 
 <li><p>Capítulo 13: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/" target="_blank">Criando um container Docker</a></p></li>
+
+<li><p>Capítulo 14: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/" target="_blank">Arquivos de configuração para Deploy na Digital Ocean</a></p></li>
 </ul>
 
 <p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
@@ -218,7 +287,7 @@ class AdminUserPageList(Resource):
     # ...
 
 class AdminUserResource(Resource):
-    
+
     def get(self, user_id):
         # ...
 
@@ -253,7 +322,7 @@ class AdminUserResource(Resource):
 
 <h2 id="testando">Testando</h2>
 
-<pre><code class="language-shell">$ http -v DELETE 0.0.0.0:5000/admin/users/5bbeaf52fb5d1b0a32466c93                                                             
+<pre><code class="language-shell">$ http -v DELETE 0.0.0.0:5000/admin/users/5bbeaf52fb5d1b0a32466c93
 DELETE /admin/users/5bbeaf52fb5d1b0a32466c93 HTTP/1.1
 Accept: */*
 Accept-Encoding: gzip, deflate
@@ -283,73 +352,119 @@ Com isso finalizamos a atualização de dados do usuário e estamos quase termin
 
 <p>Próximo artigo: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/" target="_blank">Autênticação por JWT</a></p>
 
-  
+    
 
-  
-  <hr>
-  <footer>
-
-  
-    <section>
+    
+        <hr>
+        <footer>
+            
+                <section>
     <h4>Compartilhe</h4>
     <nav class="nav sharing-icons">
-      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-11---deletando-um-usuario%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
-      <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-11---deletando-um-usuario%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
-      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-11---deletando-um-usuario%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
-      <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-11---deletando-um-usuario%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-11---deletando-um-usuario%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-11---deletando-um-usuario%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-11---deletando-um-usuario%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f10%2fserie-api-em-flask---parte-11---deletando-um-usuario%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
     </nav>
-  </section>
+</section>
 
-  
+            
 
-  
-  </footer>
-  
+            
+        </footer>
+    
 
 </article> 
 
 
+            </div>
+            <!-- /.blog-main -->
+            <aside class="col-sm-3 ml-auto blog-sidebar">
+    
 
-        </div> <!-- /.blog-main -->
-
-        <aside class="col-sm-3 ml-auto blog-sidebar">
-  
-
-  
+    
         <section class="sidebar-module">
     <h4>Post Recents</h4>
     <ol class="list-unstyled">
-
-
-<li><a href="/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/">Série API em Flask - Parte 13 - Criando um container Docker</a></li>
-
-<li><a href="/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/">Série API em Flask - Parte 12 - Autênticação por JWT</a></li>
-
+        
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/">
+                    Deploy Flask na Digital Ocean - Parte 8 - Configurando o aplicativo
+                </a>
+            </li>
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/">
+                    Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário
+                </a>
+            </li>
+        
     </ol>
-  </section>
+</section>
 
-  
+    
+
+    
+
+    
+    
+        
+        <section class="sidebar-module">
+            <h4>Séries</h4>
+
+            <ol class="list-unstyled">
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/api-em-flask">
+                        Api em flask
+                        (14)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/deploy-flask-na-digital-ocean">
+                        Deploy flask na digital ocean
+                        (8)
+                    </a>
+                </li>
+                
+            </ol>
+
+        </section>
+        
+    
 
 
-  
 
-  
+    
 
 
 <section class="sidebar-module">
     <h4>Categorias</h4>
     <ol class="list-unstyled">
         
-        <li><a href="https://lucassimon.com.br/categories/devops">devops (1)</a>
+        <li><a href="https://lucassimon.com.br/categories/devops">Devops (10)</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/categories/elixir">elixir (2)</a>
+        <li><a href="https://lucassimon.com.br/categories/elixir">Elixir (2)</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/categories/flask">flask (13)</a>
+        <li><a href="https://lucassimon.com.br/categories/flask">Flask (14)</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/categories/python">python (1)</a>
+        <li><a href="https://lucassimon.com.br/categories/python">Python (1)</a>
         </li>
         
     </ol>
@@ -357,30 +472,38 @@ Com isso finalizamos a atualização de dados do usuário e estamos quase termin
 
 
 
-
-  
+    
 
 
 <section class="sidebar-module">
     <h4>Tags</h3>
     <ul class="list-unstyled">
         
-        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> api</a>
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> Api</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> docker</a>
+        <li><a href="https://lucassimon.com.br/tags/deploy"><i class="fa fa-tags"></i> Deploy</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> elixir</a>
+        <li><a href="https://lucassimon.com.br/tags/digital-ocean"><i class="fa fa-tags"></i> Digital ocean</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> functional-programming</a>
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> Docker</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> python</a>
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> Elixir</a>
         </li>
         
-        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> rest</a>
+        <li><a href="https://lucassimon.com.br/tags/flask"><i class="fa fa-tags"></i> Flask</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> Functional programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> Python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> Rest</a>
         </li>
         
     </ul>
@@ -391,24 +514,26 @@ Com isso finalizamos a atualização de dados do usuário e estamos quase termin
 
 </aside>
 
-
-      </div> <!-- /.row -->
-    </div> <!-- /.container -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
     
 
     
     <footer class="blog-footer">
-      <p>
-      
-      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
-      
-      </p>
-      <p>
-      <a href="#"></a>
-      </p>
+        <p>
+        
+            Blog template created by
+            <a href="https://twitter.com/mdo">@mdo</a>
+            , ported to Hugo by
+            <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+        
+        </p>
+        <p>
+            <a href="#"></a>
+        </p>
     </footer>
     
-
-  </body>
-
+</body>
 </html>

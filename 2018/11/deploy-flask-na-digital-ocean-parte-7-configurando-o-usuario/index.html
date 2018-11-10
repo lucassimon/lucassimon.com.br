@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/" />
+
+
+
+<meta property="article:published_time" content="2018-11-07T09:07:41-03:00"/>
+
+<meta property="article:modified_time" content="2018-11-07T09:07:41-03:00"/>
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário"/>
+<meta name="twitter:description" content=""/>
+
+
+<meta itemprop="name" content="Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2018-11-07T09:07:41-03:00" />
+<meta itemprop="dateModified" content="2018-11-07T09:07:41-03:00" />
+<meta itemprop="wordCount" content="323">
+
+
+
+<meta itemprop="keywords" content="digital ocean,deploy,flask,python," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário",
+  "url": "https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/",
+  "wordCount": "323",
+  "datePublished": "2018-11-07T09:07:41-03:00",
+  "dateModified": "2018-11-07T09:07:41-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "deploy, python, web application, devops, digital ocean, flask"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/">
+
+    <title>Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário | Lucas Simon</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+</head>
+
+<body><noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    
+
+    
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="nav blog-nav">
+                <a class="nav-link " href="https://lucassimon.com.br/">
+                    Home
+                </a>
+                    
+                    <a class="nav-link" href="/about/" title="">
+                        Sobre
+                    </a>
+                
+
+                
+                    
+                    <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">
+                        Curriculo
+                    </a>
+                
+                    
+                    <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">
+                        Github
+                    </a>
+                
+            </nav>
+        </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">
+                <a href="https://lucassimon.com.br/" rel="home">
+                    Lucas Simon
+                </a>
+            </h1>
+            
+                <p class="lead blog-description">
+                    Web Developer. lucassrod@gmail.com
+                </p>
+            
+        </div>
+    </header>
+    
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/">
+                Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário
+            </a>
+        </h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-11-07T09:07:41-03:00">
+                Wed Nov 07, 2018
+            </time>
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/deploy-flask-na-digital-ocean" rel="tag">
+            Deploy Flask na Digital Ocean
+        </a>
+    
+
+
+
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/devops" rel="category tag">
+            devops
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/digital-ocean" rel="tag">
+            digital ocean
+        </a>
+    
+        , 
+        <a href="/tags/deploy" rel="tag">
+            deploy
+        </a>
+    
+        , 
+        <a href="/tags/flask" rel="tag">
+            flask
+        </a>
+    
+        , 
+        <a href="/tags/python" rel="tag">
+            python
+        </a>
+    
+
+
+        </p>
+    </header>
+    <p></p>
+
+<h2 id="adicionando-o-usuario-no-grupo-sshlogin">Adicionando o usuario no grupo SSHLOGIN</h2>
+
+<p>Criando nosso usuário comum para deploy.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">useradd --create-home --groups sshlogin --shell /bin/zsh --user-group apiflask</code></pre></div>
+
+<h2 id="crie-o-arquivo-authorized-keys">Crie o arquivo authorized_keys</h2>
+
+<p>Ainda como <code>root</code> faça, <code>su - apiflask</code></p>
+
+<p>Execute o comando <code>vim .ssh/authorized_keys</code> e cole o conteúdo <strong>da chave pública do seu computador local</strong> <code>cat id_rsa.pub</code>.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-rsa AAA....63 lucas@lucas-note</code></pre></div>
+
+<p><strong>Antes de prosseguir abra um novo terminal e verifique se a conhexao com o ssh esta ok.</strong></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh apiflask@ip</code></pre></div>
+
+<p>Qualquer problema com erros de conexão podem ser vistos verificando o log: <code># tail -f /var/log/auth.log</code>. Como <code>root</code> ok!</p>
+
+<h2 id="criando-o-gitconfig">Criando o .gitconfig</h2>
+
+<p>Crie o arquivo <code>vim .gitconfig</code> e cole o conteúdo a seguir com seu respectivo dados.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[user]</span>
+    <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">seunome
+</span><span style="color:#e6db74">    email = seuemail</span>
+
+<span style="color:#66d9ef">[core]</span>
+    <span style="color:#a6e22e">editor</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;vim&#39;</span>
+
+<span style="color:#66d9ef">[diff]</span>
+    <span style="color:#a6e22e">tool</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">vimdiff</span>
+
+<span style="color:#66d9ef">[merge]</span>
+    <span style="color:#a6e22e">tool</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">vimdiff
+</span><span style="color:#e6db74">    conflictstyle = diff3</span>
+
+<span style="color:#66d9ef">[difftool]</span>
+    <span style="color:#a6e22e">prompt</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">0</span>
+
+<span style="color:#66d9ef">[color]</span>
+    <span style="color:#a6e22e">ui</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">true</span>
+
+<span style="color:#66d9ef">[color &#34;branch&#34;]</span>
+    <span style="color:#a6e22e">current</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">yellow black
+</span><span style="color:#e6db74">    local = yellow
+</span><span style="color:#e6db74">    remote = magenta</span>
+
+<span style="color:#66d9ef">[color &#34;diff&#34;]</span>
+    <span style="color:#a6e22e">meta</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">yellow bold
+</span><span style="color:#e6db74">    frag = magenta bold
+</span><span style="color:#e6db74">    old = red reverse
+</span><span style="color:#e6db74">    new = green reverse
+</span><span style="color:#e6db74">    whitespace = white reverse</span>
+<span style="color:#66d9ef">[color &#34;status&#34;]</span>
+    <span style="color:#a6e22e">added</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">yellow
+</span><span style="color:#e6db74">    changed = green
+</span><span style="color:#e6db74">    untracked = cyan reverse
+</span><span style="color:#e6db74">    branch = magenta</span>
+
+<span style="color:#66d9ef">[pretty]</span>
+    <span style="color:#a6e22e">graph</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">format:%Cblue%h%d%Creset%20%s</span>
+
+<span style="color:#66d9ef">[alias]</span>
+    <span style="color:#a6e22e">st</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">!GIT_PAGER= git status
+</span><span style="color:#e6db74">    ci = commit
+</span><span style="color:#e6db74">    br = branch
+</span><span style="color:#e6db74">    co = checkout
+</span><span style="color:#e6db74">    lp = log -p
+</span><span style="color:#e6db74">    ll = log --graph --pretty=format:%Cblue%h%d%Creset%x20%s
+</span><span style="color:#e6db74">    la = log --graph --pretty=format:%Cblue%h%d%Creset%x20%s --all
+</span><span style="color:#e6db74">    ls = ls-files</span></code></pre></div>
+
+<h2 id="instalando-o-oh-my-zsh">Instalando o OH-MY-ZSH</h2>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span></code></pre></div></p>
+
+<h2 id="gerando-a-chave-ssh">Gerando a chave SSH</h2>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span style="color:#e6db74">&#34;apiflask@test-devops.com&#34;</span>
+
+Generating public/private rsa key pair.
+Enter file in which to save the key <span style="color:#f92672">(</span>/home/apiflask/.ssh/id_rsa<span style="color:#f92672">)</span>:
+Created directory <span style="color:#e6db74">&#39;/home/apiflask/.ssh&#39;</span>.
+Enter passphrase <span style="color:#f92672">(</span>empty <span style="color:#66d9ef">for</span> no passphrase<span style="color:#f92672">)</span>:
+Enter same passphrase again:
+Your identification has been saved in /home/apiflask/.ssh/id_rsa.
+Your public key has been saved in /home/apiflask/.ssh/id_rsa.pub.
+The key fingerprint is:</code></pre></div>
+
+<p>Copie e o conteúdo do diretório .ssh/id_rsa.pub para as chaves habilitadas do GitHub.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat .ssh/id_rsa.pub
+ssh-rsa AAAA.....tA apiflask@test-devops.com</code></pre></div>
+
+<p>Próximo artigo: <a href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/" target="_blank">Deploy Flask na Digital Ocean - Parte 8 - Configurando o aplicativo</a></p>
+
+    
+
+    
+        <hr>
+        <footer>
+            
+                <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-7-configurando-o-usuario%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-7-configurando-o-usuario%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-7-configurando-o-usuario%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-7-configurando-o-usuario%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
+    </nav>
+</section>
+
+            
+
+            
+        </footer>
+    
+
+</article> 
+
+
+            </div>
+            <!-- /.blog-main -->
+            <aside class="col-sm-3 ml-auto blog-sidebar">
+    
+
+    
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+        
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/">
+                    Deploy Flask na Digital Ocean - Parte 8 - Configurando o aplicativo
+                </a>
+            </li>
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/">
+                    Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário
+                </a>
+            </li>
+        
+    </ol>
+</section>
+
+    
+
+    
+
+    
+    
+        
+        <section class="sidebar-module">
+            <h4>Séries</h4>
+
+            <ol class="list-unstyled">
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/api-em-flask">
+                        Api em flask
+                        (14)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/deploy-flask-na-digital-ocean">
+                        Deploy flask na digital ocean
+                        (8)
+                    </a>
+                </li>
+                
+            </ol>
+
+        </section>
+        
+    
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/devops">Devops (10)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">Elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">Flask (14)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">Python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> Api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/deploy"><i class="fa fa-tags"></i> Deploy</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/digital-ocean"><i class="fa fa-tags"></i> Digital ocean</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> Docker</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> Elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/flask"><i class="fa fa-tags"></i> Flask</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> Functional programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> Python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> Rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+        <p>
+        
+            Blog template created by
+            <a href="https://twitter.com/mdo">@mdo</a>
+            , ported to Hugo by
+            <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+        
+        </p>
+        <p>
+            <a href="#"></a>
+        </p>
+    </footer>
+    
+</body>
+</html>

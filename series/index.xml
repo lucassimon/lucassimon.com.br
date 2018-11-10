@@ -2,13 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on Lucas Simon</title>
-    <link>/series/</link>
+    <link>https://lucassimon.com.br/series/</link>
     <description>Recent content in Series on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
+    <lastBuildDate>Mon, 29 Oct 2018 18:00:00 -0300</lastBuildDate>
     
-	<atom:link href="/series/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lucassimon.com.br/series/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Api Em Flask</title>
+      <link>https://lucassimon.com.br/series/api-em-flask/</link>
+      <pubDate>Mon, 29 Oct 2018 18:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/series/api-em-flask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deploy Flask Na Digital Ocean</title>
+      <link>https://lucassimon.com.br/series/deploy-flask-na-digital-ocean/</link>
+      <pubDate>Thu, 08 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/series/deploy-flask-na-digital-ocean/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

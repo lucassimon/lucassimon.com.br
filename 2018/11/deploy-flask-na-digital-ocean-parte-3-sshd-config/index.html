@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Deploy Flask na Digital Ocean - Parte 3 - sshd config" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-3-sshd-config/" />
+
+
+
+<meta property="article:published_time" content="2018-11-03T09:07:41-03:00"/>
+
+<meta property="article:modified_time" content="2018-11-03T09:07:41-03:00"/>
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploy Flask na Digital Ocean - Parte 3 - sshd config"/>
+<meta name="twitter:description" content=""/>
+
+
+<meta itemprop="name" content="Deploy Flask na Digital Ocean - Parte 3 - sshd config">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2018-11-03T09:07:41-03:00" />
+<meta itemprop="dateModified" content="2018-11-03T09:07:41-03:00" />
+<meta itemprop="wordCount" content="1706">
+
+
+
+<meta itemprop="keywords" content="digital ocean,deploy,flask,python," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploy Flask na Digital Ocean - Parte 3 - sshd config",
+  "url": "https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-3-sshd-config/",
+  "wordCount": "1706",
+  "datePublished": "2018-11-03T09:07:41-03:00",
+  "dateModified": "2018-11-03T09:07:41-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "deploy, python, web application, devops, digital ocean, flask"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-3-sshd-config/">
+
+    <title>Deploy Flask na Digital Ocean - Parte 3 - sshd config | Lucas Simon</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+</head>
+
+<body><noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    
+
+    
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="nav blog-nav">
+                <a class="nav-link " href="https://lucassimon.com.br/">
+                    Home
+                </a>
+                    
+                    <a class="nav-link" href="/about/" title="">
+                        Sobre
+                    </a>
+                
+
+                
+                    
+                    <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">
+                        Curriculo
+                    </a>
+                
+                    
+                    <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">
+                        Github
+                    </a>
+                
+            </nav>
+        </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">
+                <a href="https://lucassimon.com.br/" rel="home">
+                    Lucas Simon
+                </a>
+            </h1>
+            
+                <p class="lead blog-description">
+                    Web Developer. lucassrod@gmail.com
+                </p>
+            
+        </div>
+    </header>
+    
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-3-sshd-config/">
+                Deploy Flask na Digital Ocean - Parte 3 - sshd config
+            </a>
+        </h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-11-03T09:07:41-03:00">
+                Sat Nov 03, 2018
+            </time>
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/deploy-flask-na-digital-ocean" rel="tag">
+            Deploy Flask na Digital Ocean
+        </a>
+    
+
+
+
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/devops" rel="category tag">
+            devops
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/digital-ocean" rel="tag">
+            digital ocean
+        </a>
+    
+        , 
+        <a href="/tags/deploy" rel="tag">
+            deploy
+        </a>
+    
+        , 
+        <a href="/tags/flask" rel="tag">
+            flask
+        </a>
+    
+        , 
+        <a href="/tags/python" rel="tag">
+            python
+        </a>
+    
+
+
+        </p>
+    </header>
+    <p></p>
+
+<h2 id="criando-grupo-sshlogin">Criando grupo sshlogin</h2>
+
+<p>Crie um novo grupo conforme o comando abaixo:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"># groupadd sshlogin</code></pre></div>
+
+<p>E insira o usuario <code>root</code> no grupo criado</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"># useradd -g sshlogin root</code></pre></div>
+
+<h2 id="altere-as-configurações-padrões-ao-criar-um-usuário">Altere as configurações padrões ao criar um usuário</h2>
+
+<p>Abra o arquivo abaixo com seu editor de textos:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"># vim /etc/default/useradd</code></pre></div>
+
+<p>E realize as alterações conforme abaixo:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#75715e"># Default values for useradd(8)</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># The SHELL variable specifies the default login shell on your</span>
+<span style="color:#75715e"># system.</span>
+<span style="color:#75715e"># Similar to DHSELL in adduser. However, we use &#34;sh&#34; here because</span>
+<span style="color:#75715e"># useradd is a low level utility and should be as general</span>
+<span style="color:#75715e"># as possible</span>
+<span style="color:#a6e22e">SHELL</span><span style="color:#f92672">=</span><span style="color:#e6db74">/bin/zsh</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># The default group for users</span>
+<span style="color:#75715e"># 100=users on Debian systems</span>
+<span style="color:#75715e"># Same as USERS_GID in adduser</span>
+<span style="color:#75715e"># This argument is used when the -n flag is specified.</span>
+<span style="color:#75715e"># The default behavior (when -n and -g are not specified) is to create a</span>
+<span style="color:#75715e"># primary user group with the same name as the user being added to the</span>
+<span style="color:#75715e"># system.</span>
+<span style="color:#a6e22e">GROUP</span><span style="color:#f92672">=</span><span style="color:#e6db74">100</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># The default home directory. Same as DHOME for adduser</span>
+<span style="color:#a6e22e">HOME</span><span style="color:#f92672">=</span><span style="color:#e6db74">/home</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># The number of days after a password expires until the account</span>
+<span style="color:#75715e"># is permanently disabled</span>
+<span style="color:#75715e"># INACTIVE=-1</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># The default expire date</span>
+<span style="color:#75715e"># EXPIRE=</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># The SKEL variable specifies the directory containing &#34;skeletal&#34; user</span>
+<span style="color:#75715e"># files; in other words, files such as a sample .profile that will be</span>
+<span style="color:#75715e"># copied to the new user&#39;s home directory when it is created.</span>
+<span style="color:#a6e22e">SKEL</span><span style="color:#f92672">=</span><span style="color:#e6db74">/etc/skel</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Defines whether the mail spool should be created while</span>
+<span style="color:#75715e"># creating the account</span>
+<span style="color:#75715e"># CREATE_MAIL_SPOOL=yes</span></code></pre></div>
+
+<h2 id="o-etc-skel">O /etc/skel</h2>
+
+<p>O skel é um diretório modelo de arquivos e diretórios que serão copiados para o usuário
+quando for criada uma nova conta.</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># cd /etc/skel
+</span><span style="color:#75715e"># mkdir -p logs/{gunicorn,nginx,supervisor}
+</span><span style="color:#75715e"># mkdir run sites bkp scripts venvs .ssh
+</span><span style="color:#75715e"></span># touch .zshrc</code></pre></div></p>
+
+<h2 id="configurando-e-entendendo-o-ssh-config">Configurando e entendendo o ssh_config</h2>
+
+<p>Abra o arquivo com seu editor de textos:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"># vim /etc/ssh/sshd_config</code></pre></div>
+
+<p>Altere as configurações do SSH Config</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#75715e">###############################################</span>
+<span style="color:#75715e"># Porta padrão usada pelo servidor sshd. Múltiplas portas podem ser</span>
+<span style="color:#75715e"># especificadas separadas por espaços.</span>
+<span style="color:#75715e">###############################################</span>
+
+<span style="color:#a6e22e">Port 22</span>
+
+<span style="color:#75715e">###############################################</span>
+<span style="color:#75715e"># Especifica o endereço IP das interfaces de rede que o servidor sshd</span>
+<span style="color:#75715e"># servirá requisições. Múltiplos endereços podem ser especificados</span>
+<span style="color:#75715e"># separados por espaços. A opção Port deve vir antes desta opção.</span>
+<span style="color:#75715e"># O padrão é que o sshd escute em todos os endereços de rede</span>
+<span style="color:#75715e">###############################################</span>
+
+<span style="color:#75715e">#ListenAddress x.x.x.x</span>
+
+<span style="color:#75715e">###################################################</span>
+<span style="color:#75715e"># Protocolos aceitos pelo servidor, primeiro será verificado se o cliente é</span>
+<span style="color:#75715e"># compatível com a versão 2 e depois a versão 1. Caso seja especificado</span>
+<span style="color:#75715e"># somente a versão 2 e o cliente seja versão 1, a conexão será descartada.</span>
+<span style="color:#75715e"># Quando não é especificada, o protocolo ssh 1 é usado como padrão.</span>
+<span style="color:#75715e">###################################################</span>
+
+<span style="color:#a6e22e">Protocol 2</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Especifica os arquivos que contém as chaves privadas do sshd.</span>
+<span style="color:#75715e"># Lembre-se que o ssh faz a criptograifa dos dados usando chaves assimétricas</span>
+<span style="color:#75715e"># privadas e públicas.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#a6e22e">HostKey /etc/ssh/ssh_host_rsa_key</span>
+<span style="color:#a6e22e">HostKey /etc/ssh/ssh_host_dsa_key</span>
+<span style="color:#a6e22e">HostKey /etc/ssh/ssh_host_ecdsa_key</span>
+<span style="color:#a6e22e">HostKey /etc/ssh/ssh_host_ed25519_key</span>
+
+<span style="color:#75715e">###################################################</span>
+<span style="color:#75715e"># Lifetime and size of ephemeral version 1 server key</span>
+<span style="color:#75715e"># Tempo para geração de nova chave do servidor (segundos). O padrão é</span>
+<span style="color:#75715e"># 3600 segundos (1 hora).</span>
+<span style="color:#75715e"># O propósito de regeneração de chaves é para evitar descriptografar</span>
+<span style="color:#75715e"># trafégo capturado em sessões abertas para posteriormente tentar</span>
+<span style="color:#75715e"># invadir a máquina e roubar as chaves.</span>
+<span style="color:#75715e"># A chave nunca é armazenada em qualquer lugar. Se o valor for 0</span>
+<span style="color:#75715e"># a chave nunca será regenerada.</span>
+<span style="color:#75715e">###################################################</span>
+
+<span style="color:#a6e22e">KeyRegenerationInterval 3600</span>
+
+<span style="color:#75715e">############################################</span>
+<span style="color:#75715e"># Tamanho da chave após ser gerada. 1024 bits é o padrão</span>
+<span style="color:#75715e">############################################</span>
+
+<span style="color:#a6e22e">ServerKeyBits 1024</span>
+
+<span style="color:#75715e">###############################################</span>
+<span style="color:#75715e"># Indica Facilidade e nível logs do sshd que aparecerão no syslogd</span>
+<span style="color:#75715e"># ou no rsyslog. você pode alterar conforme sua necessídade</span>
+<span style="color:#75715e">###############################################</span>
+
+<span style="color:#a6e22e">SyslogFacility AUTH</span>
+<span style="color:#a6e22e">LogLevel INFO</span>
+
+<span style="color:#75715e">###################################################</span>
+<span style="color:#75715e"># Mostra (yes) ou não (no) a date e hora do último login do usuário</span>
+<span style="color:#75715e"># O padrão é &#34;sim&#34;.</span>
+<span style="color:#75715e">###################################################</span>
+
+<span style="color:#a6e22e">PrintLastLog yes</span>
+
+<span style="color:#75715e">#####################################################</span>
+<span style="color:#75715e"># Mostra (yes) ou não (no) a mensagem em /etc/motd no login. O padrão é &#34;no&#34;.</span>
+<span style="color:#75715e">#####################################################</span>
+
+<span style="color:#a6e22e">PrintMotd no</span>
+
+<span style="color:#75715e">###############################################</span>
+<span style="color:#75715e"># Especifica o número máximo de tentativas de autenticação permitidas</span>
+<span style="color:#75715e"># por conexão. Uma vez que o número de falhas chega a metade desse</span>
+<span style="color:#75715e"># valor, falhas adicionais são registrados. O padrão é 6.</span>
+<span style="color:#75715e">###############################################</span>
+
+<span style="color:#a6e22e">MaxAuthTries 5</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Especifica o número máximo de sessões abertas permitida por rede-trabalhos</span>
+<span style="color:#75715e"># de ligação. O padrão é 10.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#75715e"># MaxSessions 1</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Especifica o número máximo de conexões de autenticação simultâneas feitas</span>
+<span style="color:#75715e"># pelo daemon sshd. O valor padrão é 10. Valores aleatórios podem ser</span>
+<span style="color:#75715e"># especificados usando os campos &#34;inicio:taxa:máximo&#34;. Por exemplo,</span>
+<span style="color:#75715e"># 5:40:15 rejeita até 40% das tentativas de autenticação que excedam o</span>
+<span style="color:#75715e"># limite de 5 até atingir o limite máximo de 15 conexões, quando</span>
+<span style="color:#75715e"># nenhuma nova autenticação é permitida.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#a6e22e">MaxStartups 5:40:15</span>
+
+<span style="color:#75715e">################################################</span>
+<span style="color:#75715e"># Se a PasswordAuthentication for usada, permite (yes) ou não (no) login</span>
+<span style="color:#75715e"># usando senha. O padrão é &#34;yes&#34;.</span>
+<span style="color:#75715e">################################################</span>
+
+<span style="color:#a6e22e">PasswordAuthentication no</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Se a opção PasswordAuthentication for usada, permite (yes) ou não (no) login</span>
+<span style="color:#75715e"># sem senha. O padrão é &#34;no&#34;. Não é recomendado habilitar (yes) essa opção</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#a6e22e">PermitEmptyPasswords no</span>
+
+<span style="color:#75715e">##########################################################</span>
+<span style="color:#75715e"># Está opção permiti (yes) ou nega (no) se a autenticação desafio-resposta será aceita.</span>
+<span style="color:#75715e"># via PAM Por exemplo. o Padrão é (yes).</span>
+<span style="color:#75715e">##########################################################</span>
+
+<span style="color:#a6e22e">ChallengeResponseAuthentication no</span>
+
+<span style="color:#75715e">#########################################</span>
+<span style="color:#75715e"># ssh Permite (yes) ou nega (no) que o usuário root acesse</span>
+<span style="color:#75715e"># remotamente o servidor. por segurança deixe desabilitada.</span>
+<span style="color:#75715e">#########################################</span>
+
+<span style="color:#a6e22e">PermitRootLogin yes</span>
+
+<span style="color:#75715e">############################################</span>
+<span style="color:#75715e"># Especifica se o encaminhamento pelos dispositivos tun/tap</span>
+<span style="color:#75715e"># é permitido, criando um rede ponto-a-ponto usando ssh.</span>
+<span style="color:#75715e"># OU seja permiti ou não a criação de túneis cifrados com sshd</span>
+<span style="color:#75715e">############################################</span>
+
+<span style="color:#75715e">#PermitTunnel yes</span>
+
+<span style="color:#75715e">###################################################</span>
+<span style="color:#75715e"># Especifica uma lista de groupos que terão acesso permitido ao sshd</span>
+<span style="color:#75715e"># Se o usuário estiver contido no grupo especificadp nesta opção então seu</span>
+<span style="color:#75715e"># acesso será liberado.</span>
+<span style="color:#75715e">###################################################</span>
+
+<span style="color:#a6e22e">AllowGroups sshlogin</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Especifica um lista de grupos que terão seu acesso negado ao sshd</span>
+<span style="color:#75715e"># se o usuário estiver contido no grupo espeficado nesta opção seu acesso será</span>
+<span style="color:#75715e"># negado ao servidor sshd.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#75715e">#DenyGroups root</span>
+
+<span style="color:#75715e">############################################</span>
+<span style="color:#75715e"># Usuários que o ssh permite acessar remotamente o servidor</span>
+<span style="color:#75715e">############################################</span>
+
+<span style="color:#75715e">#AllowUsers silent joao maria</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Está opção especifica quais usuários não terão permissão de acesso ao servidor</span>
+<span style="color:#75715e"># sshd. a sintaxe é a mesma de AllowUsers, pode especificar vários usuários</span>
+<span style="color:#75715e"># separados por espaço.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#75715e">#DenyUsers root</span>
+
+<span style="color:#75715e">###################################################</span>
+<span style="color:#75715e"># Tempo máximo para fazer login no sistema antes da conexão ser fechada</span>
+<span style="color:#75715e"># O tempo e informado em segundos. se o valor for 0 não tem limite.</span>
+<span style="color:#75715e"># o padrão é 120 segundos.</span>
+<span style="color:#75715e">###################################################</span>
+
+<span style="color:#a6e22e">LoginGraceTime 30</span>
+
+<span style="color:#75715e">###################################################</span>
+<span style="color:#75715e"># Privilege Separation is turned on for security</span>
+<span style="color:#75715e"># Está opção especifica se será criado um processo filho sem privilégios</span>
+<span style="color:#75715e"># Após a autenticação bem-sucedida, outro processo será criado que tem</span>
+<span style="color:#75715e"># o privilégio de o usuário autenticado. O objetivo da separação de</span>
+<span style="color:#75715e"># privilégio é para evitar a escalonamento de privilégios,  qualquer tipo de</span>
+<span style="color:#75715e"># corrupção no âmbito dos processos sem privilégios. A padrão é &#34;Sim&#34;.</span>
+<span style="color:#75715e">###################################################</span>
+
+<span style="color:#a6e22e">UsePrivilegeSeparation yes</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Checa por permissões de dono dos arquivos e diretório de usuário antes de</span>
+<span style="color:#75715e"># fazer o login. É muito recomendável para evitar riscos de segurança</span>
+<span style="color:#75715e"># com arquivos lidos por todos os usuários.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#a6e22e">StrictModes yes</span>
+
+<span style="color:#75715e">###################################################</span>
+<span style="color:#75715e"># Especifica se a autenticação via RSA é permitida (só usado na versão 1 do</span>
+<span style="color:#75715e"># protocolo ssh). Por padrão &#34;yes&#34;.</span>
+<span style="color:#75715e">###################################################</span>
+
+<span style="color:#a6e22e">RSAAuthentication yes</span>
+
+<span style="color:#75715e">###########################################</span>
+<span style="color:#75715e"># Especifica se a autenticação usando chave pública é permitida.</span>
+<span style="color:#75715e"># O padrão é &#34;Sim&#34;. Note que esta opção se aplica ao protocolo</span>
+<span style="color:#75715e"># versão 2, apenas.</span>
+<span style="color:#75715e">###########################################</span>
+
+<span style="color:#a6e22e">PubkeyAuthentication yes</span>
+
+<span style="color:#75715e">##################################################</span>
+<span style="color:#75715e">#Especifica o arquivo que contém as chaves públicas que podem ser usados</span>
+<span style="color:#75715e">#para autenticação de usuários. &#34;%h&#34; especifica o diretório home do</span>
+<span style="color:#75715e"># do usuário que está usando as chaves públicas e privadas.</span>
+<span style="color:#75715e">##################################################</span>
+
+<span style="color:#a6e22e">AuthorizedKeysFile %h/.ssh/authorized_keys</span>
+
+<span style="color:#75715e">###################################</span>
+<span style="color:#75715e"># Don&#39;t read the user&#39;s ~/.rhosts and ~/.shosts files #</span>
+<span style="color:#75715e"># Ignora os arquivos ~/.rhosts e ~/.shosts ou não.   #</span>
+<span style="color:#75715e">###################################</span>
+
+<span style="color:#a6e22e">IgnoreRhosts yes</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Ignora (yes) ou não (no) os arquivos ~/.ssh/known_hosts quando for usado</span>
+<span style="color:#75715e"># para a opção RhostsRSAAuthentication. Se você não confia neste mecanismo</span>
+<span style="color:#75715e"># ajuste esta opção para yes.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#75715e">#IgnoreUserKnownHosts yes</span>
+
+<span style="color:#75715e"># For this to work you will also need host keys in /etc/ssh_known_hosts</span>
+<span style="color:#a6e22e">RhostsRSAAuthentication no</span>
+
+<span style="color:#75715e"># similar for protocol version 2</span>
+<span style="color:#a6e22e">HostbasedAuthentication no</span>
+
+<span style="color:#75715e"># Kerberos options</span>
+<span style="color:#75715e">#KerberosAuthentication no</span>
+<span style="color:#75715e">#KerberosGetAFSToken no</span>
+<span style="color:#75715e">#KerberosOrLocalPasswd yes</span>
+<span style="color:#75715e">#KerberosTicketCleanup yes</span>
+
+<span style="color:#75715e"># GSSAPI options</span>
+<span style="color:#75715e">#GSSAPIAuthentication no</span>
+<span style="color:#75715e">#GSSAPICleanupCredentials yes</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Permite (yes) ou não (no) o redirecionamento de conexões X11. A segurança</span>
+<span style="color:#75715e"># do sistema não é aumentada com a desativação desta opção, outros métodos</span>
+<span style="color:#75715e"># de redirecionamento podem ser usados. Isso permite ou nega a execução de</span>
+<span style="color:#75715e"># aplicativos gráficos no servidor ssh.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#a6e22e">X11Forwarding no</span>
+
+<span style="color:#75715e">#######################################################</span>
+<span style="color:#75715e"># Especifica o número do primeiro display que será usado para o redirecionamento</span>
+<span style="color:#75715e"># X11 do ssh. Por padrão é usado o display 10 como inicial para evitar conflito</span>
+<span style="color:#75715e"># com display X locais</span>
+<span style="color:#75715e">#######################################################</span>
+
+<span style="color:#a6e22e">X11DisplayOffset 10</span>
+
+<span style="color:#75715e"># Verifica se o host continua conectado</span>
+<span style="color:#a6e22e">KeepAlive yes</span>
+
+<span style="color:#75715e">######################################################</span>
+<span style="color:#75715e"># Permite (yes) ou não (no) o envio de pacotes keepalive (para verificar se o</span>
+<span style="color:#75715e"># cliente responde. Isto é bom para fechar conexões que não respondem mas</span>
+<span style="color:#75715e"># também podem fechar conexões caso não existam rotas para o cliente</span>
+<span style="color:#75715e"># naquele momento (é um problema temporário). Colocando esta opção como</span>
+<span style="color:#75715e"># &#34;no&#34; por outro lado pode deixar usuários que não tiveram a oportunidade</span>
+<span style="color:#75715e"># de efetuar o logout do servidor dados como &#34;permanentemente conectados&#34;</span>
+<span style="color:#75715e"># no sistema. Esta opção deve ser ativada/desativada aqui e no programa</span>
+<span style="color:#75715e"># cliente para funcionar. caso queira manter uma conexão aberta mesmo estando</span>
+<span style="color:#75715e"># inativa, habilite (yes) no servidor e no cliente está opção.</span>
+<span style="color:#75715e">######################################################</span>
+
+<span style="color:#75715e"># TCPKeepAlive yes</span>
+
+<span style="color:#75715e">##################################################</span>
+<span style="color:#75715e"># Usa (yes) ou não usa (no) o programa login para efetuar o login do cliente</span>
+<span style="color:#75715e"># no servidor ssh. o padrão é &#34;não&#34;</span>
+<span style="color:#75715e">##################################################</span>
+
+<span style="color:#75715e">#UseLogin no</span>
+
+<span style="color:#75715e">#####################################</span>
+<span style="color:#75715e"># Mostra uma mensagem antes do nome de login.</span>
+<span style="color:#75715e">#####################################</span>
+
+<span style="color:#a6e22e">Banner /etc/issue.net</span>
+
+<span style="color:#75715e"># Allow client to pass locale environment variables</span>
+<span style="color:#a6e22e">AcceptEnv LANG LC_*</span>
+
+<span style="color:#75715e">#############################################</span>
+<span style="color:#75715e"># Ativa o subsistema de ftp seguro. Para desabilitar comente a linha</span>
+<span style="color:#75715e"># abaixo</span>
+<span style="color:#75715e">#############################################</span>
+
+<span style="color:#a6e22e">Subsystem sftp /usr/lib/openssh/sftp-server</span>
+
+<span style="color:#75715e">######################################</span>
+<span style="color:#75715e"># Permite a autenticação usando o PAM (yes) ou não (no)</span>
+<span style="color:#75715e"># o padrão é &#34;não&#34;.</span>
+<span style="color:#75715e">######################################</span>
+
+<span style="color:#a6e22e">UsePAM yes</span></code></pre></div>
+
+<p>Em seguida reinicie o serviço ssh <code>service sshd restart</code></p>
+
+<h2 id="fontes">Fontes</h2>
+
+<p><a href="https://www.vivaolinux.com.br/etc/sshd_config-4/" target="_blank">Viva o Linux</a></p>
+
+<p>Próximo artigo: <a href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-4-fail2ban/" target="_blank">Deploy Flask na Digital Ocean - Parte 4 - Fail2ban</a></p>
+
+    
+
+    
+        <hr>
+        <footer>
+            
+                <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-3-sshd-config%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-3-sshd-config%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-3-sshd-config%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-3-sshd-config%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
+    </nav>
+</section>
+
+            
+
+            
+        </footer>
+    
+
+</article> 
+
+
+            </div>
+            <!-- /.blog-main -->
+            <aside class="col-sm-3 ml-auto blog-sidebar">
+    
+
+    
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+        
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/">
+                    Deploy Flask na Digital Ocean - Parte 8 - Configurando o aplicativo
+                </a>
+            </li>
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/">
+                    Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário
+                </a>
+            </li>
+        
+    </ol>
+</section>
+
+    
+
+    
+
+    
+    
+        
+        <section class="sidebar-module">
+            <h4>Séries</h4>
+
+            <ol class="list-unstyled">
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/api-em-flask">
+                        Api em flask
+                        (14)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/deploy-flask-na-digital-ocean">
+                        Deploy flask na digital ocean
+                        (8)
+                    </a>
+                </li>
+                
+            </ol>
+
+        </section>
+        
+    
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/devops">Devops (10)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">Elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">Flask (14)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">Python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> Api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/deploy"><i class="fa fa-tags"></i> Deploy</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/digital-ocean"><i class="fa fa-tags"></i> Digital ocean</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> Docker</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> Elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/flask"><i class="fa fa-tags"></i> Flask</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> Functional programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> Python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> Rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+        <p>
+        
+            Blog template created by
+            <a href="https://twitter.com/mdo">@mdo</a>
+            , ported to Hugo by
+            <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+        
+        </p>
+        <p>
+            <a href="#"></a>
+        </p>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Deploy Flask na Digital Ocean - Parte 4 - Fail2ban" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-4-fail2ban/" />
+
+
+
+<meta property="article:published_time" content="2018-11-04T09:07:41-03:00"/>
+
+<meta property="article:modified_time" content="2018-11-04T09:07:41-03:00"/>
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploy Flask na Digital Ocean - Parte 4 - Fail2ban"/>
+<meta name="twitter:description" content=""/>
+
+
+<meta itemprop="name" content="Deploy Flask na Digital Ocean - Parte 4 - Fail2ban">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2018-11-04T09:07:41-03:00" />
+<meta itemprop="dateModified" content="2018-11-04T09:07:41-03:00" />
+<meta itemprop="wordCount" content="722">
+
+
+
+<meta itemprop="keywords" content="digital ocean,deploy,flask,python," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploy Flask na Digital Ocean - Parte 4 - Fail2ban",
+  "url": "https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-4-fail2ban/",
+  "wordCount": "722",
+  "datePublished": "2018-11-04T09:07:41-03:00",
+  "dateModified": "2018-11-04T09:07:41-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "deploy, python, web application, devops, digital ocean, flask"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-4-fail2ban/">
+
+    <title>Deploy Flask na Digital Ocean - Parte 4 - Fail2ban | Lucas Simon</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+</head>
+
+<body><noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    
+
+    
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="nav blog-nav">
+                <a class="nav-link " href="https://lucassimon.com.br/">
+                    Home
+                </a>
+                    
+                    <a class="nav-link" href="/about/" title="">
+                        Sobre
+                    </a>
+                
+
+                
+                    
+                    <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">
+                        Curriculo
+                    </a>
+                
+                    
+                    <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">
+                        Github
+                    </a>
+                
+            </nav>
+        </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">
+                <a href="https://lucassimon.com.br/" rel="home">
+                    Lucas Simon
+                </a>
+            </h1>
+            
+                <p class="lead blog-description">
+                    Web Developer. lucassrod@gmail.com
+                </p>
+            
+        </div>
+    </header>
+    
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-4-fail2ban/">
+                Deploy Flask na Digital Ocean - Parte 4 - Fail2ban
+            </a>
+        </h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-11-04T09:07:41-03:00">
+                Sun Nov 04, 2018
+            </time>
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/deploy-flask-na-digital-ocean" rel="tag">
+            Deploy Flask na Digital Ocean
+        </a>
+    
+
+
+
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/devops" rel="category tag">
+            devops
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/digital-ocean" rel="tag">
+            digital ocean
+        </a>
+    
+        , 
+        <a href="/tags/deploy" rel="tag">
+            deploy
+        </a>
+    
+        , 
+        <a href="/tags/flask" rel="tag">
+            flask
+        </a>
+    
+        , 
+        <a href="/tags/python" rel="tag">
+            python
+        </a>
+    
+
+
+        </p>
+    </header>
+    <p></p>
+
+<p>A segurança é um requisito fundamental para o bom funcionamento dos serviços online. Além da sua instalação, os administradores devem proceder à sua correcta configuração e também ter mecanismos que garantam toda a segurança do sistema.</p>
+
+<p>Quando oferecemos um serviço como SSH na internet, já sabemos o risco que corremos. Mesmo com alteração da porta, não impede que você sofra um ataque de Brute Force, mas de qualquer forma algumas portas terão que ser abertas devido ao uso de serviços, como o caso do SSH. Desta forma deixando vulnerável o serviço para ataques.</p>
+
+<!--more-->
+
+<h2 id="instalando">Instalando</h2>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"># apt update <span style="color:#f92672">&amp;&amp;</span> sudo apt install fail2ban -y</code></pre></div>
+
+<h2 id="configurando-o-fail2ban">Configurando o Fail2Ban</h2>
+
+<p>Precisamos realizar algumas configurações nos dois arquivos a seguir.</p>
+
+<h3 id="jail-conf">jail.conf</h3>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># The DEFAULT allows a global definition of the options. They can be overridden
+</span><span style="color:#75715e"># in each jail afterwards.
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">[</span>DEFAULT<span style="color:#f92672">]</span>
+
+<span style="color:#75715e">######################################
+</span><span style="color:#75715e"># Este parâmetro recebe uma lista de endereços IP que devem ser excluídos das regras Fail2ban. Os endereços IP ou blocos listados aqui não terá restrições colocadas sobre eles.
+</span><span style="color:#75715e"># Endereços IP e intervalos são separados por espaços em branco. Você deve adicionar o seu endereço de # IP residencial ou do trabalho para o fim da lista para que você não seja bloqueado, se você está tendo problemas para fazer login.
+</span><span style="color:#75715e"># Isso será algo como: &#34;ignoreip = 127.0.0.1/8 YOUR_IP_ADDRESS &#34;
+</span><span style="color:#75715e">######################################
+</span><span style="color:#75715e"></span>ignoreip <span style="color:#f92672">=</span> <span style="color:#ae81ff">127</span>.0.0.1/8
+
+<span style="color:#75715e"># External command that will take an tagged arguments to ignore, e.g. &lt;ip&gt;,
+</span><span style="color:#75715e"># and return true if the IP is to be ignored. False otherwise.
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"># ignorecommand = /path/to/command &lt;ip&gt;
+</span><span style="color:#75715e"></span>ignorecommand <span style="color:#f92672">=</span>
+
+<span style="color:#75715e">######################################
+</span><span style="color:#75715e"># Esta lista a quantidade de tempo que uma proibição vai durar, se o cliente não conseguir autenticar # corretamente. É dado em segundos.
+</span><span style="color:#75715e"># O valor padrão proíbe clientes por 10 minutos.
+</span><span style="color:#75715e">######################################
+</span><span style="color:#75715e"></span>bantime  <span style="color:#f92672">=</span> <span style="color:#ae81ff">3600</span>
+
+<span style="color:#75715e"># A host is banned if it has generated &#34;maxretry&#34; during the last &#34;findtime&#34;
+</span><span style="color:#75715e"># seconds.
+</span><span style="color:#75715e"></span>findtime <span style="color:#f92672">=</span> <span style="color:#ae81ff">600</span>
+
+<span style="color:#75715e">######################################
+</span><span style="color:#75715e"># Este parâmetro especifica o número de tentativas que serão permitidas antes de uma proibição ser instituída.
+</span><span style="color:#75715e">######################################
+</span><span style="color:#75715e"></span>maxretry <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+
+<span style="color:#75715e"># &#34;backend&#34; specifies the backend used to get files modification.
+</span><span style="color:#75715e"></span>backend <span style="color:#f92672">=</span> auto
+
+<span style="color:#75715e"># &#34;usedns&#34; specifies if jails should trust hostnames in logs,
+</span><span style="color:#75715e"></span>usedns <span style="color:#f92672">=</span> warn
+
+
+<span style="color:#75715e"># Destination email address used solely for the interpolations in
+</span><span style="color:#75715e"># jail.{conf,local} configuration files.
+</span><span style="color:#75715e"></span>destemail <span style="color:#f92672">=</span> root@localhost
+
+<span style="color:#75715e">#
+</span><span style="color:#75715e"># Name of the sender for mta actions
+</span><span style="color:#75715e"></span>sendername <span style="color:#f92672">=</span> Fail2Ban
+
+<span style="color:#75715e"># Email address of the sender
+</span><span style="color:#75715e"></span>sender <span style="color:#f92672">=</span> fail2ban@localhost
+
+
+<span style="color:#75715e">#
+</span><span style="color:#75715e"># in /etc/fail2ban/jail.local.
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"># Optionally you may override any other parameter (e.g. banaction,
+</span><span style="color:#75715e"># action, port, logpath, etc) in that section within jail.local
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">[</span>ssh<span style="color:#f92672">]</span>
+
+enabled  <span style="color:#f92672">=</span> true
+port     <span style="color:#f92672">=</span> ssh
+filter   <span style="color:#f92672">=</span> sshd
+logpath  <span style="color:#f92672">=</span> /var/log/auth.log
+maxretry <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+
+
+<span style="color:#75715e">######################################
+</span><span style="color:#75715e"># demais configurações abaixo não foram alterados
+</span><span style="color:#75715e"></span>######################################</code></pre></div>
+
+<p>Configurações do fail2ban</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Fail2Ban main configuration file
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"># Comments: use &#39;#&#39; for comment lines and &#39;;&#39; (following a space) for inline comments
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"># Changes:  in most of the cases you should not modify this
+</span><span style="color:#75715e">#           file, but provide customizations in fail2ban.local file, e.g.:
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"># [Definition]
+</span><span style="color:#75715e"># loglevel = 4
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">[</span>Definition<span style="color:#f92672">]</span>
+
+<span style="color:#75715e"># Option: loglevel
+</span><span style="color:#75715e"># Notes.: Set the log level output.
+</span><span style="color:#75715e">#         1 = ERROR
+</span><span style="color:#75715e">#         2 = WARN
+</span><span style="color:#75715e">#         3 = INFO
+</span><span style="color:#75715e">#         4 = DEBUG
+</span><span style="color:#75715e"># Values: [ NUM ]  Default: 1
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"></span>loglevel <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+
+<span style="color:#75715e"># Option: logtarget
+</span><span style="color:#75715e"># Notes.: Set the log target. This could be a file, SYSLOG, STDERR or STDOUT.
+</span><span style="color:#75715e">#         Only one log target can be specified.
+</span><span style="color:#75715e">#         If you change logtarget from the default value and you are
+</span><span style="color:#75715e">#         using logrotate -- also adjust or disable rotation in the
+</span><span style="color:#75715e">#         corresponding configuration file
+</span><span style="color:#75715e">#         (e.g. /etc/logrotate.d/fail2ban on Debian systems)
+</span><span style="color:#75715e"># Values: [ STDOUT | STDERR | SYSLOG | FILE ]  Default: STDERR
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"></span>logtarget <span style="color:#f92672">=</span> /var/log/fail2ban.log
+
+<span style="color:#75715e"># Option: socket
+</span><span style="color:#75715e"># Notes.: Set the socket file. This is used to communicate with the daemon. Do
+</span><span style="color:#75715e">#         not remove this file when Fail2ban runs. It will not be possible to
+</span><span style="color:#75715e">#         communicate with the server afterwards.
+</span><span style="color:#75715e"># Values: [ FILE ]  Default: /var/run/fail2ban/fail2ban.sock
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"></span>socket <span style="color:#f92672">=</span> /var/run/fail2ban/fail2ban.sock
+
+<span style="color:#75715e"># Option: pidfile
+</span><span style="color:#75715e"># Notes.: Set the PID file. This is used to store the process ID of the
+</span><span style="color:#75715e">#         fail2ban server.
+</span><span style="color:#75715e"># Values: [ FILE ]  Default: /var/run/fail2ban/fail2ban.pid
+</span><span style="color:#75715e">#
+</span><span style="color:#75715e"></span>pidfile <span style="color:#f92672">=</span> /var/run/fail2ban/fail2ban.pid</code></pre></div></p>
+
+<p>E por último como root execute <code>service fail2ban start</code></p>
+
+<p>Próximo artigo: <a href="https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-5-unnatended-upgrades/" target="_blank">Deploy Flask na Digital Ocean - Parte 5 - Unnatended upgrades</a></p>
+
+    
+
+    
+        <hr>
+        <footer>
+            
+                <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-4-fail2ban%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-4-fail2ban%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-4-fail2ban%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fdeploy-flask-na-digital-ocean-parte-4-fail2ban%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
+    </nav>
+</section>
+
+            
+
+            
+        </footer>
+    
+
+</article> 
+
+
+            </div>
+            <!-- /.blog-main -->
+            <aside class="col-sm-3 ml-auto blog-sidebar">
+    
+
+    
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+        
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/">
+                    Deploy Flask na Digital Ocean - Parte 8 - Configurando o aplicativo
+                </a>
+            </li>
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/">
+                    Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário
+                </a>
+            </li>
+        
+    </ol>
+</section>
+
+    
+
+    
+
+    
+    
+        
+        <section class="sidebar-module">
+            <h4>Séries</h4>
+
+            <ol class="list-unstyled">
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/api-em-flask">
+                        Api em flask
+                        (14)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/deploy-flask-na-digital-ocean">
+                        Deploy flask na digital ocean
+                        (8)
+                    </a>
+                </li>
+                
+            </ol>
+
+        </section>
+        
+    
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/devops">Devops (10)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">Elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">Flask (14)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">Python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> Api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/deploy"><i class="fa fa-tags"></i> Deploy</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/digital-ocean"><i class="fa fa-tags"></i> Digital ocean</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> Docker</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> Elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/flask"><i class="fa fa-tags"></i> Flask</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> Functional programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> Python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> Rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+        <p>
+        
+            Blog template created by
+            <a href="https://twitter.com/mdo">@mdo</a>
+            , ported to Hugo by
+            <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+        
+        </p>
+        <p>
+            <a href="#"></a>
+        </p>
+    </footer>
+    
+</body>
+</html>

@@ -6,10 +6,21 @@
     <description>Recent content in Flask on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 19 Oct 2018 18:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 29 Oct 2018 18:00:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/categories/flask/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 14 - Arquivos de configuração para Deploy na Digital Ocean</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/</link>
+      <pubDate>Mon, 29 Oct 2018 18:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/</guid>
+      <description>&lt;p&gt;Opa beleza galera. Vamos preparar nosso aplicativo criando alguns arquivos de configuração para fazer um deploy de nossa aplicação na &lt;a href=&#34;https://m.do.co/c/e4e2987ed92a&#34; target=&#34;_blank&#34;&gt;Digital Ocean&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 13 - Criando um container Docker</title>

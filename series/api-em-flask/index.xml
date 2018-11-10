@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Api Em Flask on Lucas Simon</title>
+    <link>https://lucassimon.com.br/series/api-em-flask/</link>
+    <description>Recent content in Api Em Flask on Lucas Simon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Mon, 29 Oct 2018 18:00:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://lucassimon.com.br/series/api-em-flask/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Série API em Flask - Parte 14 - Arquivos de configuração para Deploy na Digital Ocean</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/</link>
+      <pubDate>Mon, 29 Oct 2018 18:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/</guid>
+      <description>&lt;p&gt;Opa beleza galera. Vamos preparar nosso aplicativo criando alguns arquivos de configuração para fazer um deploy de nossa aplicação na &lt;a href=&#34;https://m.do.co/c/e4e2987ed92a&#34; target=&#34;_blank&#34;&gt;Digital Ocean&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 13 - Criando um container Docker</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/</link>
+      <pubDate>Fri, 19 Oct 2018 18:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://lucassimon.com.br/request_flask_api_user_in_container_docker.gif&#34; alt=&#34;Do a request in container&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Neste capítulo, vamos aprender a como criar um container docker para desenvolvimento e para deploy da nossa aplicação futuramente em produção.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 12 - Autênticação por JWT</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/</link>
+      <pubDate>Wed, 17 Oct 2018 21:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/</guid>
+      <description>&lt;p&gt;O &lt;a href=&#34;https://jwt.io/&#34; target=&#34;_blank&#34;&gt;JWT&lt;/a&gt; é um dos meios mais comuns de autorização entre aplicações web e SPA&amp;rsquo;s desenvolvidos com ReactJS ou outros frameworks JavaScript. Por ser um meio fácil de conter informações o &lt;a href=&#34;https://jwt.io/&#34; target=&#34;_blank&#34;&gt;JWT&lt;/a&gt; pode ter dados do usuário e um tempo de expiração.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 11 - Deletando um usuário</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/</link>
+      <pubDate>Wed, 17 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/</guid>
+      <description>&lt;p&gt;Chegando ao fim de nosso CRUD vamos implementar a deleção de usuaŕios. Aqui eu escolhi fazer um &lt;code&gt;soft delete&lt;/code&gt; ou seja re-utilizei o campo &lt;code&gt;active&lt;/code&gt; setando-o como &lt;code&gt;False&lt;/code&gt; para indicar que meu usuário foi deletado. A outra maneira seria de fato deletar o usuário da nossa base utilizando o método &lt;code&gt;User.objects.get(id=user_id).delete()&lt;/code&gt;, porém não quero perder dados. E claro para recuperar esse usuário basta ativá-lo novamente.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 10 - Editando um usuário</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/</link>
+      <pubDate>Mon, 15 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/</guid>
+      <description>&lt;p&gt;Hoje vamos implementar a atualização de dados, refatorar algumas linhas de código e criar uma validação simples no campo e-mail.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 9 - Buscando usuários</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/</link>
+      <pubDate>Fri, 12 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/</guid>
+      <description>&lt;p&gt;Esse capítulo iremos buscar um usuário pelo seu &lt;code&gt;id&lt;/code&gt;. É um dos recursos mais simples que teremos nessa API.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 8 - Listando usuários</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/</link>
+      <pubDate>Thu, 11 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/</guid>
+      <description>&lt;p&gt;A partir deste até o Capítulo 11: Deletando um usuário as rotas serão administrativas. Ou seja somente quem for da &lt;code&gt;role.admin = true&lt;/code&gt; poderá acessar essas rotas. A validação e autenticação será feita posteriormente, por agora, vamos apenas construir os recursos necessários.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 7 - Criando usuários</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/</link>
+      <pubDate>Wed, 10 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/</guid>
+      <description>&lt;p&gt;Neste artigo vamos abordar como criar um endpoint para registrar o usuário em nossa base de dados de acordo com o modelo do artigo anterior. Também vamos utilizar o pacote &lt;code&gt;marshmallow&lt;/code&gt; para validar nosso schema e padronizar algumas mensagens de erro.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 6 - Criando e testando nosso modelo de usuários</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/</link>
+      <pubDate>Tue, 09 Oct 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/</guid>
+      <description>&lt;p&gt;Oi pessoal, vamos criar nosso modelo de usuários e realizar alguns testes em cima dele. Graças ao pacote &lt;code&gt;mongoengine&lt;/code&gt; fica bem fácil de criar nossas classes referente ao modelo de dados e é bem parecido com o Django, porém sem as migrations.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 5 - MongoDB</title>
+      <link>https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/</link>
+      <pubDate>Sun, 08 Jul 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/</guid>
+      <description>&lt;p&gt;Nesta seção vamos instalar os pacotes necessários para conectar com o MongoDB, através de um container docker e configurá-lo em nossa aplicação Flask. Não tem segredo e bem simples.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 4 - Configurando o Makefile</title>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/</link>
+      <pubDate>Wed, 27 Jun 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-4---configurando-o-makefile/</guid>
+      <description>&lt;p&gt;Para melhorar nosso desenvolvimento, coloco no arquivo Makefile todos os comandos que utilizo durante o processo de desenvolvimento de software. Leia o artigo e veja algumas dicas e como o &lt;code&gt;make&lt;/code&gt; pode facilitar nossa vida.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 3 - Configurando o pytest e nosso primeiro teste</title>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</link>
+      <pubDate>Mon, 18 Jun 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/</guid>
+      <description>&lt;p&gt;Um ponto importante para todo o processo de desenvolvimento de software é a implementação de testes. Claro que nem sempre conseguimos cobrir toda a aplicação com testes unitários porém a idéia aqui é minimizar os erros que podem ocorrer em produção.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 2 - Organizando as dependências e requerimentos</title>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</link>
+      <pubDate>Thu, 14 Jun 2018 13:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/</guid>
+      <description>&lt;p&gt;Hoje, vamos organizar e estruturar toda a aplicação assim como instalar os pacotes de desenvolvimento para a nossa API.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 1 - Introdução, configuração e Hello World</title>
+      <link>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</link>
+      <pubDate>Tue, 12 Jun 2018 20:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/</guid>
+      <description>&lt;p&gt;Bem vindo! Vamos começar uma jornada para aprender a criar uma aplicação REST com Python e Flask Framework. No final deste projeto você será capaz de rodar localmente uma API com autenticação JWT.sss&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

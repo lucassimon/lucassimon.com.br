@@ -6,10 +6,95 @@
     <description>Recent content in Devops on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 19 Oct 2018 18:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 08 Nov 2018 09:07:41 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/categories/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deploy Flask na Digital Ocean - Parte 8 - Configurando o aplicativo</title>
+      <link>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/</link>
+      <pubDate>Thu, 08 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deploy Flask na Digital Ocean - Parte 7 - Configurando o usuário</title>
+      <link>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/</link>
+      <pubDate>Wed, 07 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deploy Flask na Digital Ocean - Parte 6 - UFW</title>
+      <link>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-6-ufw/</link>
+      <pubDate>Tue, 06 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-6-ufw/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deploy Flask na Digital Ocean - Parte 5 - Unnatended upgrades</title>
+      <link>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-5-unnatended-upgrades/</link>
+      <pubDate>Mon, 05 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-5-unnatended-upgrades/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deploy Flask na Digital Ocean - Parte 4 - Fail2ban</title>
+      <link>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-4-fail2ban/</link>
+      <pubDate>Sun, 04 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-4-fail2ban/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deploy Flask na Digital Ocean - Parte 3 - sshd config</title>
+      <link>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-3-sshd-config/</link>
+      <pubDate>Sat, 03 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-3-sshd-config/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deploy Flask na Digital Ocean - Parte 2 - Instalando pacotes essênciais</title>
+      <link>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-2-instalando-pacotes-essenciais/</link>
+      <pubDate>Fri, 02 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-2-instalando-pacotes-essenciais/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deploy Flask na Digital Ocean - Parte 1 - Criando um droplet</title>
+      <link>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-1-criando-um-droplet/</link>
+      <pubDate>Thu, 01 Nov 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-1-criando-um-droplet/</guid>
+      <description>&lt;p&gt;Antes de prosseguirmos é imprecidivel ver o último artigo de nossa aplicação Flask: &lt;a href=&#34;https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/&#34; target=&#34;_blank&#34;&gt;Arquivos de configuração para Deploy na Digital Ocean&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Série API em Flask - Parte 14 - Arquivos de configuração para Deploy na Digital Ocean</title>
+      <link>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/</link>
+      <pubDate>Mon, 29 Oct 2018 18:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/</guid>
+      <description>&lt;p&gt;Opa beleza galera. Vamos preparar nosso aplicativo criando alguns arquivos de configuração para fazer um deploy de nossa aplicação na &lt;a href=&#34;https://m.do.co/c/e4e2987ed92a&#34; target=&#34;_blank&#34;&gt;Digital Ocean&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 13 - Criando um container Docker</title>

@@ -3,6 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/</loc>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-7-configurando-o-usuario/</loc>
+    <lastmod>2018-11-07T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-6-ufw/</loc>
+    <lastmod>2018-11-06T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-5-unnatended-upgrades/</loc>
+    <lastmod>2018-11-05T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-4-fail2ban/</loc>
+    <lastmod>2018-11-04T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-3-sshd-config/</loc>
+    <lastmod>2018-11-03T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-2-instalando-pacotes-essenciais/</loc>
+    <lastmod>2018-11-02T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/2018/11/deploy-flask-na-digital-ocean-parte-1-criando-um-droplet/</loc>
+    <lastmod>2018-11-01T09:07:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/</loc>
+    <lastmod>2018-10-29T18:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/</loc>
     <lastmod>2018-10-19T18:00:00-03:00</lastmod>
   </url>
@@ -99,7 +144,13 @@
   
   <url>
     <loc>https://lucassimon.com.br/tags/api/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-10-29T18:00:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/series/api-em-flask/</loc>
+    <lastmod>2018-10-29T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -119,14 +170,32 @@
   </url>
   
   <url>
+    <loc>https://lucassimon.com.br/tags/deploy/</loc>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/series/deploy-flask-na-digital-ocean/</loc>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/categories/devops/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/tags/digital-ocean/</loc>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/tags/docker/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-10-29T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -143,8 +212,14 @@
   </url>
   
   <url>
+    <loc>https://lucassimon.com.br/tags/flask/</loc>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/categories/flask/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-10-29T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -156,7 +231,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -172,13 +247,13 @@
   
   <url>
     <loc>https://lucassimon.com.br/post/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/tags/python/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -190,13 +265,29 @@
   
   <url>
     <loc>https://lucassimon.com.br/tags/rest/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-10-29T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://lucassimon.com.br/series/</loc>
+    <lastmod>2018-10-29T18:00:00-03:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://lucassimon.com.br/en/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://lucassimon.com.br/series/"
+                />
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/tags/</loc>
-    <lastmod>2018-10-19T18:00:00-03:00</lastmod>
+    <lastmod>2018-10-29T18:00:00-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
