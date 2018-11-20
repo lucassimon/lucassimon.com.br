@@ -205,13 +205,13 @@
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/categories/elixir/</loc>
+    <loc>https://lucassimon.com.br/tags/elixir/</loc>
     <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/tags/elixir/</loc>
+    <loc>https://lucassimon.com.br/categories/elixir/</loc>
     <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
@@ -223,14 +223,14 @@
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/categories/flask/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <loc>https://lucassimon.com.br/tags/flask/</loc>
+    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/tags/flask/</loc>
-    <lastmod>2018-11-08T09:07:41-03:00</lastmod>
+    <loc>https://lucassimon.com.br/categories/flask/</loc>
+    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -263,14 +263,14 @@
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/categories/python/</loc>
-    <lastmod>2018-06-17T13:00:00-03:00</lastmod>
+    <loc>https://lucassimon.com.br/tags/python/</loc>
+    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/tags/python/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <loc>https://lucassimon.com.br/categories/python/</loc>
+    <lastmod>2018-06-17T13:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
