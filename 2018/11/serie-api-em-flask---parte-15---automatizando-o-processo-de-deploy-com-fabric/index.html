@@ -47,7 +47,7 @@
 
 <meta itemprop="datePublished" content="2018-11-15T18:00:00-03:00" />
 <meta itemprop="dateModified" content="2018-11-15T18:00:00-03:00" />
-<meta itemprop="wordCount" content="1155">
+<meta itemprop="wordCount" content="1159">
 
 
 
@@ -67,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@type": "BlogPosting",
   "headline": "Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric",
   "url": "https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/",
-  "wordCount": "1155",
+  "wordCount": "1159",
   "datePublished": "2018-11-15T18:00:00-03:00",
   "dateModified": "2018-11-15T18:00:00-03:00",
   "author": {
@@ -267,6 +267,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
 
+<h2 id="o-que-vamos-automatizar">O que vamos automatizar</h2>
+
+<p>Para o propósito deste artigo e da necessidade de não ter que fazer todo o processo manual, vou utilizar o <code>Fabric</code> para cumprir os seguintes passos:</p>
+
+<ol>
+<li><p>Conectar no(s) servidor(es) remoto(s)</p></li>
+
+<li><p>Entrar no diretório do aplicativo e executar um <code>git pull &amp;&amp; git checkout</code></p></li>
+
+<li><p>Instalar as bibliotecas do aplicativo <code>pip install</code></p></li>
+
+<li><p>Executar migrations. Se tiver é claro.</p></li>
+
+<li><p>Reiniciar os serviços do <code>supervisor</code> e <code>nginx</code></p></li>
+</ol>
+
 <h2 id="configurações-no-servidor">Configurações no servidor</h2>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@teste-devops:~# groupadd fabric</code></pre></div>
@@ -324,20 +340,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>De acordo com a definição do <a href="http://www.fabfile.org/" target="_blank">http://www.fabfile.org/</a> o Fabric é uma biblioteca desenvolvida para executar comandos shell remotamente através do SSH.</p>
 
 <p>Ele não chega a ser uma ferramenta de configuração completa, com controle de estados de pacotes como o <code>Ansible</code> porém conseguimos criar tarefas que automatiza o processo de um servidor remoto. Basta usar de acordo com a necessidade.</p>
-
-<p>Para o propósito deste artigo e da necessidade de não ter que fazer todo o processo manual, vou utilizar o <code>Fabric</code> para cumprir os seguintes passos:</p>
-
-<ol>
-<li><p>Conectar no(s) servidor(es) remoto(s)</p></li>
-
-<li><p>Entrar no diretório do aplicativo e executar um <code>git pull &amp;&amp; git checkout</code></p></li>
-
-<li><p>Instalar as bibliotecas do aplicativo <code>pip install</code></p></li>
-
-<li><p>Executar migrations. Se tiver é claro.</p></li>
-
-<li><p>Reiniciar os serviços do <code>supervisor</code> e <code>nginx</code></p></li>
-</ol>
 
 <h3 id="fabric1-x-fabric2-x-fabric3">fabric1 x fabric2 x fabric3</h3>
 
