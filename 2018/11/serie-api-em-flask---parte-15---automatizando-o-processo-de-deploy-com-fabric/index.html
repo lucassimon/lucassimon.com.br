@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric" />
+<meta property="og:description" content="Eae beleza galera. O objetivo deste artigo é aprender a utilizar o Fabric para para automatizar essa tarefas repetitivas e não termos que ficar entrando no servidor e fazendo todos os passos manuais para deploy. Vem comigo.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/" />
+
+
+
+<meta property="article:published_time" content="2018-11-15T18:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-11-15T18:00:00-03:00"/>
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric"/>
+<meta name="twitter:description" content="Eae beleza galera. O objetivo deste artigo é aprender a utilizar o Fabric para para automatizar essa tarefas repetitivas e não termos que ficar entrando no servidor e fazendo todos os passos manuais para deploy. Vem comigo.
+
+"/>
+
+
+<meta itemprop="name" content="Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric">
+<meta itemprop="description" content="Eae beleza galera. O objetivo deste artigo é aprender a utilizar o Fabric para para automatizar essa tarefas repetitivas e não termos que ficar entrando no servidor e fazendo todos os passos manuais para deploy. Vem comigo.
+
+">
+
+
+<meta itemprop="datePublished" content="2018-11-15T18:00:00-03:00" />
+<meta itemprop="dateModified" content="2018-11-15T18:00:00-03:00" />
+<meta itemprop="wordCount" content="1143">
+
+
+
+<meta itemprop="keywords" content="python,api,rest,docker,fabric," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric",
+  "url": "https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/",
+  "wordCount": "1143",
+  "datePublished": "2018-11-15T18:00:00-03:00",
+  "dateModified": "2018-11-15T18:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, devops, python, api, rest, docker, fabric"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/">
+
+    <title>Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric | Lucas Simon</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+</head>
+
+<body><noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    
+
+    
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="nav blog-nav">
+                <a class="nav-link " href="https://lucassimon.com.br/">
+                    Home
+                </a>
+                    
+                    <a class="nav-link" href="/about/" title="">
+                        Sobre
+                    </a>
+                
+
+                
+                    
+                    <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">
+                        Curriculo
+                    </a>
+                
+                    
+                    <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">
+                        Github
+                    </a>
+                
+            </nav>
+        </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">
+                <a href="https://lucassimon.com.br/" rel="home">
+                    Lucas Simon
+                </a>
+            </h1>
+            
+                <p class="lead blog-description">
+                    Web Developer. lucassrod@gmail.com
+                </p>
+            
+        </div>
+    </header>
+    
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a href="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/">
+                Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric
+            </a>
+        </h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-11-15T18:00:00-03:00">
+                Thu Nov 15, 2018
+            </time>
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/api-em-flask" rel="tag">
+            Api em Flask
+        </a>
+    
+
+
+
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/flask" rel="category tag">
+            flask
+        </a>
+    
+        ,
+        
+        <a href="/categories/devops" rel="category tag">
+            devops
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/python" rel="tag">
+            python
+        </a>
+    
+        , 
+        <a href="/tags/api" rel="tag">
+            api
+        </a>
+    
+        , 
+        <a href="/tags/rest" rel="tag">
+            rest
+        </a>
+    
+        , 
+        <a href="/tags/docker" rel="tag">
+            docker
+        </a>
+    
+        , 
+        <a href="/tags/fabric" rel="tag">
+            fabric
+        </a>
+    
+
+
+        </p>
+    </header>
+    <p>Eae beleza galera. O objetivo deste artigo é aprender a utilizar o Fabric para para automatizar essa tarefas repetitivas e não termos que ficar entrando no servidor e fazendo todos os passos manuais para deploy. Vem comigo.</p>
+
+<p></p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o Makefile</a></p></li>
+
+<li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
+
+<li><p>Capítulo 6: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" target="_blank">Criando e testando o modelo de usuários</a></p></li>
+
+<li><p>Capítulo 7: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/" target="_blank">Criando usuários</a></p></li>
+
+<li><p>Capítulo 8: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/" target="_blank">Listando usuários</a></p></li>
+
+<li><p>Capítulo 9: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/" target="_blank">Buscando usuários</a></p></li>
+
+<li><p>Capítulo 10: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/" target="_blank">Editando um usuário</a></p></li>
+
+<li><p>Capítulo 11: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/" target="_blank">Deletando um usuário</a></p></li>
+
+<li><p>Capítulo 12: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/" target="_blank">Autênticação por JWT</a></p></li>
+
+<li><p>Capítulo 13: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/" target="_blank">Criando um container Docker</a></p></li>
+
+<li><p>Capítulo 14: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/" target="_blank">Deploy Flask na Digital Ocean</a></p></li>
+
+<li><p>Capítulo 15: Automatizando o processo de deploy com Fabric <strong>Estamos aqui</strong></p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="configurações-no-servidor">Configurações no servidor</h2>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@teste-devops:~# groupadd fabric</code></pre></div>
+
+<p>Adicionando o usuário ao grupo criado:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@teste-devops:~# usermod -a -G fabric apiflask</code></pre></div>
+
+<h3 id="entendendo-o-sudoers">Entendendo o sudoers</h3>
+
+<p>Antes de abrir o arquivo <code>/etc/sudoers</code> é preciso dar permissão de escrita. Por padrão ele é setado somente com a permissão de leitura.</p>
+
+<p>root@teste-devops:~# chmod 600 /etc/sudoers</p>
+
+<p>Em seguida podemos abrir o arquivo, <code>vim /etc/sudoers</code> e adicionar as seguintes configurações.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ....
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># User privilege specification
+</span><span style="color:#75715e"></span>root	ALL<span style="color:#f92672">=(</span>ALL:ALL<span style="color:#f92672">)</span> ALL
+
+<span style="color:#75715e"># Allow members of group sudo to execute any command
+</span><span style="color:#75715e"></span>%sudo	ALL<span style="color:#f92672">=(</span>ALL:ALL<span style="color:#f92672">)</span> ALL
+
+
+%fabric ALL<span style="color:#f92672">=(</span>ALL<span style="color:#f92672">)</span> NOPASSWD: /usr/bin/supervisorctl, /usr/sbin/service</code></pre></div>
+
+<p>A sintaxe para configurar os privlégios são:</p>
+
+<pre><code class="language-sh">user/group host=users:groups tags commands
+</code></pre>
+
+<ul>
+<li><p>user/group - usuário ou grupo a qual estamos setando a permissão de sudo.</p></li>
+
+<li><p>host - lista de hosts que podem executar o sudo.</p></li>
+
+<li><p>users:groups - lista de usuarios e grupos.</p></li>
+
+<li><p>tags – lista de configurações como NOPASSWD.</p></li>
+
+<li><p>commands – comandos que aquele usuário ou grupo podem executar.</p></li>
+</ul>
+
+<p>No nosso caso temos:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">%fabric ALL<span style="color:#f92672">=(</span>ALL<span style="color:#f92672">)</span> NOPASSWD: /usr/bin/supervisorctl, /usr/sbin/service</code></pre></div>
+
+<p>O <code>%</code> representa que estamos indicando um grupo seguido do nome do grupo <code>fabric</code> criado anteriormente. O <code>ALL=(ALL)</code> representa todos hosts, usuários e grupo de usuários. O <code>NOPASSWD:</code> representa que não será necessário se autenticar através de senha, ja que, configuramos nosso servidor para se autenticar via SSH e nem criamos uma senha para ele. E por úlimo temos limitamos os comandos, <code>/usr/bin/supervisorctl, /usr/sbin/service</code> que aquele grupo pode executar com o <code>sudo</code>.</p>
+
+<p>Depois disso basta logar em outro terminal com o usuário <code>apiflask</code> e testar as configurações.</p>
+
+<h2 id="o-fabric">O Fabric</h2>
+
+<p>De acordo com a definição do <a href="http://www.fabfile.org/" target="_blank">http://www.fabfile.org/</a> o Fabric é uma biblioteca desenvolvida para executar comandos shell remotamente através do SSH.</p>
+
+<p>Ele não chega a ser uma ferramenta de configuração completa, com controle de estados de pacotes como o <code>Ansible</code> porém conseguimos criar tarefas que automatiza o processo de um servidor remoto. Basta usar de acordo com a necessidade.</p>
+
+<p>Para o propósito deste artigo e da necessidade de não ter que fazer todo o processo manual, vou utilizar o <code>Fabric</code> para cumprir os seguintes passos:</p>
+
+<ol>
+<li><p>Conectar no(s) servidor(es) remoto(s)</p></li>
+
+<li><p>Entrar no diretório do aplicativo e executar um <code>git pull &amp;&amp; git checkout</code></p></li>
+
+<li><p>Instalar as bibliotecas do aplicativo <code>pip install</code></p></li>
+
+<li><p>Executar migrations. Se tiver é claro.</p></li>
+
+<li><p>Reiniciar os serviços do <code>supervisor</code> e <code>nginx</code></p></li>
+</ol>
+
+<h3 id="fabric1-x-fabric2-x-fabric3">fabric1 x fabric2 x fabric3</h3>
+
+<p>O <code>Fabric 1.x</code> foi desenvolvido em cima da versão do Python 2.7 e após mais de 10 anos de uso e estabilidade do Python 3.x a biblioteca <code>Fabric</code> foi reescrita com a versão 3.x do python e por ter tido grandes mudanças deu-se o nome do pacote de <code>fabric2</code>.</p>
+
+<p>Ja o <code>Fabric3</code> é um fork do <code>Fabric1x</code> a qual a equipe mantenedora do fabric original não faz parte. Logo as próximas versões estarão no pacote <code>fabric2</code>.</p>
+
+<p><a href="http://www.fabfile.org/installing.html#fabric-and-fabric2-vs-fabric3" target="_blank">Para mais detalhes</a></p>
+
+<h3 id="criando-o-fabfile">Criando o fabfile</h3>
+
+<p>Portanto vamos instalar o fabric, <code>pip install fabric==2.4.0</code>, com o virtualenv ativado é claro.</p>
+
+<p>A partir de agora na raíz do projeto criamos nosso arquivo <code>fabfile.py</code> e vamos criar nossa primeira task.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding: utf-8 -*-</span>
+
+<span style="color:#f92672">from</span> fabric <span style="color:#f92672">import</span> Connection
+<span style="color:#f92672">from</span> invoke <span style="color:#f92672">import</span> task
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">whoami</span>(c):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Print the envirioment and user
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    c<span style="color:#f92672">.</span>run(<span style="color:#e6db74">&#39;whoami&#39;</span>)
+
+<span style="color:#a6e22e">@task</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">uname</span>(c):
+    <span style="color:#e6db74">&#34;&#34;&#34; Prints information about the host. &#34;&#34;&#34;</span>
+    c<span style="color:#f92672">.</span>run(<span style="color:#e6db74">&#39;uname -a&#39;</span>)
+    whoami(c)</code></pre></div>
+
+<p>O parâmetro <code>c</code> da função <code>whoami</code> e da task <code>uname</code> correspondem ao contexto
+atual a qual o fabric se encontra.</p>
+
+<p>Por exemplo ao executarmos o comando abaixo ele irá pegar os dados minha maquina, no caso o contexto atual.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ fab uname
+Linux notebook <span style="color:#ae81ff">4</span>.15.0-39-generic <span style="color:#75715e">#42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+</span><span style="color:#75715e"></span>lucas</code></pre></div>
+
+<p>Porém ao executar o mesmo comando com a opção <code>--hosts</code>, temos uma outra saída de resultados:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ fab --hosts apiflask@165.227.124.70 uname
+Linux teste-devops <span style="color:#ae81ff">4</span>.9.0-8-amd64 <span style="color:#75715e">#1 SMP Debian 4.9.130-2 (2018-10-27) x86_64 GNU/Linux
+</span><span style="color:#75715e"></span>apiflask</code></pre></div>
+
+<p>Alguns comandos básicos são:</p>
+
+<ul>
+<li><p><code>fab</code>: Para exibir um help do comando</p></li>
+
+<li><p><code>fab --hosts ou -H</code>: Lista de hosts separados por virgula</p></li>
+
+<li><p><code>fab --list ou -l</code>: Exibe a lista de tasks, possuem o decorator <code>@task</code> do <code>fabfile.py</code></p></li>
+</ul>
+
+<p>Exemplo:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ fab -l
+Available tasks:
+
+  deploy   Deploy the code to context
+  status   Status supervisor and webserver
+  stop     Stopping supervisor
+  uname    Prints information about the host.</code></pre></div>
+
+<p>Sem mais delongas, vamos ao arquivo <code>fabfile.py</code> completo. Observe bem os comentários em cada função ou task.</p>
+
+<ul>
+<li><p><code>c.run</code>: Executa um comando shell. Utilizo ele para chamar o <code>git</code>, ou <code>pip</code> por exemplo.</p></li>
+
+<li><p><code>with c.cd</code>: Altero para o diretório especificado.</p></li>
+
+<li><p><code>c.sudo</code>: Executo um comando como sudo.</p></li>
+</ul>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># -*- coding: utf-8 -*-
+</span><span style="color:#75715e"></span>
+from fabric import Connection
+from invoke import task
+
+<span style="color:#75715e"># Crio constantes referente as confgurações realizadas no servidor
+</span><span style="color:#75715e"></span>SITE_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;~/sites/flask-api-users&#39;</span>
+VENV <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;~/venvs/&#39;</span>
+PYTHON_BIN <span style="color:#f92672">=</span> VENV + <span style="color:#e6db74">&#39;bin/python&#39;</span>
+PIP_BIN <span style="color:#f92672">=</span> VENV + <span style="color:#e6db74">&#39;bin/pip&#39;</span>
+
+
+def whoami<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Print the envirioment and user
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+
+    <span style="color:#75715e"># Executo o comando whoami
+</span><span style="color:#75715e"></span>    c.run<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;whoami&#39;</span><span style="color:#f92672">)</span>
+
+
+def git<span style="color:#f92672">(</span>conn, cmd<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Create a method to execute git on the server
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#75715e"># Altero para o diretorio SITE_DIR e executo o comando git
+</span><span style="color:#75715e"></span>    with conn.cd<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;{}&#39;</span>.format<span style="color:#f92672">(</span>SITE_DIR<span style="color:#f92672">))</span>:
+        conn.run<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;git {}&#39;</span>.format<span style="color:#f92672">(</span>cmd<span style="color:#f92672">))</span>
+
+
+def checkout<span style="color:#f92672">(</span>conn, branch<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;master&#39;</span>, tag<span style="color:#f92672">=</span>None<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Run git checkout to branch or tag
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> tag:
+        git<span style="color:#f92672">(</span>conn, <span style="color:#e6db74">&#39;checkout {}&#39;</span>.format<span style="color:#f92672">(</span>tag<span style="color:#f92672">))</span>
+
+    <span style="color:#66d9ef">else</span>:
+        git<span style="color:#f92672">(</span>conn, <span style="color:#e6db74">&#39;checkout {}&#39;</span>.format<span style="color:#f92672">(</span>branch<span style="color:#f92672">))</span>
+
+
+def pull<span style="color:#f92672">(</span>conn<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Run git pull command on repository
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    git<span style="color:#f92672">(</span>conn, <span style="color:#e6db74">&#34;pull&#34;</span><span style="color:#f92672">)</span>
+
+
+def sudo<span style="color:#f92672">(</span>conn, cmd<span style="color:#f92672">)</span>:
+    conn.sudo<span style="color:#f92672">(</span>cmd<span style="color:#f92672">)</span>
+
+
+def install_requirements<span style="color:#f92672">(</span>conn, env<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;prod&#39;</span><span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Install all requirements by the server
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#75715e"># Crio um comando para executar o pip de acordo
+</span><span style="color:#75715e"></span>    cmd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{} install -r requirements/{}.txt&#34;</span>.format<span style="color:#f92672">(</span>PIP_BIN, env<span style="color:#f92672">)</span>
+    with conn.cd<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;{}&#39;</span>.format<span style="color:#f92672">(</span>SITE_DIR<span style="color:#f92672">))</span>:
+        conn.run<span style="color:#f92672">(</span>cmd<span style="color:#f92672">)</span>
+
+
+@task
+def uname<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34; Prints information about the host. &#34;&#34;&#34;</span>
+    c.run<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;uname -a&#39;</span><span style="color:#f92672">)</span>
+    whoami<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>
+
+
+def restart<span style="color:#f92672">(</span>conn<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Restart supervisor and webserver
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#75715e"># restarto o supervisor e o nginx
+</span><span style="color:#75715e"></span>    conn.sudo<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;supervisorctl restart api_users:gunicorn_api_users&#34;</span><span style="color:#f92672">)</span>
+    conn.sudo<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;service nginx restart&#34;</span><span style="color:#f92672">)</span>
+
+
+@task
+def status<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Status supervisor and webserver
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    c.sudo<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;supervisorctl status api_users:gunicorn_api_users&#34;</span><span style="color:#f92672">)</span>
+    c.sudo<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;service nginx status&#34;</span><span style="color:#f92672">)</span>
+
+
+@task
+def stop<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Stopping supervisor
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    c.sudo<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;supervisorctl stop api_users:gunicorn_api_users&#34;</span><span style="color:#f92672">)</span>
+
+
+@task
+def deploy<span style="color:#f92672">(</span>c, tag<span style="color:#f92672">=</span>None<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Deploy the code to context
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+
+    <span style="color:#75715e"># 1 - Atualizo meu repo com um git pull
+</span><span style="color:#75715e"></span>    pull<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>
+
+    <span style="color:#75715e"># 2 - Altero para branch master ou para uma tag
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> tag:
+        checkout<span style="color:#f92672">(</span>c, tag<span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">else</span>:
+        checkout<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>
+
+    <span style="color:#75715e"># 3 - Instalo os requirements, por padrão, de prod.txt
+</span><span style="color:#75715e"></span>    install_requirements<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>
+
+    <span style="color:#75715e"># Restarto o serviço.
+</span><span style="color:#75715e"></span>    restart<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span></code></pre></div>
+
+<h2 id="resultado">Resultado</h2>
+
+<p>Vamos ver nosso fab deploy em ação:</p>
+
+<p><img src="/fab_deploy_in_action.gif" alt="Do a request in container" /></p>
+
+    
+
+    
+        <hr>
+        <footer>
+            
+                <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fserie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fserie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fserie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fserie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
+    </nav>
+</section>
+
+            
+
+            
+        </footer>
+    
+
+</article> 
+
+
+            </div>
+            <!-- /.blog-main -->
+            <aside class="col-sm-3 ml-auto blog-sidebar">
+    
+
+    
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+        
+        
+            <li>
+                <a href="/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/">
+                    Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric
+                </a>
+            </li>
+        
+            <li>
+                <a href="/2018/11/deploy-flask-na-digital-ocean-parte-8-configurando-o-aplicativo/">
+                    Deploy Flask na Digital Ocean - Parte 8 - Configurando o aplicativo
+                </a>
+            </li>
+        
+    </ol>
+</section>
+
+    
+
+    
+
+    
+    
+        
+        <section class="sidebar-module">
+            <h4>Séries</h4>
+
+            <ol class="list-unstyled">
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/api-em-flask">
+                        Api em flask
+                        (15)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/deploy-flask-na-digital-ocean">
+                        Deploy flask na digital ocean
+                        (8)
+                    </a>
+                </li>
+                
+            </ol>
+
+        </section>
+        
+    
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/devops">Devops (11)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">Elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">Flask (15)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">Python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> Api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/deploy"><i class="fa fa-tags"></i> Deploy</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/digital-ocean"><i class="fa fa-tags"></i> Digital ocean</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> Docker</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> Elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/fabric"><i class="fa fa-tags"></i> Fabric</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/flask"><i class="fa fa-tags"></i> Flask</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> Functional programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> Python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> Rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+        <p>
+        
+            Blog template created by
+            <a href="https://twitter.com/mdo">@mdo</a>
+            , ported to Hugo by
+            <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+        
+        </p>
+        <p>
+            <a href="#"></a>
+        </p>
+    </footer>
+    
+</body>
+</html>

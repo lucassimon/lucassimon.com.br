@@ -6,10 +6,21 @@
     <description>Recent content in Docker on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Mon, 29 Oct 2018 18:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 15 Nov 2018 18:00:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric</title>
+      <link>https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/</link>
+      <pubDate>Thu, 15 Nov 2018 18:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/</guid>
+      <description>&lt;p&gt;Eae beleza galera. O objetivo deste artigo é aprender a utilizar o Fabric para para automatizar essa tarefas repetitivas e não termos que ficar entrando no servidor e fazendo todos os passos manuais para deploy. Vem comigo.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 14 - Arquivos de configuração para Deploy na Digital Ocean</title>
