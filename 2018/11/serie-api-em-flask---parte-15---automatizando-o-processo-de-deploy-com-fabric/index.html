@@ -47,7 +47,7 @@
 
 <meta itemprop="datePublished" content="2018-11-15T18:00:00-03:00" />
 <meta itemprop="dateModified" content="2018-11-15T18:00:00-03:00" />
-<meta itemprop="wordCount" content="1143">
+<meta itemprop="wordCount" content="1155">
 
 
 
@@ -67,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@type": "BlogPosting",
   "headline": "Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric",
   "url": "https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/",
-  "wordCount": "1143",
+  "wordCount": "1155",
   "datePublished": "2018-11-15T18:00:00-03:00",
   "dateModified": "2018-11-15T18:00:00-03:00",
   "author": {
@@ -463,6 +463,13 @@ def pull<span style="color:#f92672">(</span>conn<span style="color:#f92672">)</s
     git<span style="color:#f92672">(</span>conn, <span style="color:#e6db74">&#34;pull&#34;</span><span style="color:#f92672">)</span>
 
 
+def fetch<span style="color:#f92672">(</span>conn<span style="color:#f92672">)</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Run git pull command on repository
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    git<span style="color:#f92672">(</span>conn, <span style="color:#e6db74">&#34;fetch&#34;</span><span style="color:#f92672">)</span>
+
+
 def sudo<span style="color:#f92672">(</span>conn, cmd<span style="color:#f92672">)</span>:
     conn.sudo<span style="color:#f92672">(</span>cmd<span style="color:#f92672">)</span>
 
@@ -517,7 +524,7 @@ def deploy<span style="color:#f92672">(</span>c, tag<span style="color:#f92672">
 </span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
 
     <span style="color:#75715e"># 1 - Atualizo meu repo com um git pull
-</span><span style="color:#75715e"></span>    pull<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>
+</span><span style="color:#75715e"></span>    fetch<span style="color:#f92672">(</span>c<span style="color:#f92672">)</span>
 
     <span style="color:#75715e"># 2 - Altero para branch master ou para uma tag
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> tag:
