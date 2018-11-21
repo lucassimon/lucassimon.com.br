@@ -17,7 +17,12 @@
       <pubDate>Thu, 15 Nov 2018 18:00:00 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/</guid>
-      <description>&lt;p&gt;Eae beleza galera. O objetivo deste artigo é aprender a utilizar o Fabric para para automatizar essa tarefas repetitivas e não termos que ficar entrando no servidor e fazendo todos os passos manuais para deploy. Vem comigo.&lt;/p&gt;
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/KI7JjUPiKu8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Eae beleza galera. O objetivo deste artigo é aprender a utilizar o Fabric para para automatizar essa tarefas repetitivas e não termos que ficar entrando no servidor e fazendo todos os passos manuais para deploy. Vem comigo.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
