@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/</loc>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/</loc>
     <lastmod>2018-11-15T18:00:00-03:00</lastmod>
   </url>
@@ -149,13 +154,13 @@
   
   <url>
     <loc>https://lucassimon.com.br/tags/api/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/series/api-em-flask/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -175,6 +180,18 @@
   </url>
   
   <url>
+    <loc>https://lucassimon.com.br/tags/cd/</loc>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://lucassimon.com.br/tags/ci/</loc>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/tags/deploy/</loc>
     <lastmod>2018-11-08T09:07:41-03:00</lastmod>
     <priority>0</priority>
@@ -188,7 +205,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/categories/devops/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -218,7 +235,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/tags/fabric/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -230,7 +247,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/categories/flask/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -241,8 +258,14 @@
   </url>
   
   <url>
+    <loc>https://lucassimon.com.br/tags/jenkins/</loc>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -258,13 +281,13 @@
   
   <url>
     <loc>https://lucassimon.com.br/post/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/tags/python/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -276,13 +299,13 @@
   
   <url>
     <loc>https://lucassimon.com.br/tags/rest/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/series/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -298,7 +321,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/tags/</loc>
-    <lastmod>2018-11-15T18:00:00-03:00</lastmod>
+    <lastmod>2018-11-23T18:00:00-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

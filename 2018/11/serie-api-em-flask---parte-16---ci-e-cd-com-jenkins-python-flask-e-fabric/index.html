@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric" />
+<meta property="og:description" content="
+  
+
+
+
+Nesse artigo vamos finalizar o processo de desenvolvimento de software
+colocando o Flask Api Users no Jenkins, executando os testes e fazendo deploy na digital ocean.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/" />
+
+
+
+<meta property="article:published_time" content="2018-11-23T18:00:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-11-23T18:00:00-03:00"/>
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric"/>
+<meta name="twitter:description" content="
+  
+
+
+
+Nesse artigo vamos finalizar o processo de desenvolvimento de software
+colocando o Flask Api Users no Jenkins, executando os testes e fazendo deploy na digital ocean.
+
+"/>
+
+
+<meta itemprop="name" content="Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric">
+<meta itemprop="description" content="
+  
+
+
+
+Nesse artigo vamos finalizar o processo de desenvolvimento de software
+colocando o Flask Api Users no Jenkins, executando os testes e fazendo deploy na digital ocean.
+
+">
+
+
+<meta itemprop="datePublished" content="2018-11-23T18:00:00-03:00" />
+<meta itemprop="dateModified" content="2018-11-23T18:00:00-03:00" />
+<meta itemprop="wordCount" content="759">
+
+
+
+<meta itemprop="keywords" content="python,api,rest,ci,cd,jenkins,fabric," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric",
+  "url": "https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/",
+  "wordCount": "759",
+  "datePublished": "2018-11-23T18:00:00-03:00",
+  "dateModified": "2018-11-23T18:00:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, devops, python, api, rest, ci, cd, jenkins, fabric"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/">
+
+    <title>Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric | Lucas Simon</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+</head>
+
+<body><noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    
+
+    
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="nav blog-nav">
+                <a class="nav-link " href="https://lucassimon.com.br/">
+                    Home
+                </a>
+                    
+                    <a class="nav-link" href="/about/" title="">
+                        Sobre
+                    </a>
+                
+
+                
+                    
+                    <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">
+                        Curriculo
+                    </a>
+                
+                    
+                    <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">
+                        Github
+                    </a>
+                
+            </nav>
+        </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">
+                <a href="https://lucassimon.com.br/" rel="home">
+                    Lucas Simon
+                </a>
+            </h1>
+            
+                <p class="lead blog-description">
+                    Web Developer. lucassrod@gmail.com
+                </p>
+            
+        </div>
+    </header>
+    
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a href="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/">
+                Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric
+            </a>
+        </h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-11-23T18:00:00-03:00">
+                Fri Nov 23, 2018
+            </time>
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/api-em-flask" rel="tag">
+            Api em Flask
+        </a>
+    
+
+
+
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/flask" rel="category tag">
+            flask
+        </a>
+    
+        ,
+        
+        <a href="/categories/devops" rel="category tag">
+            devops
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/python" rel="tag">
+            python
+        </a>
+    
+        , 
+        <a href="/tags/api" rel="tag">
+            api
+        </a>
+    
+        , 
+        <a href="/tags/rest" rel="tag">
+            rest
+        </a>
+    
+        , 
+        <a href="/tags/ci" rel="tag">
+            ci
+        </a>
+    
+        , 
+        <a href="/tags/cd" rel="tag">
+            cd
+        </a>
+    
+        , 
+        <a href="/tags/jenkins" rel="tag">
+            jenkins
+        </a>
+    
+        , 
+        <a href="/tags/fabric" rel="tag">
+            fabric
+        </a>
+    
+
+
+        </p>
+    </header>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/euEfDTZhXw0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>Nesse artigo vamos finalizar o processo de desenvolvimento de software
+colocando o Flask Api Users no Jenkins, executando os testes e fazendo deploy na digital ocean.</p>
+
+<p></p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o Makefile</a></p></li>
+
+<li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
+
+<li><p>Capítulo 6: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" target="_blank">Criando e testando o modelo de usuários</a></p></li>
+
+<li><p>Capítulo 7: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/" target="_blank">Criando usuários</a></p></li>
+
+<li><p>Capítulo 8: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/" target="_blank">Listando usuários</a></p></li>
+
+<li><p>Capítulo 9: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/" target="_blank">Buscando usuários</a></p></li>
+
+<li><p>Capítulo 10: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/" target="_blank">Editando um usuário</a></p></li>
+
+<li><p>Capítulo 11: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/" target="_blank">Deletando um usuário</a></p></li>
+
+<li><p>Capítulo 12: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/" target="_blank">Autênticação por JWT</a></p></li>
+
+<li><p>Capítulo 13: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/" target="_blank">Criando um container Docker</a></p></li>
+
+<li><p>Capítulo 14: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/" target="_blank">Deploy Flask na Digital Ocean</a></p></li>
+
+<li><p>Capítulo 15: <a href="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/" target="_blank">Automatizando o processo de deploy com Fabric</a></p></li>
+
+<li><p>Capítulo 16: CI e CD com Jenkins, Python, Flask e Fabric <strong>Estamos aqui</strong></p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="configurações-do-servidor">Configurações do servidor</h2>
+
+<p>Instalar os pacotes no sistema operacional.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@ip-172-31-7-143:~# apt update <span style="color:#f92672">&amp;&amp;</span> apt upgrade <span style="color:#f92672">&amp;&amp;</span> apt install build-essential make python3-venv python3-dev git zsh openjdk-8-jdk</code></pre></div>
+
+<p>Editar o arquivo <code>vim /etc/environment</code></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">JAVA_HOME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin&#34;</span>
+PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:</span>$JAVA_HOME<span style="color:#e6db74">&#34;</span></code></pre></div>
+
+<h2 id="instalando-o-jenkins">Instalando o Jenkins</h2>
+
+<p>Para instalar o Jenkins, eu segui este <a href="https://pkg.jenkins.io/debian/" target="_blank">tutorial oficial</a>.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@ip-172-31-7-143:~# wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -</code></pre></div>
+
+<p>Edite o arquivo <code>vim /etc/apt/sources.list</code></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">## This software is not part of Ubuntu, but is offered by Canonical and the
+</span><span style="color:#75715e">## respective vendors as a service to Ubuntu users.
+</span><span style="color:#75715e"># deb http://archive.canonical.com/ubuntu bionic partner
+</span><span style="color:#75715e"># deb-src http://archive.canonical.com/ubuntu bionic partner
+</span><span style="color:#75715e"></span>
+deb https://pkg.jenkins.io/debian binary/</code></pre></div>
+
+<p>Em seguida atualize o repositório <code>apt</code> e instale o <code>jenkins</code>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@ip-172-31-7-143:~# apt update <span style="color:#f92672">&amp;&amp;</span> apt install jenkins</code></pre></div>
+
+<p>E iniciar o serviço:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@ip-172-31-7-143:~# service jenkins start</code></pre></div>
+
+<h2 id="configurando-o-usuário-jenkins">Configurando o usuário Jenkins</h2>
+
+<p>Entre com o usuário <code>jenkins</code>, <code>su - jenkins</code>,  e configurar o <code>gitconfig</code>.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[user]</span>
+    <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">Jenkins Build
+</span><span style="color:#e6db74">    email = jenkins@teste.com.br</span></code></pre></div>
+
+<p>Depois gere as chaves <code>ssh-rsa</code>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@ip-172-31-7-143:~# ssh-keygen -t rsa -C <span style="color:#e6db74">&#34;jenkins@teste.com.br&#34;</span></code></pre></div>
+
+<p><strong>Passos importantes</strong></p>
+
+<ol>
+<li><p>Copie a chave <code>.ssh/id_rsa.pub</code> e cole no <code>github</code></p></li>
+
+<li><p>Copie a chave <code>.ssh/id_rsa.pub</code> e cole o seu conteúdo em <code>.ssh/authorized_keys</code> do servidor(es) de <strong>deploy</strong></p></li>
+</ol>
+
+<h2 id="configurações-no-jenkins">Configurações no Jenkins</h2>
+
+<p>Colocar o shell para <code>/bin/bash</code> em  <code>Configure System</code></p>
+
+<p><img src="/jenkins_configure_shell.png" alt="Configure shell" /></p>
+
+<p>Colocar o projeto como Project Matrix Based em  <code>Configure Global Security</code></p>
+
+<p><img src="/jenkins_configure_authorization.png" alt="Configure Authorization" /></p>
+
+<p>Colocar a chave privada em uma credential em <code>Credentials</code> no sidebar esquerdo.</p>
+
+<p><img src="/jenkins_configure_private_rsa.png" alt="Configure private key" /></p>
+
+<h2 id="jenkinsfile">Jenkinsfile</h2>
+
+<p>O Jenkinsfile é o script para executar todo o pipeline do projeto. Caso queria visualiza-lo no repositório acesse <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">pipeline <span style="color:#f92672">{</span>
+    environment <span style="color:#f92672">{</span>
+        MONGODB_URI_TEST <span style="color:#f92672">=</span> credentials<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;API_USERS_MONGO_DB_TEST&#39;</span><span style="color:#f92672">)</span>
+        FLASK_ENV <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;testing&#39;</span>
+        FLASK_APP <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;application.py&#39;</span>
+        DEBUG <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+        HOSTS <span style="color:#f92672">=</span> credentials<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;API_USERS_DEPLOY_HOSTS&#39;</span><span style="color:#f92672">)</span>
+	<span style="color:#f92672">}</span>
+    options
+    <span style="color:#f92672">{</span>
+        skipDefaultCheckout<span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span>
+        buildDiscarder<span style="color:#f92672">(</span>logRotator<span style="color:#f92672">(</span>numToKeepStr: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">,</span> daysToKeepStr: <span style="color:#e6db74">&#39;7&#39;</span><span style="color:#f92672">))</span>
+        timestamps<span style="color:#f92672">()</span>
+    <span style="color:#f92672">}</span>
+    agent any
+    stages <span style="color:#f92672">{</span>
+        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Checkout&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            steps <span style="color:#f92672">{</span>
+                checkout scm
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        stage <span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Install Dependencies&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            steps <span style="color:#f92672">{</span>
+                sh <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">                python3 -m venv .venv
+</span><span style="color:#e6db74">                source .venv/bin/activate
+</span><span style="color:#e6db74">                pip install --upgrade pip
+</span><span style="color:#e6db74">                pip install -r ${env.WORKSPACE}/requirements/test.txt
+</span><span style="color:#e6db74">                &#34;&#34;&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Run Tests&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            steps <span style="color:#f92672">{</span>
+                sh <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">                source .venv/bin/activate
+</span><span style="color:#e6db74">                echo &#34;Running the unit test...&#34;
+</span><span style="color:#e6db74">                make clean
+</span><span style="color:#e6db74">                make coverage
+</span><span style="color:#e6db74">                &#34;&#34;&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Generate Release and deploy&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            steps <span style="color:#f92672">{</span>
+                script <span style="color:#f92672">{</span>
+                    <span style="color:#66d9ef">def</span> version <span style="color:#f92672">=</span> readFile encoding: <span style="color:#e6db74">&#39;utf-8&#39;</span><span style="color:#f92672">,</span> file: <span style="color:#e6db74">&#39;__version__.py&#39;</span>
+                    <span style="color:#66d9ef">def</span> message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Latest ${version}. New version:&#34;</span>
+                    <span style="color:#66d9ef">def</span> releaseInput <span style="color:#f92672">=</span> input<span style="color:#f92672">(</span>
+                        id: <span style="color:#e6db74">&#39;userInput&#39;</span><span style="color:#f92672">,</span>
+                        message: <span style="color:#e6db74">&#34;${message}&#34;</span><span style="color:#f92672">,</span>
+                        parameters: <span style="color:#f92672">[</span>
+                            <span style="color:#f92672">[</span>
+                                $class<span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;TextParameterDefinition&#39;</span><span style="color:#f92672">,</span>
+                                defaultValue: <span style="color:#e6db74">&#39;uat&#39;</span><span style="color:#f92672">,</span>
+                                description: <span style="color:#e6db74">&#39;Release candidate&#39;</span><span style="color:#f92672">,</span>
+                                name: <span style="color:#e6db74">&#39;rc&#39;</span>
+                            <span style="color:#f92672">]</span>
+                        <span style="color:#f92672">]</span>
+                    <span style="color:#f92672">)</span>
+                    sh <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">                    make release v=${releaseInput}
+</span><span style="color:#e6db74">                    source .venv/bin/activate
+</span><span style="color:#e6db74">                    fab -H ${env.HOSTS} deploy --tag ${releaseInput}
+</span><span style="color:#e6db74">                    &#34;&#34;&#34;</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    post <span style="color:#f92672">{</span>
+        always <span style="color:#f92672">{</span>
+            sh <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">            rm -rf .venv
+</span><span style="color:#e6db74">            &#34;&#34;&#34;</span>
+        <span style="color:#f92672">}</span>
+        success <span style="color:#f92672">{</span>
+            echo <span style="color:#e6db74">&#34;Success&#34;</span>
+            echo <span style="color:#e6db74">&#34;TODO: Send to slack webhook&#34;</span>
+        <span style="color:#f92672">}</span>
+        failure <span style="color:#f92672">{</span>
+            echo <span style="color:#e6db74">&#34;TODO: Send e-mail, when failed&#34;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<h2 id="considerações-finais">Considerações finais.</h2>
+
+<p>O Jenkins é uma poderosa ferramenta para fazer CI e CD de seus produtos de software e feita pela comunidade como open source. Existem outras ferramentas como o <strong>circleci, travis, semaphore, gitlab-ci, pipeline do bitbucket</strong>. Porém existem alguns limites (por usuário, projeto) para uso dessa ferramentas, caso queira usar todas as funcionalidades é necessário pagar.</p>
+
+<p>Com o Jenkins instalado em um servidor você tem acesso ilimitado a todos os recursos. Em contrapartida é necessário realizar toda a configuração desde infraestrutura do servidor até configurações do software, sendo então, um ponto negativo. Continuando neste tópico, os recursos aqui apresentados são bem básicos, logo, existem recursos avançados como:</p>
+
+<ol>
+<li><p>clusters de build com <code>masters</code> e <code>slaves</code></p></li>
+
+<li><p>Builds disparados atrabeś de gatilhos do Github <strong>(webhooks)</strong></p></li>
+
+<li><p>Gerar artefatos, <strong>.zip, binários, .egg, .whl, .jar, etc&hellip;</strong>, do software.</p></li>
+
+<li><p>Integrar com ferramentas como <a href="https://www.sonarqube.org/" target="_blank">SonarQube</a></p></li>
+
+<li><p>Criar imagens <code>docker</code> e fazer deploy em um <code>ECS</code></p></li>
+</ol>
+
+<p>Enfim, as possibilidades são enormes e para isso necessita de estudo para aplicar esses recursos a necessidade de cada projeto de software.</p>
+
+<p>Agradeço a todos e fiquem a vontade para mandar dúvidas, sugestões e criticas.</p>
+
+<p>Valeu. Abraços a todos.</p>
+
+    
+
+    
+        <hr>
+        <footer>
+            
+                <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fserie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fserie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fserie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f11%2fserie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
+    </nav>
+</section>
+
+            
+
+            
+        </footer>
+    
+
+</article> 
+
+
+            </div>
+            <!-- /.blog-main -->
+            <aside class="col-sm-3 ml-auto blog-sidebar">
+    
+
+    
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+        
+        
+            <li>
+                <a href="/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/">
+                    Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric
+                </a>
+            </li>
+        
+            <li>
+                <a href="/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/">
+                    Série API em Flask - Parte 15 - Automatizando o processo de deploy com Fabric
+                </a>
+            </li>
+        
+    </ol>
+</section>
+
+    
+
+    
+
+    
+    
+        
+        <section class="sidebar-module">
+            <h4>Séries</h4>
+
+            <ol class="list-unstyled">
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/api-em-flask">
+                        Api em flask
+                        (16)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/deploy-flask-na-digital-ocean">
+                        Deploy flask na digital ocean
+                        (8)
+                    </a>
+                </li>
+                
+            </ol>
+
+        </section>
+        
+    
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/devops">Devops (12)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">Elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">Flask (16)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">Python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> Api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/cd"><i class="fa fa-tags"></i> Cd</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/ci"><i class="fa fa-tags"></i> Ci</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/deploy"><i class="fa fa-tags"></i> Deploy</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/digital-ocean"><i class="fa fa-tags"></i> Digital ocean</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> Docker</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> Elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/fabric"><i class="fa fa-tags"></i> Fabric</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/flask"><i class="fa fa-tags"></i> Flask</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> Functional programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/jenkins"><i class="fa fa-tags"></i> Jenkins</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> Python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> Rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+        <p>
+        
+            Blog template created by
+            <a href="https://twitter.com/mdo">@mdo</a>
+            , ported to Hugo by
+            <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+        
+        </p>
+        <p>
+            <a href="#"></a>
+        </p>
+    </footer>
+    
+</body>
+</html>

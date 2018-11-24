@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ci on Lucas Simon</title>
+    <link>https://lucassimon.com.br/tags/ci/</link>
+    <description>Recent content in Ci on Lucas Simon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Fri, 23 Nov 2018 18:00:00 -0300</lastBuildDate>
+    
+	<atom:link href="https://lucassimon.com.br/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric</title>
+      <link>https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/</link>
+      <pubDate>Fri, 23 Nov 2018 18:00:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/euEfDTZhXw0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Nesse artigo vamos finalizar o processo de desenvolvimento de software
+colocando o Flask Api Users no Jenkins, executando os testes e fazendo deploy na digital ocean.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
