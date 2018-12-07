@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário" />
+<meta property="og:description" content="Tudo bem pessoal!? Estarei iniciando uma nova série, curtinha e direto ao ponto, utilizando o Flask para produzir mensagens para o RabbitMQ e sendo consumidos por um app Node.JS.
+
+Slide
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/" />
+
+
+
+<meta property="article:published_time" content="2018-12-06T15:40:00-03:00"/>
+
+<meta property="article:modified_time" content="2018-12-06T15:40:00-03:00"/>
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário"/>
+<meta name="twitter:description" content="Tudo bem pessoal!? Estarei iniciando uma nova série, curtinha e direto ao ponto, utilizando o Flask para produzir mensagens para o RabbitMQ e sendo consumidos por um app Node.JS.
+
+Slide
+
+"/>
+
+
+<meta itemprop="name" content="Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário">
+<meta itemprop="description" content="Tudo bem pessoal!? Estarei iniciando uma nova série, curtinha e direto ao ponto, utilizando o Flask para produzir mensagens para o RabbitMQ e sendo consumidos por um app Node.JS.
+
+Slide
+
+">
+
+
+<meta itemprop="datePublished" content="2018-12-06T15:40:00-03:00" />
+<meta itemprop="dateModified" content="2018-12-06T15:40:00-03:00" />
+<meta itemprop="wordCount" content="600">
+
+
+
+<meta itemprop="keywords" content="python,api,rest,queue,rabbitmq," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas ",
+  "url": "https://lucassimon.com.br/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/",
+  "wordCount": "600",
+  "datePublished": "2018-12-06T15:40:00-03:00",
+  "dateModified": "2018-12-06T15:40:00-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "flask, api rest em flask, flask restful, rabbitmq, devops, python, api, rest, queue"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/">
+
+    <title>Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário | Lucas Simon</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+</head>
+
+<body><noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    
+
+    
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="nav blog-nav">
+                <a class="nav-link " href="https://lucassimon.com.br/">
+                    Home
+                </a>
+                    
+                    <a class="nav-link" href="/about/" title="">
+                        Sobre
+                    </a>
+                
+
+                
+                    
+                    <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">
+                        Curriculo
+                    </a>
+                
+                    
+                    <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">
+                        Github
+                    </a>
+                
+            </nav>
+        </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">
+                <a href="https://lucassimon.com.br/" rel="home">
+                    Lucas Simon
+                </a>
+            </h1>
+            
+                <p class="lead blog-description">
+                    Web Developer. lucassrod@gmail.com
+                </p>
+            
+        </div>
+    </header>
+    
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a href="https://lucassimon.com.br/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/">
+                Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário
+            </a>
+        </h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-12-06T15:40:00-03:00">
+                Thu Dec 06, 2018
+            </time>
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/api-em-flask" rel="tag">
+            Api em Flask
+        </a>
+    
+
+
+
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/flask" rel="category tag">
+            flask
+        </a>
+    
+        ,
+        
+        <a href="/categories/devops" rel="category tag">
+            devops
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/python" rel="tag">
+            python
+        </a>
+    
+        , 
+        <a href="/tags/api" rel="tag">
+            api
+        </a>
+    
+        , 
+        <a href="/tags/rest" rel="tag">
+            rest
+        </a>
+    
+        , 
+        <a href="/tags/queue" rel="tag">
+            queue
+        </a>
+    
+        , 
+        <a href="/tags/rabbitmq" rel="tag">
+            rabbitmq
+        </a>
+    
+
+
+        </p>
+    </header>
+    <p>Tudo bem pessoal!? Estarei iniciando uma nova série, curtinha e direto ao ponto, utilizando o Flask para produzir mensagens para o RabbitMQ e sendo consumidos por um app Node.JS.</p>
+
+<p><a href="https://slides.com/lucassimonrodriguesmagalhaes/rabbitmq" target="_blank">Slide</a></p>
+
+<p></p>
+
+<p>Para entendimento, segue os capítulos que serão abordados.</p>
+
+<ul>
+<li><p>Capítulo 1: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-1---introducao-configuracao-e-hello-world/" target="_blank">Introdução, configuração e Hello World</a></p></li>
+
+<li><p>Capítulo 2: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-2---organizando-as-dependencias-e-requerimentos/" target="_blank">Organizando as dependências e requerimentos</a></p></li>
+
+<li><p>Capítulo 3: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o pytest e nosso primeiro teste</a></p></li>
+
+<li><p>Capítulo 4: <a href="https://lucassimon.com.br/2018/06/serie-api-em-flask---parte-3---configurando-o-pytest-e-nosso-primeiro-teste/" target="_blank">Configurando o Makefile</a></p></li>
+
+<li><p>Capítulo 5: <a href="https://lucassimon.com.br/2018/07/serie-api-em-flask---parte-5---mongodb/" target="_blank">Adicionando o MongoDB</a></p></li>
+
+<li><p>Capítulo 6: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-6---criando-e-testando-nosso-modelo-de-usuarios/" target="_blank">Criando e testando o modelo de usuários</a></p></li>
+
+<li><p>Capítulo 7: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-7---criando-usuarios/" target="_blank">Criando usuários</a></p></li>
+
+<li><p>Capítulo 8: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-8---listando-usuarios/" target="_blank">Listando usuários</a></p></li>
+
+<li><p>Capítulo 9: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-9---buscando-usuarios/" target="_blank">Buscando usuários</a></p></li>
+
+<li><p>Capítulo 10: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-10---editando-um-usuario/" target="_blank">Editando um usuário</a></p></li>
+
+<li><p>Capítulo 11: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-11---deletando-um-usuario/" target="_blank">Deletando um usuário</a></p></li>
+
+<li><p>Capítulo 12: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-12---autenticacao-por-jwt/" target="_blank">Autênticação por JWT</a></p></li>
+
+<li><p>Capítulo 13: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-13---criando-um-container-docker/" target="_blank">Criando um container Docker</a></p></li>
+
+<li><p>Capítulo 14: <a href="https://lucassimon.com.br/2018/10/serie-api-em-flask---parte-14---arquivos-de-configuracao-para-deploy-na-digital-ocean/" target="_blank">Deploy Flask na Digital Ocean</a></p></li>
+
+<li><p>Capítulo 15: <a href="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-15---automatizando-o-processo-de-deploy-com-fabric/" target="_blank">Automatizando o processo de deploy com Fabric</a></p></li>
+
+<li><p>Capítulo 16: <a href="https://lucassimon.com.br/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/" target="_blank">CI e CD com Jenkins, Python, Flask e Fabric</a></p></li>
+
+<li><p>Capítulo 17: Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário <strong>Estamos aqui</strong></p></li>
+</ul>
+
+<p>O repositório com todo o código fonte esta <a href="https://github.com/lucassimon/flask-api-users" target="_blank">aqui</a>. Os capítulos estão em <code>branches</code>.</p>
+
+<h2 id="a-arquitetura">A arquitetura</h2>
+
+<p>Ao desenvolvermos aplicativos backend, inicialmente recorremos a arquitetura monolitica. E não ha nada de errado nisto, pois precisamos validar um protótipo e entregar nosso MVP.</p>
+
+<p>Porém ao longo do tempo e com acrescimo de funcionalidades a sua aplicação que antes era um monolito para validar o negócio no mercado agora é uma plataforma inchada sendo bem custoso dar manutenção.</p>
+
+<h2 id="a-funcionalidade">A funcionalidade</h2>
+
+<p>Neste artigo, vamos fazer as seguintes estórias:</p>
+
+<blockquote>
+<p><strong>Como</strong> usuário <strong>devo</strong> me registrar no aplicativo <strong>para</strong> ter acesso as principais noticias do mercado de ações</p>
+
+<p><strong>Como</strong> plataforma <strong>devo</strong> cadastrar o usuário na base de dados e enviar um e-mail de boas vidas com um botão <strong>para</strong> ativar a conta do usuário</p>
+
+<p><strong>Como</strong> plataforma <strong>devo</strong> receber a  URL de ativação, verificar o usuário e ativar a conta <strong>para</strong> que ele, o usuário, acesse a plataforma</p>
+</blockquote>
+
+<p>Ao desenvolvermos a funcionalidade de forma procedural em um monolito, segunda estória, podemos correr alguns riscos.</p>
+
+<p><img src="/procedural-sendgrid.png" alt="Send e-mail Procedural" /></p>
+
+<p>Primeiro por se tratar de uma integração ha uma requisição para o serviço de terceiro que podem:</p>
+
+<ol>
+<li><p>A requisição pode demorar para ser processada devido o custo de rede</p></li>
+
+<li><p>O serviço de terceiro pode estar fora do ar</p></li>
+
+<li><p>A requisição está com dados errados e o serviço de terceiro retorna um erro</p></li>
+</ol>
+
+<p>Devido aos possíveis problemas citados acima temos diversos efeitos colaterais na plataforma como também ao usuário, a equipe de desenvolvimento e a empresa.</p>
+
+<p>Em caso de erro temos:</p>
+
+<p>O usuário registrado não irá receber o e-mail como consequência não irá utilizar o aplicativo pois não está ativado. Em linguagem de CRM perde-se um LEAD.</p>
+
+<p>A equipe de desenvolvimento terá de interferir para recuperar os dados do usuário, ja que houve um erro, e reprocessar todo o processo. Com isso ele deve verificar o serviço de e-mail, fazer um envio de teste, reprocessar o pedido, ir para o código diagnosticar o problema. Constatado um BUG na plataforma é necessário abrir uma nova tarefa, corrigi-la, o que demanda mais tempo de desenvolvimento, subir a correção e torcer para tudo dar certo. Geralemente é assim que acontece =/</p>
+
+<p>Para a empresa tem os gastos envolvidos tanto na alocação de um profissional para corrigir o problema quanto a perda de um valioso usuário que vai deixar de usar a plataforma.</p>
+
+<h2 id="proposta">Proposta</h2>
+
+<p>A proposta dessa nova série é quebrar os monolitos pouco a pouco até formar uma arquitetura de microserviços com os seguintes preceitos.</p>
+
+<ul>
+<li><p>Disponibilidade</p></li>
+
+<li><p>Segurança de dados</p></li>
+
+<li><p>Funcionalidades mais enxutas e desacopladas</p></li>
+</ul>
+
+<p><img src="/rabbitmq-flask-sendgrid.png" alt="RabbitMQ, flask e Sendgrid" /></p>
+
+<h2 id="fontes-de-estudo">Fontes de estudo:</h2>
+
+<p>Introdução a mensageria com RabbitMQ</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/XxdcQ8Vbsoo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>Utilizando o pacote <code>pika</code> para conectar ao RabbitMQ</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/BKDoxM9KOJY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>Consumindo as filas com NodeJS</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/p4cevymrEq0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+    
+
+    
+        <hr>
+        <footer>
+            
+                <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2fserie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2fserie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2fserie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2fserie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
+    </nav>
+</section>
+
+            
+
+            
+        </footer>
+    
+
+</article> 
+
+
+            </div>
+            <!-- /.blog-main -->
+            <aside class="col-sm-3 ml-auto blog-sidebar">
+    
+
+    
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+        
+        
+            <li>
+                <a href="/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/">
+                    Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário
+                </a>
+            </li>
+        
+            <li>
+                <a href="/2018/11/serie-api-em-flask---parte-16---ci-e-cd-com-jenkins-python-flask-e-fabric/">
+                    Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric
+                </a>
+            </li>
+        
+    </ol>
+</section>
+
+    
+
+    
+
+    
+    
+        
+        <section class="sidebar-module">
+            <h4>Séries</h4>
+
+            <ol class="list-unstyled">
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/api-em-flask">
+                        Api em flask
+                        (17)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/deploy-flask-na-digital-ocean">
+                        Deploy flask na digital ocean
+                        (8)
+                    </a>
+                </li>
+                
+            </ol>
+
+        </section>
+        
+    
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/devops">Devops (13)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">Elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">Flask (17)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">Python (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> Api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/cd"><i class="fa fa-tags"></i> Cd</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/ci"><i class="fa fa-tags"></i> Ci</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/deploy"><i class="fa fa-tags"></i> Deploy</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/digital-ocean"><i class="fa fa-tags"></i> Digital ocean</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> Docker</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> Elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/fabric"><i class="fa fa-tags"></i> Fabric</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/flask"><i class="fa fa-tags"></i> Flask</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> Functional programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/jenkins"><i class="fa fa-tags"></i> Jenkins</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> Python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/queue"><i class="fa fa-tags"></i> Queue</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rabbitmq"><i class="fa fa-tags"></i> Rabbitmq</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> Rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+        <p>
+        
+            Blog template created by
+            <a href="https://twitter.com/mdo">@mdo</a>
+            , ported to Hugo by
+            <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+        
+        </p>
+        <p>
+            <a href="#"></a>
+        </p>
+    </footer>
+    
+</body>
+</html>

@@ -6,10 +6,23 @@
     <description>Recent content in Python on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 23 Nov 2018 18:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 06 Dec 2018 15:40:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário</title>
+      <link>https://lucassimon.com.br/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/</link>
+      <pubDate>Thu, 06 Dec 2018 15:40:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/</guid>
+      <description>&lt;p&gt;Tudo bem pessoal!? Estarei iniciando uma nova série, curtinha e direto ao ponto, utilizando o Flask para produzir mensagens para o RabbitMQ e sendo consumidos por um app Node.JS.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://slides.com/lucassimonrodriguesmagalhaes/rabbitmq&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric</title>

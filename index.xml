@@ -6,10 +6,23 @@
     <description>Recent content on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Fri, 23 Nov 2018 18:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 06 Dec 2018 15:40:00 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário</title>
+      <link>https://lucassimon.com.br/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/</link>
+      <pubDate>Thu, 06 Dec 2018 15:40:00 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/</guid>
+      <description>&lt;p&gt;Tudo bem pessoal!? Estarei iniciando uma nova série, curtinha e direto ao ponto, utilizando o Flask para produzir mensagens para o RabbitMQ e sendo consumidos por um app Node.JS.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://slides.com/lucassimonrodriguesmagalhaes/rabbitmq&#34; target=&#34;_blank&#34;&gt;Slide&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 16 - CI e CD com Jenkins, Python, Flask e Fabric</title>
@@ -360,6 +373,20 @@ O Elixir utiliza a máquina virtual do Erlang, conhecida por executar sistemas d
       <guid>https://lucassimon.com.br/about/</guid>
       <description>Sou desenvolvedor web e amo arquiteturas de software e análise de sistemas. Utilizo Python como minha principal linguagem de programação em conjunto com o PostgresSQL / MySQL / MongoDB. Para melhorar a minha produtividade gosto de utilizar o Python com Django Framework ou Flask.
 Atualmente, estou estudando arquiteturas de software com o GRAPHQL em conjunto com o NodeJS. Escolhi o NodeJs porque sinto a necessidade de melhorar minhas habilidades em JavaScript, dado que ele é usado no navegador, frameworks frontend como Vuejs, ReactJS e também para criar aplicativos desktop e celulares.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://lucassimon.com.br/1/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucassimon.com.br/1/01/</guid>
+      <description>Fonte
+O ambiente de desenvolvimento De acordo com o artigo fonte do criador e mantenedor do [loafer]() vamos criar nossa stack de desenvolvimento, simulando um ambiente AWS.
+Primeiro baixe o container docker:
+$ docker pull pafortin/goaws $ docker run -d --name goaws -p 4100:4100 pafortin/goaws  Instale e realize as configurações do aws-cli:
+pip install awscli  As configurações ficam em ~/.aws/config:
+[default] region = sa-east-1  E as credenciais em ~/.</description>
     </item>
     
   </channel>
