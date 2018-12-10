@@ -6,10 +6,28 @@
     <description>Recent content in Rabbitmq on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Thu, 06 Dec 2018 15:40:00 -0300</lastBuildDate>
+    <lastBuildDate>Sat, 08 Dec 2018 09:07:41 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RabbitMQ - Parte 1 - Introdução ao RabbitMQ</title>
+      <link>https://lucassimon.com.br/2018/12/rabbitmq-parte-1-introdu%C3%A7%C3%A3o-ao-rabbitmq/</link>
+      <pubDate>Sat, 08 Dec 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/12/rabbitmq-parte-1-introdu%C3%A7%C3%A3o-ao-rabbitmq/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/1WgrnSDDtVE&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Fala galera. Beleza!? Neste video vamos dar uma introdução bem rápida do RabbitMQ e como configurar a ferramenta. Valeu!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://slides.com/lucassimonrodriguesmagalhaes/rabbitmq&#34; target=&#34;_blank&#34;&gt;Clique aqui e veja os Slide&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário</title>

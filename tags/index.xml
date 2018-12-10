@@ -75,6 +75,15 @@
     </item>
     
     <item>
+      <title>Exchanges</title>
+      <link>https://lucassimon.com.br/tags/exchanges/</link>
+      <pubDate>Sat, 08 Dec 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/tags/exchanges/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Fabric</title>
       <link>https://lucassimon.com.br/tags/fabric/</link>
       <pubDate>Fri, 23 Nov 2018 18:00:00 -0300</pubDate>
@@ -89,6 +98,15 @@
       <pubDate>Thu, 08 Nov 2018 09:07:41 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/tags/flask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Flow</title>
+      <link>https://lucassimon.com.br/tags/flow/</link>
+      <pubDate>Sat, 08 Dec 2018 09:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/tags/flow/</guid>
       <description></description>
     </item>
     
@@ -122,7 +140,7 @@
     <item>
       <title>Queue</title>
       <link>https://lucassimon.com.br/tags/queue/</link>
-      <pubDate>Thu, 06 Dec 2018 15:40:00 -0300</pubDate>
+      <pubDate>Sat, 08 Dec 2018 09:07:41 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/tags/queue/</guid>
       <description></description>
@@ -131,7 +149,7 @@
     <item>
       <title>Rabbitmq</title>
       <link>https://lucassimon.com.br/tags/rabbitmq/</link>
-      <pubDate>Thu, 06 Dec 2018 15:40:00 -0300</pubDate>
+      <pubDate>Sat, 08 Dec 2018 09:07:41 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/tags/rabbitmq/</guid>
       <description></description>

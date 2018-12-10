@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="RabbitMQ - Parte 1 - Introdução ao RabbitMQ" />
+<meta property="og:description" content="
+  
+
+
+
+Fala galera. Beleza!? Neste video vamos dar uma introdução bem rápida do RabbitMQ e como configurar a ferramenta. Valeu!!!
+
+Clique aqui e veja os Slide
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/12/rabbitmq-parte-1-introdu%C3%A7%C3%A3o-ao-rabbitmq/" />
+
+
+
+<meta property="article:published_time" content="2018-12-08T09:07:41-03:00"/>
+
+<meta property="article:modified_time" content="2018-12-08T09:07:41-03:00"/>
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RabbitMQ - Parte 1 - Introdução ao RabbitMQ"/>
+<meta name="twitter:description" content="
+  
+
+
+
+Fala galera. Beleza!? Neste video vamos dar uma introdução bem rápida do RabbitMQ e como configurar a ferramenta. Valeu!!!
+
+Clique aqui e veja os Slide
+
+"/>
+
+
+<meta itemprop="name" content="RabbitMQ - Parte 1 - Introdução ao RabbitMQ">
+<meta itemprop="description" content="
+  
+
+
+
+Fala galera. Beleza!? Neste video vamos dar uma introdução bem rápida do RabbitMQ e como configurar a ferramenta. Valeu!!!
+
+Clique aqui e veja os Slide
+
+">
+
+
+<meta itemprop="datePublished" content="2018-12-08T09:07:41-03:00" />
+<meta itemprop="dateModified" content="2018-12-08T09:07:41-03:00" />
+<meta itemprop="wordCount" content="25">
+
+
+
+<meta itemprop="keywords" content="rabbitmq,queue,flow,exchanges," />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDPTVJW');</script>
+<meta name="generator" content="Hugo 0.43-DEV" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RabbitMQ - Parte 1 - Introdução ao RabbitMQ",
+  "url": "https://lucassimon.com.br/2018/12/rabbitmq-parte-1-introdu%C3%A7%C3%A3o-ao-rabbitmq/",
+  "wordCount": "25",
+  "datePublished": "2018-12-08T09:07:41-03:00",
+  "dateModified": "2018-12-08T09:07:41-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Lucas Simon"
+  },
+  "keywords": "deploy, python, web application, rabbitmq, queue, flow, exchanges"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://lucassimon.com.br/2018/12/rabbitmq-parte-1-introdu%C3%A7%C3%A3o-ao-rabbitmq/">
+
+    <title>RabbitMQ - Parte 1 - Introdução ao RabbitMQ | Lucas Simon</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- combined, minified CSS -->
+    <link href="https://lucassimon.com.br/css/style.css" rel="stylesheet">
+
+    
+
+
+    
+
+    
+
+</head>
+
+<body><noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPTVJW" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    
+
+    
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="nav blog-nav">
+                <a class="nav-link " href="https://lucassimon.com.br/">
+                    Home
+                </a>
+                    
+                    <a class="nav-link" href="/about/" title="">
+                        Sobre
+                    </a>
+                
+
+                
+                    
+                    <a class="nav-link" href="https://www.linkedin.com/in/lucas-simon-rodrigues/" target="_blank" title="">
+                        Curriculo
+                    </a>
+                
+                    
+                    <a class="nav-link" href="https://github.com/lucassimon" target="_blank" title="">
+                        Github
+                    </a>
+                
+            </nav>
+        </div>
+    </div>
+    
+
+    
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">
+                <a href="https://lucassimon.com.br/" rel="home">
+                    Lucas Simon
+                </a>
+            </h1>
+            
+                <p class="lead blog-description">
+                    Web Developer. lucassrod@gmail.com
+                </p>
+            
+        </div>
+    </header>
+    
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a href="https://lucassimon.com.br/2018/12/rabbitmq-parte-1-introdu%C3%A7%C3%A3o-ao-rabbitmq/">
+                RabbitMQ - Parte 1 - Introdução ao RabbitMQ
+            </a>
+        </h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-12-08T09:07:41-03:00">
+                Sat Dec 08, 2018
+            </time>
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/menssagerias" rel="tag">
+            Menssagerias
+        </a>
+    
+
+
+
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/rabbitmq" rel="category tag">
+            rabbitmq
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/rabbitmq" rel="tag">
+            rabbitmq
+        </a>
+    
+        , 
+        <a href="/tags/queue" rel="tag">
+            queue
+        </a>
+    
+        , 
+        <a href="/tags/flow" rel="tag">
+            flow
+        </a>
+    
+        , 
+        <a href="/tags/exchanges" rel="tag">
+            exchanges
+        </a>
+    
+
+
+        </p>
+    </header>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/1WgrnSDDtVE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>Fala galera. Beleza!? Neste video vamos dar uma introdução bem rápida do RabbitMQ e como configurar a ferramenta. Valeu!!!</p>
+
+<p><a href="https://slides.com/lucassimonrodriguesmagalhaes/rabbitmq" target="_blank">Clique aqui e veja os Slide</a></p>
+
+<p></p>
+
+    
+
+    
+        <hr>
+        <footer>
+            
+                <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2frabbitmq-parte-1-introdu%25C3%25A7%25C3%25A3o-ao-rabbitmq%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2frabbitmq-parte-1-introdu%25C3%25A7%25C3%25A3o-ao-rabbitmq%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2frabbitmq-parte-1-introdu%25C3%25A7%25C3%25A3o-ao-rabbitmq%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2frabbitmq-parte-1-introdu%25C3%25A7%25C3%25A3o-ao-rabbitmq%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
+    </nav>
+</section>
+
+            
+
+            
+        </footer>
+    
+
+</article> 
+
+
+            </div>
+            <!-- /.blog-main -->
+            <aside class="col-sm-3 ml-auto blog-sidebar">
+    
+
+    
+        <section class="sidebar-module">
+    <h4>Post Recents</h4>
+    <ol class="list-unstyled">
+        
+        
+            <li>
+                <a href="/2018/12/rabbitmq-parte-1-introdu%C3%A7%C3%A3o-ao-rabbitmq/">
+                    RabbitMQ - Parte 1 - Introdução ao RabbitMQ
+                </a>
+            </li>
+        
+            <li>
+                <a href="/2018/12/serie-api-em-flask-parte-17-utilizando-o-rabbitmq-com-flask-e-sendgrid-para-enviar-e-mails-de-boas-vindas-e-ativar-a-conta-do-usuario/">
+                    Série API em Flask - Parte 17 - Utilizando o RabbitMQ com Flask e Sendgrid para enviar e-mails de boas vindas e ativar a conta do usuário
+                </a>
+            </li>
+        
+    </ol>
+</section>
+
+    
+
+    
+
+    
+    
+        
+        <section class="sidebar-module">
+            <h4>Séries</h4>
+
+            <ol class="list-unstyled">
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/api-em-flask">
+                        Api em flask
+                        (17)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/deploy-flask-na-digital-ocean">
+                        Deploy flask na digital ocean
+                        (8)
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://lucassimon.com.br/series/menssagerias">
+                        Menssagerias
+                        (1)
+                    </a>
+                </li>
+                
+            </ol>
+
+        </section>
+        
+    
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Categorias</h4>
+    <ol class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/categories/devops">Devops (13)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/elixir">Elixir (2)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/flask">Flask (17)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/python">Python (1)</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/categories/rabbitmq">Rabbitmq (1)</a>
+        </li>
+        
+    </ol>
+</section>
+
+
+
+    
+
+
+<section class="sidebar-module">
+    <h4>Tags</h3>
+    <ul class="list-unstyled">
+        
+        <li><a href="https://lucassimon.com.br/tags/api"><i class="fa fa-tags"></i> Api</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/cd"><i class="fa fa-tags"></i> Cd</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/ci"><i class="fa fa-tags"></i> Ci</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/deploy"><i class="fa fa-tags"></i> Deploy</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/digital-ocean"><i class="fa fa-tags"></i> Digital ocean</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/docker"><i class="fa fa-tags"></i> Docker</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/elixir"><i class="fa fa-tags"></i> Elixir</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/exchanges"><i class="fa fa-tags"></i> Exchanges</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/fabric"><i class="fa fa-tags"></i> Fabric</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/flask"><i class="fa fa-tags"></i> Flask</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/flow"><i class="fa fa-tags"></i> Flow</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/functional-programming"><i class="fa fa-tags"></i> Functional programming</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/jenkins"><i class="fa fa-tags"></i> Jenkins</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/python"><i class="fa fa-tags"></i> Python</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/queue"><i class="fa fa-tags"></i> Queue</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rabbitmq"><i class="fa fa-tags"></i> Rabbitmq</a>
+        </li>
+        
+        <li><a href="https://lucassimon.com.br/tags/rest"><i class="fa fa-tags"></i> Rest</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+</aside>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+        <p>
+        
+            Blog template created by
+            <a href="https://twitter.com/mdo">@mdo</a>
+            , ported to Hugo by
+            <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+        
+        </p>
+        <p>
+            <a href="#"></a>
+        </p>
+    </footer>
+    
+</body>
+</html>
