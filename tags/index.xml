@@ -95,7 +95,7 @@
     <item>
       <title>Flask</title>
       <link>https://lucassimon.com.br/tags/flask/</link>
-      <pubDate>Thu, 08 Nov 2018 09:07:41 -0300</pubDate>
+      <pubDate>Mon, 10 Dec 2018 21:07:41 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/tags/flask/</guid>
       <description></description>
@@ -129,6 +129,24 @@
     </item>
     
     <item>
+      <title>Pika</title>
+      <link>https://lucassimon.com.br/tags/pika/</link>
+      <pubDate>Mon, 10 Dec 2018 21:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/tags/pika/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Publisher</title>
+      <link>https://lucassimon.com.br/tags/publisher/</link>
+      <pubDate>Mon, 10 Dec 2018 21:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/tags/publisher/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>https://lucassimon.com.br/tags/python/</link>
       <pubDate>Thu, 06 Dec 2018 15:40:00 -0300</pubDate>
@@ -149,7 +167,7 @@
     <item>
       <title>Rabbitmq</title>
       <link>https://lucassimon.com.br/tags/rabbitmq/</link>
-      <pubDate>Sat, 08 Dec 2018 09:07:41 -0300</pubDate>
+      <pubDate>Mon, 10 Dec 2018 21:07:41 -0300</pubDate>
       
       <guid>https://lucassimon.com.br/tags/rabbitmq/</guid>
       <description></description>

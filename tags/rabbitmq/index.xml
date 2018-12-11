@@ -6,10 +6,30 @@
     <description>Recent content in Rabbitmq on Lucas Simon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sat, 08 Dec 2018 09:07:41 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 10 Dec 2018 21:07:41 -0300</lastBuildDate>
     
 	<atom:link href="https://lucassimon.com.br/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RabbitMQ - Parte 2 - Produtor de mensagens com Python, Flask e o pacote Pika</title>
+      <link>https://lucassimon.com.br/2018/12/rabbitmq-parte-2-produtor-de-mensagens-com-python-flask-e-o-pacote-pika/</link>
+      <pubDate>Mon, 10 Dec 2018 21:07:41 -0300</pubDate>
+      
+      <guid>https://lucassimon.com.br/2018/12/rabbitmq-parte-2-produtor-de-mensagens-com-python-flask-e-o-pacote-pika/</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/7hoFyS1LeNU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Fala galera. Beleza!? Vamos colocar a mão na massa e produzir as mensagens para o RabbitMQ. Valeu!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://slides.com/lucassimonrodriguesmagalhaes/rabbitmq&#34; target=&#34;_blank&#34;&gt;Clique aqui e veja os Slide&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/lucassimon/flask-api-users/tree/capitulo17/rabbitmq&#34; target=&#34;_blank&#34;&gt;Código fonte&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>RabbitMQ - Parte 1 - Introdução ao RabbitMQ</title>
