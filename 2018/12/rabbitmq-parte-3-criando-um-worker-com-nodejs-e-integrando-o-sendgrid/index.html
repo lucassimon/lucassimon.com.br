@@ -5,21 +5,37 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta property="og:title" content="Sobre" />
-<meta property="og:description" content="Sou desenvolvedor web e amo arquiteturas de software e análise de sistemas. Utilizo Python como minha principal linguagem de programação em conjunto com o PostgresSQL / MySQL / MongoDB. Para melhorar a minha produtividade gosto de utilizar o Python com Django Framework ou Flask.
-Atualmente, estou estudando arquiteturas de software com o GRAPHQL em conjunto com o NodeJS. Escolhi o NodeJs porque sinto a necessidade de melhorar minhas habilidades em JavaScript, dado que ele é usado no navegador, frameworks frontend como Vuejs, ReactJS e também para criar aplicativos desktop e celulares." />
+<meta property="og:title" content="RabbitMQ - Parte 3 - Criando um worker com NodeJS e integrando o Sendgrid" />
+<meta property="og:description" content="
+  
+
+
+
+Fala galera. Beleza!? No video de hoje vamos construir o nosso worker para consumier as mensagens da fila. Valeu!!!
+
+Clique aqui e veja os Slide
+
+Código fonte do produtor
+
+Código fonte do consumidor
+
+" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lucassimon.com.br/about/" />
+<meta property="og:url" content="https://lucassimon.com.br/2018/12/rabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid/" />
 
 
 
-<meta property="article:published_time" content="2018-06-12T09:07:41-03:00"/>
+<meta property="article:published_time" content="2018-12-20T22:22:41-03:00"/>
 
-<meta property="article:modified_time" content="2018-06-12T09:07:41-03:00"/>
-
-
+<meta property="article:modified_time" content="2018-12-20T22:22:41-03:00"/>
 
 
+
+
+
+
+  
+  
 
 
 
@@ -28,23 +44,47 @@ Atualmente, estou estudando arquiteturas de software com o GRAPHQL em conjunto c
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Sobre"/>
-<meta name="twitter:description" content="Sou desenvolvedor web e amo arquiteturas de software e análise de sistemas. Utilizo Python como minha principal linguagem de programação em conjunto com o PostgresSQL / MySQL / MongoDB. Para melhorar a minha produtividade gosto de utilizar o Python com Django Framework ou Flask.
-Atualmente, estou estudando arquiteturas de software com o GRAPHQL em conjunto com o NodeJS. Escolhi o NodeJs porque sinto a necessidade de melhorar minhas habilidades em JavaScript, dado que ele é usado no navegador, frameworks frontend como Vuejs, ReactJS e também para criar aplicativos desktop e celulares."/>
-
-
-<meta itemprop="name" content="Sobre">
-<meta itemprop="description" content="Sou desenvolvedor web e amo arquiteturas de software e análise de sistemas. Utilizo Python como minha principal linguagem de programação em conjunto com o PostgresSQL / MySQL / MongoDB. Para melhorar a minha produtividade gosto de utilizar o Python com Django Framework ou Flask.
-Atualmente, estou estudando arquiteturas de software com o GRAPHQL em conjunto com o NodeJS. Escolhi o NodeJs porque sinto a necessidade de melhorar minhas habilidades em JavaScript, dado que ele é usado no navegador, frameworks frontend como Vuejs, ReactJS e também para criar aplicativos desktop e celulares.">
-
-
-<meta itemprop="datePublished" content="2018-06-12T09:07:41-03:00" />
-<meta itemprop="dateModified" content="2018-06-12T09:07:41-03:00" />
-<meta itemprop="wordCount" content="101">
+<meta name="twitter:title" content="RabbitMQ - Parte 3 - Criando um worker com NodeJS e integrando o Sendgrid"/>
+<meta name="twitter:description" content="
+  
 
 
 
-<meta itemprop="keywords" content="" />
+Fala galera. Beleza!? No video de hoje vamos construir o nosso worker para consumier as mensagens da fila. Valeu!!!
+
+Clique aqui e veja os Slide
+
+Código fonte do produtor
+
+Código fonte do consumidor
+
+"/>
+
+
+<meta itemprop="name" content="RabbitMQ - Parte 3 - Criando um worker com NodeJS e integrando o Sendgrid">
+<meta itemprop="description" content="
+  
+
+
+
+Fala galera. Beleza!? No video de hoje vamos construir o nosso worker para consumier as mensagens da fila. Valeu!!!
+
+Clique aqui e veja os Slide
+
+Código fonte do produtor
+
+Código fonte do consumidor
+
+">
+
+
+<meta itemprop="datePublished" content="2018-12-20T22:22:41-03:00" />
+<meta itemprop="dateModified" content="2018-12-20T22:22:41-03:00" />
+<meta itemprop="wordCount" content="33">
+
+
+
+<meta itemprop="keywords" content="rabbitmq,flask,pika,publisher," />
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -58,23 +98,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "headline": "Sobre",
-  "url": "https://lucassimon.com.br/about/",
-  "wordCount": "101",
-  "datePublished": "2018-06-12T09:07:41-03:00",
-  "dateModified": "2018-06-12T09:07:41-03:00",
+  "headline": "RabbitMQ - Parte 3 - Criando um worker com NodeJS e integrando o Sendgrid",
+  "url": "https://lucassimon.com.br/2018/12/rabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid/",
+  "wordCount": "33",
+  "datePublished": "2018-12-20T22:22:41-03:00",
+  "dateModified": "2018-12-20T22:22:41-03:00",
   "author": {
     "@type": "Person",
     "name": "Lucas Simon"
-  }
+  },
+  "keywords": "deploy, python, web application, rabbitmq, flask, pika, publisher"
 }
 </script>
 
 
 
-    <link rel="canonical" href="https://lucassimon.com.br/about/">
+    <link rel="canonical" href="https://lucassimon.com.br/2018/12/rabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid/">
 
-    <title>Sobre | Lucas Simon</title>
+    <title>RabbitMQ - Parte 3 - Criando um worker com NodeJS e integrando o Sendgrid | Lucas Simon</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
@@ -152,35 +193,108 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <article class="blog-post">
     <header>
         <h2 class="blog-post-title">
-            <a href="https://lucassimon.com.br/about/">
-                Sobre
+            <a href="https://lucassimon.com.br/2018/12/rabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid/">
+                RabbitMQ - Parte 3 - Criando um worker com NodeJS e integrando o Sendgrid
             </a>
         </h2>
         <p class="blog-post-meta">
-            <time datetime="2018-06-12T09:07:41-03:00">
-                Tue Jun 12, 2018
+            <time datetime="2018-12-20T22:22:41-03:00">
+                Thu Dec 20, 2018
             </time>
-            by Lucas Simon
+            by Lucas Simon in <br />
+
+    <i class="fas fa-list-ol" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/series/menssagerias" rel="tag">
+            Menssagerias
+        </a>
+    
+
+
+
+    <i class="fas fa-folder" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/categories/rabbitmq" rel="category tag">
+            rabbitmq
+        </a>
+    
+
+
+
+    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+    
+        
+        <a href="/tags/rabbitmq" rel="tag">
+            rabbitmq
+        </a>
+    
+        , 
+        <a href="/tags/flask" rel="tag">
+            flask
+        </a>
+    
+        , 
+        <a href="/tags/pika" rel="tag">
+            pika
+        </a>
+    
+        , 
+        <a href="/tags/publisher" rel="tag">
+            publisher
+        </a>
+    
+
+
         </p>
     </header>
-    <p>Sou desenvolvedor web e amo arquiteturas de software e análise de sistemas. Utilizo Python como minha principal linguagem de programação em conjunto com o PostgresSQL / MySQL / MongoDB. Para melhorar a minha produtividade gosto de utilizar o Python com Django Framework ou Flask.</p>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/so_o_eAS7Ho" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
 
-<p>Atualmente, estou estudando arquiteturas de software com o GRAPHQL em conjunto com o NodeJS. Escolhi o NodeJs porque sinto a necessidade de melhorar minhas habilidades em JavaScript, dado que ele é usado no navegador, frameworks frontend como Vuejs, ReactJS e também para criar aplicativos desktop e celulares. Meu próximo objetivo é aprender sobre microsserviços e Queque Systems.</p>
 
+<p>Fala galera. Beleza!? No video de hoje vamos construir o nosso worker para consumier as mensagens da fila. Valeu!!!</p>
+
+<p><a href="https://slides.com/lucassimonrodriguesmagalhaes/rabbitmq" target="_blank">Clique aqui e veja os Slide</a></p>
+
+<p><a href="https://github.com/lucassimon/flask-api-users/tree/capitulo17/rabbitmq" target="_blank">Código fonte do produtor</a></p>
+
+<p><a href="https://github.com/lucassimon/api-users-signup-worker-js" target="_blank">Código fonte do consumidor</a></p>
+
+<p></p>
 
     
-        <h4>Traduções</h4>
-        <ul>
-            
-            <li>
-                <a href="https://lucassimon.com.br/en/about/">
-                    en: About
-                </a>
-            </li>
-            
-        </ul>
-    
 
+    
+        <hr>
+        <footer>
+            
+                <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+        <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2frabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid%2f" title="Share on Facebook">
+            <span class="fab fa-facebook fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2frabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid%2f" title="Share on Google+">
+            <span class="fab fa-google-plus-square fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2frabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid%2f" title="Share on LinkedIn">
+            <span class="fab fa-linkedin fa-2x" aria-hidden="true">
+            </span>
+        </a>
+        <a class="nav-item" href="https://twitter.com/home?status=https%3a%2f%2flucassimon.com.br%2f2018%2f12%2frabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid%2f" title="Tweet this">
+            <span class="fab fa-twitter-square fa-2x"></span>
+        </a>
+    </nav>
+</section>
+
+            
+
+            
+        </footer>
     
 
 </article> 

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lucassimon.com.br/2018/12/rabbitmq-parte-3-criando-um-worker-com-nodejs-e-integrando-o-sendgrid/</loc>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/2018/12/rabbitmq-parte-2-produtor-de-mensagens-com-python-flask-e-o-pacote-pika/</loc>
     <lastmod>2018-12-10T21:07:41-03:00</lastmod>
   </url>
@@ -241,13 +246,13 @@
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/tags/elixir/</loc>
+    <loc>https://lucassimon.com.br/categories/elixir/</loc>
     <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/categories/elixir/</loc>
+    <loc>https://lucassimon.com.br/tags/elixir/</loc>
     <lastmod>2018-06-13T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
@@ -265,14 +270,14 @@
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/tags/flask/</loc>
-    <lastmod>2018-12-10T21:07:41-03:00</lastmod>
+    <loc>https://lucassimon.com.br/categories/flask/</loc>
+    <lastmod>2018-12-06T15:40:00-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/categories/flask/</loc>
-    <lastmod>2018-12-06T15:40:00-03:00</lastmod>
+    <loc>https://lucassimon.com.br/tags/flask/</loc>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -296,7 +301,7 @@
   
   <url>
     <loc>https://lucassimon.com.br/</loc>
-    <lastmod>2018-12-10T21:07:41-03:00</lastmod>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -312,31 +317,25 @@
   
   <url>
     <loc>https://lucassimon.com.br/series/menssagerias/</loc>
-    <lastmod>2018-12-10T21:07:41-03:00</lastmod>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/tags/pika/</loc>
-    <lastmod>2018-12-10T21:07:41-03:00</lastmod>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/post/</loc>
-    <lastmod>2018-12-10T21:07:41-03:00</lastmod>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://lucassimon.com.br/tags/publisher/</loc>
-    <lastmod>2018-12-10T21:07:41-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://lucassimon.com.br/tags/python/</loc>
-    <lastmod>2018-12-06T15:40:00-03:00</lastmod>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -347,20 +346,26 @@
   </url>
   
   <url>
+    <loc>https://lucassimon.com.br/tags/python/</loc>
+    <lastmod>2018-12-06T15:40:00-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://lucassimon.com.br/tags/queue/</loc>
     <lastmod>2018-12-08T09:07:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/tags/rabbitmq/</loc>
-    <lastmod>2018-12-10T21:07:41-03:00</lastmod>
+    <loc>https://lucassimon.com.br/categories/rabbitmq/</loc>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://lucassimon.com.br/categories/rabbitmq/</loc>
-    <lastmod>2018-12-10T21:07:41-03:00</lastmod>
+    <loc>https://lucassimon.com.br/tags/rabbitmq/</loc>
+    <lastmod>2018-12-20T22:22:41-03:00</lastmod>
     <priority>0</priority>
   </url>
   
